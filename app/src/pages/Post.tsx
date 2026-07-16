@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { fetchPost } from '../content/posts'
+import { fetchPost, resolveContentUrl } from '../content/posts'
 import { useAsync } from '../lib/useAsync'
 import { formatDate } from '../lib/date'
 import Markdown from '../components/Markdown'
@@ -24,6 +24,13 @@ export default function Post() {
 
       {post && (
         <article className="space-y-8">
+          {post.hero && (
+            <img
+              src={resolveContentUrl(post.hero)}
+              alt=""
+              className="aspect-video w-full rounded-2xl border border-slate-200 object-cover dark:border-slate-800"
+            />
+          )}
           <header className="border-b border-slate-100 pb-6 dark:border-slate-800/60">
             <p className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
               {formatDate(post.date)}

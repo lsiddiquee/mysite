@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { PostMeta } from '../content/posts'
+import { resolveContentUrl, type PostMeta } from '../content/posts'
 import { formatDate } from '../lib/date'
 
 interface PostListProps {
@@ -19,6 +19,13 @@ export default function PostList({ posts }: PostListProps) {
             to={`/blog/${post.slug}`}
             className="group block rounded-xl border border-slate-200 bg-white p-5 transition-colors hover:border-indigo-300 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900/40 dark:hover:border-indigo-500/50 dark:hover:bg-slate-900"
           >
+            {post.hero && (
+              <img
+                src={resolveContentUrl(post.hero)}
+                alt=""
+                className="mb-4 aspect-video w-full rounded-lg border border-slate-200 object-cover dark:border-slate-800"
+              />
+            )}
             <p className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
               {formatDate(post.date)}
             </p>

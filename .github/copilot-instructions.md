@@ -54,6 +54,7 @@ mysite/
     vite.config.ts          # base '/', tailwind, spaFallback (404.html)
   content/                  # blog data — NOT deployed, fetched at runtime
     index.json              # post manifest (list source of truth)
+    assets/*                # images (hero banners + in-post images), fetched at runtime
     posts/*.md              # post bodies (optional frontmatter)
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
@@ -61,6 +62,14 @@ mysite/
 
 - **`config.ts` owns the content location.** The `owner`/`repo`/`branch`/`contentPath` and the
   derived `contentBase` live there once — never hardcode `raw.githubusercontent.com` URLs elsewhere.
+- **Images are content, resolved via `resolveContentUrl` (in `content/posts.ts`).** Hero banners
+  and in-post images live under `content/assets/` and are fetched at runtime like everything else
+  — never bundle them into the app. A post's optional `hero` (manifest field) and any relative
+  markdown `src`/`href` are rewritten against `contentBase` by `resolveContentUrl`; absolute,
+  protocol-relative, and `data:` URLs pass through untouched. Relative paths are relative to the
+  `content/` root (`assets/x.png`). Pages are served by GitHub Pages but content lives on
+  `raw.githubusercontent.com`, so a raw relative `src` would resolve against the page URL and
+  404 — always route content URLs through `resolveContentUrl`.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
 - **Pages/components stay presentational.** Data fetching goes through `content/posts.ts` and the
@@ -77,7 +86,9 @@ mysite/
 - **Routing: `react-router-dom`** with `BrowserRouter`. New routes go in `app/src/App.tsx` under
   the shared `Layout`.
 - **Markdown: `react-markdown` + `remark-gfm` + `rehype-highlight`.** Render only through the
-  `Markdown` component so plugins/highlighting stay consistent.
+  `Markdown` component so plugins/highlighting stay consistent. It also sets `urlTransform` to
+  `defaultUrlTransform` (keeps the built-in `javascript:` sanitizer) composed with
+  `resolveContentUrl`, so relative content URLs work — don't drop either half.
 - **Dates are date-only (`YYYY-MM-DD`)** and formatted as UTC via `lib/date.ts` — never construct
   `new Date(dateString)` in local time (it can show the previous day in negative offsets).
 - **Node 24**, npm (a committed `app/package-lock.json` backs CI's `npm ci`).

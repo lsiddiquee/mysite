@@ -20,6 +20,7 @@ mysite/
 │  └─ package.json
 ├─ content/                 # blog content (NOT deployed; fetched at runtime)
 │  ├─ index.json            # post manifest
+│  ├─ assets/*              # images (hero banners, in-post images)
 │  └─ posts/*.md
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
 └─ .github/workflows/deploy.yml
@@ -38,6 +39,7 @@ mysite/
      "date": "2026-08-01",
      "summary": "One-line summary.",
      "tags": ["notes"],
+     "hero": "assets/my-post-hero.jpg",
      "file": "posts/2026-08-01-my-post.md"
    }
    ```
@@ -45,6 +47,22 @@ mysite/
 3. Commit and push. The post appears immediately — no app rebuild.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
+
+### Images & hero banners
+
+Images are **content**, so they live under `content/assets/` and are fetched at runtime from
+the content repo — never bundled into the app.
+
+- **Hero banner** — optional `"hero"` field in the `index.json` entry (shown on the post page
+  and as the list-card thumbnail). Use a content-relative path (`assets/my-post-hero.jpg`) or a
+  full external URL.
+- **In-post images** — write standard markdown: `![alt](assets/diagram.png)`. **Relative paths
+  are resolved against `content/`**, so `assets/diagram.png` loads from `content/assets/`.
+  Absolute URLs (`https://…`), protocol-relative URLs, and `data:` URIs are used as-is.
+
+> Because pages are served by GitHub Pages but content lives on `raw.githubusercontent.com`, a
+> raw relative `src` would otherwise resolve against the page URL and 404 — the app rewrites
+> relative content URLs for you, so just author paths relative to `content/`.
 
 ## Local development
 

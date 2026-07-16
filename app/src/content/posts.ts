@@ -7,7 +7,22 @@ export interface PostMeta {
   date: string
   summary?: string
   tags?: string[]
+  hero?: string
   file: string
+}
+
+const ABSOLUTE_OR_SPECIAL = /^([a-z][a-z0-9+.-]*:|\/\/|#)/i
+
+/**
+ * Resolve a content-relative URL (hero image, or an in-post image/link) against
+ * the runtime content root on raw.githubusercontent.com. Absolute URLs,
+ * protocol-relative URLs, `data:`/`mailto:` URIs, and `#` anchors are returned
+ * unchanged, so authors can freely mix `assets/foo.png` (served from `content/`)
+ * with full external URLs. Relative paths are relative to the `content/` root.
+ */
+export function resolveContentUrl(url: string): string {
+  if (!url || ABSOLUTE_OR_SPECIAL.test(url)) return url
+  return `${contentBase}/${url.replace(/^(\.\/|\/)/, '')}`
 }
 
 export interface Post extends PostMeta {
