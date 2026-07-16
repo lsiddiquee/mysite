@@ -2,7 +2,7 @@ import { config } from '../config'
 
 export default function About() {
   return (
-    <div className="prose prose-slate max-w-none">
+    <div className="prose prose-slate max-w-none dark:prose-invert">
       <h1>About</h1>
       <p>
         Hi, I&apos;m {config.siteTitle}. This is my personal corner of the web where I write about
