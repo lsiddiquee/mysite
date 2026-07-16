@@ -2,7 +2,7 @@
 
 My personal website — a small **React + Vite + TypeScript** app that renders blog
 posts written in markdown. Hosted on **GitHub Pages** at
-[likhansiddiquee.com](https://likhansiddiquee.com).
+[www.likhansiddiquee.com](https://www.likhansiddiquee.com).
 
 ## Why it's structured this way
 
@@ -110,15 +110,17 @@ pre-commit run --all-files
 on pushes to `main` that touch `app/**`. One-time setup in the repo:
 
 1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. **Settings → Pages → Custom domain:** enter `likhansiddiquee.com` and enable
-   *Enforce HTTPS* (the `app/public/CNAME` file already pins this domain).
+2. **Settings → Pages → Custom domain:** enter `www.likhansiddiquee.com` and enable
+   *Enforce HTTPS* (the `app/public/CNAME` file already pins this domain). The apex
+   `likhansiddiquee.com` then redirects to `www` automatically.
 
 ### DNS for `likhansiddiquee.com`
 
-Point the apex domain at GitHub Pages with these `A`/`AAAA` records (and a `www`
-`CNAME` to `lsiddiquee.github.io` if you want `www`):
+`www` is the primary host (a `CNAME` to `lsiddiquee.github.io`); the apex is pointed at
+GitHub Pages with `A`/`AAAA` records so `likhansiddiquee.com` resolves and redirects to `www`:
 
 ```text
+CNAME www  lsiddiquee.github.io
 A     185.199.108.153
 A     185.199.109.153
 A     185.199.110.153

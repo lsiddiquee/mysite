@@ -32,7 +32,8 @@ container are in place.
 4. **SPA fallback is required.** Pages has no server rewrites; deep links depend on the
    `index.html → 404.html` copy produced by the `spaFallback` Vite plugin. Never remove it, and
    keep `base: '/'` (apex domain serves from root).
-5. **Custom domain is pinned.** `app/public/CNAME` = `likhansiddiquee.com`. Do not change or drop
+5. **Custom domain is pinned.** `app/public/CNAME` = `www.likhansiddiquee.com` (the primary
+   host; the apex `likhansiddiquee.com` stays in DNS and redirects to it). Do not change or drop
    it without an explicit request.
 6. **No secrets in the repo or client bundle.** The Cloudflare Analytics beacon token is the only
    public identifier that belongs in `app/index.html`. Never add API keys, tokens, or secrets —
