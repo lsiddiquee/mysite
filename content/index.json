@@ -6,6 +6,7 @@
       "date": "2026-07-16",
       "summary": "Copilot stalls waiting on one approval while you're away — CloakCode mirrors your live session to your phone so you can unblock it with a tap, without your code ever leaving your machine.",
       "tags": ["copilot", "cloakcode", "vscode"],
+      "hero": "assets/your-copilot-is-waiting-hero.jpg",
       "file": "posts/2026-07-16-your-copilot-is-waiting.md"
     },
     {
