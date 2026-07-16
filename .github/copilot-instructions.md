@@ -98,6 +98,9 @@ Each concern has exactly ONE owner — do not add a second tool that formats the
   `app/package-lock.json`: strips every `resolved` tarball URL so the lockfile pins **versions +
   `integrity` only** and stays registry-agnostic. Prettier ignores the lockfile; do not add another
   tool that rewrites it.
+- **gitleaks** (`.gitleaks.toml`) — secret scanning; extends the default ruleset and adds ONE
+  narrow allowlist: the Cloudflare Web Analytics beacon token (`data-cf-beacon` line in
+  `app/index.html`) is a public id, not a secret. Don't broaden the allowlist for anything else.
 - **pre-commit** (`.pre-commit-config.yaml`) wires the above plus gitleaks + Conventional Commits.
 
 **Fail loud — hard rule (applies everywhere: hooks, checks, CI, and setup/bootstrap scripts).**

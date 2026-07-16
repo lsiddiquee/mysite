@@ -1,0 +1,17 @@
+# gitleaks configuration.
+#
+# Extends the full default ruleset (so real secrets are still caught everywhere)
+# and adds ONE narrow allowlist: the Cloudflare Web Analytics beacon token in
+# app/index.html. That token is a PUBLIC beacon identifier that ships to every
+# browser — the only public id the project permits in the client bundle (see
+# .github/copilot-instructions.md). It is not a secret, so gitleaks' generic
+# high-entropy rule must not flag it.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Public Cloudflare Web Analytics beacon token (data-cf-beacon) — a public id, not a secret"
+regexTarget = "line"
+regexes = [
+  '''data-cf-beacon=''',
+]
