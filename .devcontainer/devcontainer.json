@@ -1,0 +1,67 @@
+{
+  // Personal site dev container — React + Vite + TypeScript on Node 24.
+  "name": "mysite",
+  // Built from .devcontainer/Dockerfile so the /home/node/.vscode-server mount
+  // point is pre-created node-owned (see the Dockerfile comment) — otherwise the
+  // named volume mounted there is root-owned and the server install fails.
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // Fixed workspace path regardless of the host folder name, so every absolute
+  // path (tasks, scripts, docs) stays stable.
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mysite,type=bind",
+  "workspaceFolder": "/workspaces/mysite",
+  "mounts": [
+    // Persisted cache volume (survives rebuilds): bash history + npm cache live here.
+    // remoteEnv below points the relevant tools at /.devcontainercache.
+    "source=devcontainer-cache-mysite,target=/.devcontainercache,type=volume",
+    // Persist the VS Code server data — installed extensions AND per-workspace
+    // storage (workspaceStorage) — so rebuilds don't re-download extensions or
+    // lose workspace state. Mounted on the remote user's home.
+    "source=mysite-vscode-server,target=/home/node/.vscode-server,type=volume"
+  ],
+  "features": {
+    // gh CLI for release/Pages workflows; kept lean otherwise.
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    // Python is only needed to run the `pre-commit` git-hook framework.
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "EditorConfig.EditorConfig"
+      ],
+      "settings": {
+        "typescript.tsdk": "app/node_modules/typescript/lib",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  },
+  // 5173 = Vite dev server, 4173 = Vite preview (production build preview).
+  "forwardPorts": [5173, 4173],
+  "portsAttributes": {
+    "5173": { "label": "mysite (Vite dev)", "onAutoForward": "notify" },
+    "4173": { "label": "mysite (Vite preview)", "onAutoForward": "silent" }
+  },
+  // Persisted-cache wiring: bash history + npm cache point at the named volume so
+  // rebuilds stay warm.
+  "remoteEnv": {
+    "PROMPT_COMMAND": "history -a",
+    "HISTFILE": "/.devcontainercache/.bash_history",
+    "NPM_CONFIG_CACHE": "/.devcontainercache/npm-cache",
+    // Persist pre-commit's per-hook tool environments across rebuilds.
+    "PRE_COMMIT_HOME": "/.devcontainercache/pre-commit"
+  },
+  "remoteUser": "node",
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}

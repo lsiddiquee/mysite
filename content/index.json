@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "slug": "hello-world",
+      "title": "Hello, World",
+      "date": "2026-07-16",
+      "summary": "Why I built this site and how it works.",
+      "tags": ["meta"],
+      "file": "posts/2026-07-16-hello-world.md"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+package-lock.json
+
+# Markdown is owned by markdownlint-cli2, not Prettier (single owner, no overlap).
+*.md
+*.markdown

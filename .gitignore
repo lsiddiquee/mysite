@@ -1,0 +1,25 @@
+# Build output
+app/dist/
+dist/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Local env / scratch
+.env
+.env.local
+.local/
+
+# Devcontainer local env (host IP, etc.)
+.devcontainer/.devcontainer.env

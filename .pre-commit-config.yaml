@@ -1,0 +1,114 @@
+# =============================================================================
+# mysite pre-commit hooks — repo-wide git-hook manager, run via the Python
+# `pre-commit` framework.
+#
+# Install / run:
+#   - The dev container AUTO-INSTALLS these hooks: post-create.sh runs
+#     `pre-commit install --install-hooks --hook-type pre-commit --hook-type commit-msg`.
+#     Hook environments are cached in PRE_COMMIT_HOME (/.devcontainercache/pre-commit)
+#     so they survive rebuilds.
+#   - Run against everything on demand:  pre-commit run --all-files
+#   - Bump pinned revisions with:        pre-commit autoupdate
+#
+# Every hook is scoped by file pattern, so it only fires when matching files are
+# staged.
+#
+# SINGLE OWNER PER CONCERN (no duplication):
+#   - Prettier          → formats ALL code/config/data (ts/tsx/js/json/jsonc/css/
+#                         html/yaml), repo-wide. Markdown is EXCLUDED (.prettierignore).
+#   - markdownlint-cli2  → the ONLY tool that touches Markdown.
+#   - ESLint             → correctness/quality for app/ TS+TSX only (formatting is
+#                         delegated to Prettier via eslint-config-prettier).
+#   - EditorConfig       → editor-time defaults for everything else (shell, dotfiles).
+#   - strip-lockfile-resolved → keeps package-lock.json registry-agnostic
+#                         (pins versions + integrity, strips tarball URLs).
+#   - gitleaks / conventional-pre-commit / large-file / merge-conflict → unique.
+#
+# FAIL LOUD: the local ESLint/Prettier hooks call the app's own binaries with NO
+# skip-guards — if the tool isn't installed the hook ERRORS (run
+# `cd app && npm install` first). Silent skips hide real problems.
+# =============================================================================
+
+minimum_pre_commit_version: '3.5.0'
+
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+
+repos:
+  # ---------------------------------------------------------------------------
+  # Unique, non-formatting safety checks (no overlap with the formatters below).
+  # Whitespace / EOL / final-newline are owned by Prettier + markdownlint +
+  # EditorConfig, so those hygiene fixers are intentionally NOT duplicated here.
+  # ---------------------------------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-added-large-files
+
+  # ---------------------------------------------------------------------------
+  # Secret scanning — block commits that introduce keys / tokens / credentials.
+  # Everything in this repo ships to the browser, so this matters.
+  # ---------------------------------------------------------------------------
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+
+  # ---------------------------------------------------------------------------
+  # Markdown — the ONLY owner of Markdown (docs + blog posts). markdownlint-cli2
+  # bundles its own Node tool, so it needs NO repo deps. Config: .markdownlint-cli2.jsonc.
+  # ---------------------------------------------------------------------------
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.22.1
+    hooks:
+      - id: markdownlint-cli2
+        args: ['--fix']
+        exclude: '(^|/)node_modules/'
+
+  # ---------------------------------------------------------------------------
+  # Conventional Commits — enforced on the commit message (commit-msg hook).
+  # ---------------------------------------------------------------------------
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.6.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+
+  # ---------------------------------------------------------------------------
+  # Local toolchain hooks (language: system) — run the app's own binaries.
+  # NO skip-guards: they FAIL LOUD if the tool is missing (run `cd app && npm install`).
+  # ---------------------------------------------------------------------------
+  - repo: local
+    hooks:
+      # Prettier — the single formatter for all non-Markdown files, repo-wide.
+      # .prettierignore excludes Markdown, node_modules, dist, and the lockfile.
+      - id: prettier
+        name: Prettier
+        language: system
+        files: '\.(ts|tsx|js|jsx|mjs|cjs|json|jsonc|css|scss|html|ya?ml)$'
+        entry: app/node_modules/.bin/prettier --write --ignore-path .prettierignore
+
+      # ESLint — correctness/quality for app/ TypeScript. Runs from app/ so it
+      # finds app/eslint.config.js; staged paths are made app/-relative first.
+      - id: eslint
+        name: ESLint (app)
+        language: system
+        files: '^app/.*\.(ts|tsx)$'
+        entry: >-
+          bash -c 'rel=(); for f in "$@"; do rel+=("${f#app/}"); done;
+          cd app && ./node_modules/.bin/eslint --fix "${rel[@]}"' --
+
+      # npm lockfile — pin versions + integrity ONLY, never a registry-specific
+      # tarball URL. `npm install` bakes the configured registry's host into
+      # every `resolved` field; this strips those tgz links so the committed
+      # lockfile stays registry-agnostic (public registry in CI, internal proxy
+      # locally) and never leaks an internal feed host. npm rebuilds the URLs
+      # from the configured registry and still verifies each package via
+      # `integrity`. FAIL LOUD: errors if the result isn't valid JSON.
+      - id: strip-lockfile-resolved
+        name: Strip resolved URLs from package-lock.json
+        language: script
+        files: '(^|/)package-lock\.json$'
+        entry: scripts/strip-lockfile-resolved.sh
