@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "slug": "your-copilot-is-waiting",
+      "title": "Your Copilot agent is waiting for you — and you're not at your desk",
+      "date": "2026-07-16",
+      "summary": "Copilot stalls waiting on one approval while you're away — CloakCode mirrors your live session to your phone so you can unblock it with a tap, without your code ever leaving your machine.",
+      "tags": ["copilot", "cloakcode", "vscode"],
+      "file": "posts/2026-07-16-your-copilot-is-waiting.md"
+    },
+    {
       "slug": "hello-world",
       "title": "Hello, World",
       "date": "2026-07-16",
