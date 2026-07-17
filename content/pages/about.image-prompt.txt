@@ -1,0 +1,31 @@
+SURFACE:
+About page hero and social preview.
+
+STORY:
+A curious software engineer and compulsive tinkerer who follows puzzles through building, learning,
+travel, and family life.
+
+IMAGE PROMPT:
+A lively editorial vector portrait-without-a-person for a software engineer's About page, wide
+16:9. Arrange a playful constellation of personal objects around one central unfinished puzzle:
+modular building bricks becoming a small machine, an open notebook with abstract diagrams, a compact
+camera or travel bag, a folded map path, a tiny circuit board, and a film frame represented only by
+simple shapes. A single continuous line should wander through the objects and finally click the last
+puzzle piece into place, communicating curiosity that turns annoying problems into useful solutions.
+No face, body, family portrait, or literal biography scene. Style: expressive travel-poster meets
+modern editorial illustration, flat geometric shapes, hand-cut edges, subtle risograph grain,
+confident outlines, playful scale, ample breathing room. Palette: Mediterranean ultramarine,
+botanical green, sunflower yellow, warm coral, and near-black on a very pale sky background. Joyful,
+curious, and human without matching the homepage palette exactly. No text, logos, brand marks,
+watermarks, glossy 3D, gradients, or photorealism.
+
+NEGATIVE PROMPT:
+photorealistic portrait, visible person, face, family photo, generic programmer at laptop, beige
+palette, teal-dominant palette, readable map labels, logos, brand marks, watermark, AI robot,
+corporate office, dark cinematic lighting, purple gradient, excessive objects, childish clip art
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+app/public/about-banner.jpg

@@ -60,6 +60,7 @@ mysite/
     posts/*.md              # post bodies (optional frontmatter)
     projects/*.md           # project case studies
     pages/*.md              # standalone pages (e.g. Now, About)
+    **/*.image-prompt.txt   # inert image-generation sidecars, never fetched/rendered
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -74,6 +75,10 @@ mysite/
   `content/` root (`assets/x.png`). Pages are served by GitHub Pages but content lives on
   `raw.githubusercontent.com`, so a raw relative `src` would resolve against the page URL and
   404 — always route content URLs through `resolveContentUrl`.
+- **Image prompts live beside their content.** Concrete generation prompts use the inert
+  `*.image-prompt.txt` sidecar format beside the owning post/project/page. Shared art direction lives
+  in `.github/image-prompt-library.md`. Sidecars are committed authoring material only: never add
+  them to manifests, fetch them from the app, or render them as Markdown.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study

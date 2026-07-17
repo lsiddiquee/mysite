@@ -32,6 +32,11 @@ export default function Blog() {
   return (
     <div className="space-y-8">
       <PageMeta title="Blog" description="Writing and notes by Likhan Siddiquee." />
+      <img
+        src="/blog-banner.jpg"
+        alt="Technical notes, diagrams, and code fragments being edited into a finished article"
+        className="aspect-video w-full rounded-lg object-cover"
+      />
       <header>
         <p className="eyebrow">Writing</p>
         <h1 className="page-title">Blog</h1>

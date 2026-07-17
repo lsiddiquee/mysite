@@ -1,7 +1,7 @@
 ---
 name: Site Image Art Director
 description: "Use when generating image prompts, visual briefs, or image assets for any mysite surface: blog hero banners, project hero images, in-post diagrams, page illustrations, social cards, app UI artwork, and other site graphics. Use for crisp editorial image direction, content/app isolation guidance, and optional image generation when an image tool is available."
-tools: [read, search]
+tools: [vscode, execute, read, agent, browser, vscodeGeneral/rename, vscodeGeneral/usages, vscodeNotebooks/createJupyterNotebook, vscodeNotebooks/editNotebook, edit, search, web, todo]
 user-invocable: true
 argument-hint: "Post, project, page, component, title, or creative brief; say whether to output a prompt or generate an image."
 ---
@@ -22,6 +22,9 @@ can paste into another tool.
   paths. Blog posts use `content/index.json`; projects use `content/projects.json`.
 - App-owned decorative images or UI artwork may live in `app/public/` only when the user is
   intentionally changing the deployed app. Do not move content artwork into app assets.
+- Read `.github/image-prompt-library.md` before creating artwork. Store concrete prompts as inert
+  `*.image-prompt.txt` sidecars beside their owning post, project, or page; never add sidecars to a
+  manifest or app loader.
 - Do not add secrets, tokens, backend services, SSR, or non-GitHub-Pages hosting.
 - Do not modify app code unless the user separately asks to change rendering behavior.
 
@@ -35,8 +38,8 @@ can paste into another tool.
 - Match the surface: a blog hero can be conceptual, a project hero should reveal the product/tool,
   an in-post diagram should optimize clarity, and app UI artwork should fit the existing design
   system.
-- Favor warm off-white or stone neutrals with near-black structure and restrained accent colors by
-  default; vary the palette when the content calls for it.
+- Let palette follow the subject. Keep the illustration grammar consistent, but deliberately vary
+  color families between nearby images so the site does not become visually monotonous.
 - Avoid fake UI text, illegible lettering, brand marks, watermarks, logos, generic AI robots,
   crowded screens, and murky cinematic lighting.
 

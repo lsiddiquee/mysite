@@ -1,0 +1,29 @@
+SURFACE:
+Blog listing page hero and social preview.
+
+STORY:
+Messy technical observations are edited into clear, useful explanations and published as a growing
+body of writing.
+
+IMAGE PROMPT:
+A sophisticated editorial print illustration for a software engineering Blog page, wide 16:9.
+Create a dynamic diagonal composition where rough note cards, code fragments represented only by
+abstract lines, and small diagram pieces enter from the left, pass through a bold editorial crop-and-
+arrange process in the center, and emerge on the right as a clean stack of finished article sheets.
+Include a fountain pen nib or mechanical pencil as the single dominant tool, actively aligning one
+piece into place. No readable letters or fake article titles. Style: contemporary magazine collage,
+flat vector shapes, cut-paper edges, halftone grain, sharp ink outlines, strong negative space, high
+clarity at thumbnail size. Palette: paper white, saturated cobalt blue, editorial scarlet, ink
+black, and a small acid-lime accent. Bright, graphic, and publishing-oriented rather than a generic
+computer desk. No text, logos, brand marks, people, glossy 3D, gradients, or photorealism.
+
+NEGATIVE PROMPT:
+photorealistic, laptop on desk, beige and teal palette, typewriter nostalgia, readable text,
+alphabet letters, newspaper headlines, logos, watermark, floating UI, AI robot, dark cyberpunk,
+purple gradient, cluttered collage, glossy materials, stock illustration
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+app/public/blog-banner.jpg

@@ -1,0 +1,50 @@
+SURFACE:
+Homepage banner and site-wide social preview.
+
+STORY:
+A thoughtful builder's desk where practical software ideas become shipped tools, balancing writing,
+projects, local-first developer tooling, tinkering, travel, and learning.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for the homepage banner of a personal engineering website,
+16:9 landscape composition.
+
+The image should feel like a thoughtful builder's desk where practical software ideas become shipped
+tools. Show a warm, organized workspace with three clear visual zones: on the left, a notebook with
+simple sketches and small modular building blocks suggesting tinkering and curiosity; in the center,
+an open laptop showing abstract code panels, runtime content cards, and clean connector lines,
+representing developer tools and writing about engineering decisions; on the right, a phone connected
+by a thin private signal line to the laptop, hinting at local-first agents and remote steering without
+showing any real brand UI.
+
+The story should communicate: "I build developer tools, solve annoying practical problems, and write
+clearly about the engineering decisions behind them." It should feel personal but not portrait-based:
+no face, no literal person, no corporate stock imagery. Include subtle references to travel, learning,
+and DIY tinkering through small abstract objects, but keep the main focus on software craft.
+
+Style: crisp editorial graphic, modern technology magazine illustration, flat vector or screen-print
+style, bold geometric shapes, clean outlines, intentional negative space, strong focal hierarchy,
+minimal detail, sophisticated but approachable. Not photorealistic, not glossy 3D.
+
+Palette: warm off-white or stone background, near-black structure, restrained indigo accent, mint
+green, muted coral, and a small amount of golden yellow. High contrast, calm, not neon.
+
+Composition: wide homepage hero banner, central negative space suitable for overlaying or sitting near
+headline text, clear silhouette at thumbnail size, balanced between writing, projects, and local-first
+developer tooling.
+
+No readable text, no fake UI words, no logos, no GitHub/Copilot/VS Code branding, no watermark, no
+generic AI robot, no crowded screens, no dark cyberpunk mood, no photorealistic office.
+
+NEGATIVE PROMPT:
+photorealistic, 3D render, glossy mockup, stock photo, corporate office, fake readable text,
+illegible UI lettering, logos, brand marks, watermark, GitHub logo, Copilot logo, VS Code logo,
+generic AI robot, humanoid robot, crowded dashboard, too many screens, neon cyberpunk, purple
+gradient, blue monochrome, dark cinematic lighting, lens flare, glassmorphism, cluttered desk,
+portrait, face, person typing, cheesy startup illustration
+
+RECOMMENDED SIZE:
+1600x900, 16:9. If the generator supports larger output, use 2400x1350 and downscale.
+
+ASSET TARGET:
+app/public/site-banner.jpg

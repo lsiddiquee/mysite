@@ -1,0 +1,46 @@
+SURFACE:
+CloakCode Part 1 blog hero and social preview.
+
+STORY:
+A coding agent waits at an unattended computer while its owner approves the next action remotely from
+a phone.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition.
+
+An empty office chair is pulled away from a desk, making it unmistakable that nobody is at the
+computer. On the desk, an open laptop displays an abstract coding-agent interface paused and waiting
+for approval. In the foreground, a large smartphone occupies the right third of the composition. Its
+screen shows a simple pending command card with abstract code lines and two prominent controls: a
+green checkmark for approve and a red X for deny. A fingertip is tapping the green approval button.
+
+A thin illuminated connection line runs from the laptop to the phone, visually communicating private
+remote control. The story should be instantly understandable at thumbnail size: the coding agent is
+waiting at an unattended computer, while its owner approves the next action remotely from a phone.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp outlines, screen-print or risograph influence, strong visual hierarchy,
+minimal details, intentional negative space, clean and graphic rather than photorealistic or 3D.
+
+Color palette: warm off-white background, near-black outlines, coral red, mint green, cyan, and a
+small amount of golden yellow. High contrast but not neon. No gradients.
+
+Composition: empty workstation on the left, connection through the center, oversized phone and
+approving hand on the right. Leave generous uncluttered space near the upper center for an optional
+headline.
+
+No words, no readable text, no logos, no GitHub or Copilot branding, no watermark, no person sitting
+at the desk, no face, no extra devices. Exactly one laptop and one smartphone.
+
+NEGATIVE PROMPT:
+photorealistic, 3D render, glossy mockup, cinematic photograph, dark murky lighting, cyberpunk,
+purple gradient, blue monochrome, generic AI robot, humanoid robot, person at computer, crowded
+office, floating screens, multiple phones, multiple laptops, illegible text, fake lettering, logos,
+brand marks, watermark, excessive detail, stock illustration, soft focus, lens flare, reflections,
+glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/your-copilot-is-waiting-hero.jpg

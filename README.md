@@ -98,6 +98,9 @@ the content repo — never bundled into the app.
 - **In-post images** — write standard markdown: `![alt](assets/diagram.png)`. **Relative paths
   are resolved against `content/`**, so `assets/diagram.png` loads from `content/assets/`.
   Absolute URLs (`https://…`), protocol-relative URLs, and `data:` URIs are used as-is.
+- **Prompt sidecars** — keep the generation prompt beside its owning content as
+  `<same-stem>.image-prompt.txt`. These files are committed authoring material and are never fetched
+  or rendered by the app. Reusable art direction lives in `.github/image-prompt-library.md`.
 
 > Because pages are served by GitHub Pages but content lives on `raw.githubusercontent.com`, a
 > raw relative `src` would otherwise resolve against the page URL and 404 — the app rewrites

@@ -1,0 +1,30 @@
+SURFACE:
+Projects listing page hero and social preview.
+
+STORY:
+Practical software systems assembled from constraints: developer tools, connected devices, APIs,
+and experiments becoming working products.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a software engineer's Projects page, wide 16:9. Show an
+industrial workbench viewed at a slight angle where several distinct modules are being connected
+into one working system: a compact phone-shaped control surface, a vehicle telemetry module, a code
+package block, and a small home-automation hub. Use thick graphite connector paths, visible ports,
+and one bright current moving through the assembled system to communicate practical integration and
+shipping, not speculative concepts. Make the modules abstract and unbranded with no readable UI.
+Style: crisp screen-print editorial art, precise geometric forms, slight ink texture, hard shadows,
+strong silhouette, minimal detail, generous negative space in the upper left. Palette: deep
+graphite, electric cyan, safety yellow, vermilion red, and cool steel gray on a pale icy background.
+Energetic and engineered, clearly different from a warm desk illustration. No text, logos, brand
+marks, people, fake interfaces, glossy 3D, gradients, or photorealism.
+
+NEGATIVE PROMPT:
+photorealistic, glossy 3D render, generic laptop desk, beige palette, teal and coral palette,
+corporate dashboard, fake readable text, logos, brand marks, robot, humanoid, floating holograms,
+cyberpunk darkness, purple gradient, excessive wires, clutter, watermark
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+app/public/projects-banner.jpg

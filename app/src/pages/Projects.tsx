@@ -13,6 +13,11 @@ export default function Projects() {
         title="Projects"
         description="Products and open-source tools built by Likhan Siddiquee."
       />
+      <img
+        src="/projects-banner.jpg"
+        alt="Connected phone, code, vehicle, and home automation modules on an engineering workbench"
+        className="aspect-video w-full rounded-lg object-cover"
+      />
       <header className="max-w-2xl">
         <p className="eyebrow">Selected work</p>
         <h1 className="page-title">Things I build</h1>

@@ -13,6 +13,11 @@ export default function About() {
   return (
     <div className="space-y-8">
       <PageMeta title="About" description={`About ${config.siteTitle}.`} />
+      <img
+        src="/about-banner.jpg"
+        alt="A tinker's building blocks, notebook, camera, circuit board, puzzle, and travel map connected by one path"
+        className="aspect-video w-full rounded-lg object-cover"
+      />
       <header>
         <p className="eyebrow">About</p>
         <h1 className="page-title">Hi, I&apos;m {config.siteTitle}</h1>

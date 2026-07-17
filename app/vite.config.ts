@@ -210,6 +210,36 @@ function routeMetadata(): RouteMetadata[] {
   const { posts } = readJson<{ posts: PostManifestEntry[] }>('index.json')
   const { projects } = readJson<{ projects: ProjectManifestEntry[] }>('projects.json')
 
+  const pageRoutes: RouteMetadata[] = [
+    {
+      path: '/about',
+      title: 'About',
+      description: `About ${config.siteTitle}.`,
+      image: `${config.siteUrl}/about-banner.jpg`,
+      imageAlt: 'Building, travel, photography, and electronics connected by curiosity',
+      type: 'website',
+      usesSiteBanner: false,
+    },
+    {
+      path: '/blog',
+      title: 'Blog',
+      description: 'Writing and notes by Likhan Siddiquee.',
+      image: `${config.siteUrl}/blog-banner.jpg`,
+      imageAlt: 'Technical notes and diagrams being edited into a finished article',
+      type: 'website',
+      usesSiteBanner: false,
+    },
+    {
+      path: '/projects',
+      title: 'Projects',
+      description: 'Products and open-source tools built by Likhan Siddiquee.',
+      image: `${config.siteUrl}/projects-banner.jpg`,
+      imageAlt: 'Connected modules on an engineering workbench',
+      type: 'website',
+      usesSiteBanner: false,
+    },
+  ]
+
   const postRoutes = posts.map((post) => {
     validateSlug(post.slug, 'content/index.json')
     validatePostFrontmatter(post)
@@ -242,7 +272,7 @@ function routeMetadata(): RouteMetadata[] {
     }
   })
 
-  return [...postRoutes, ...projectRoutes]
+  return [...pageRoutes, ...postRoutes, ...projectRoutes]
 }
 
 // GitHub Pages has no server-side rewrites, so deep links (e.g. /blog/hello)

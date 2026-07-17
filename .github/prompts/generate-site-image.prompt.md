@@ -7,6 +7,9 @@ argument-hint: "Target surface plus post path, project path, page/component, tit
 
 Create a high-quality image prompt for the provided target surface and source material.
 
+Read `.github/image-prompt-library.md` first. If a matching `*.image-prompt.txt` sidecar exists next
+to the source content, treat it as the concrete brief and update it when the final prompt changes.
+
 Supported surfaces include:
 
 - blog hero/banner
@@ -57,6 +60,8 @@ Explain where the final image should live:
   `content/projects.json`, or markdown with a content-relative path such as `assets/example.jpg`.
 - App-owned decorative artwork: `app/public/` only when the user intentionally wants an app change
   and redeploy.
+- Concrete prompt: a `*.image-prompt.txt` sidecar beside the owning file, such as
+  `content/posts/example.image-prompt.txt`; sidecars are never fetched or rendered.
 
 Do not modify app code, deploy paths, or content-loading boundaries just to add an image.
 
