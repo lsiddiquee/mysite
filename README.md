@@ -6,11 +6,10 @@ posts written in markdown. Hosted on **GitHub Pages** at
 
 ## Why it's structured this way
 
-- **`app/`** — the website. This is the *only* thing that gets deployed. It is the
-  only folder that triggers a redeploy (see the workflow's `paths` filter).
+- **`app/`** — the website and generated route shells. This is the *only* folder that gets deployed.
 - **`content/`** — blog posts (markdown) + the `index.json` manifest. Content is
-  **fetched at runtime** from this repo via `raw.githubusercontent.com`, so
-  **publishing a post never rebuilds or redeploys the app**.
+  **fetched at runtime** from this repo via `raw.githubusercontent.com`. Content commits trigger a
+  static rebuild only to refresh crawler-visible route metadata.
 
 ```text
 mysite/
@@ -22,7 +21,7 @@ mysite/
 │  ├─ index.json            # post manifest
 │  ├─ projects.json         # project manifest
 │  ├─ assets/*              # images (hero banners, in-post images)
-│  ├─ pages/*.md            # standalone pages (e.g. Now)
+│  ├─ pages/*.md            # standalone pages (e.g. Now, About)
 │  ├─ projects/*.md         # project case studies
 │  └─ posts/*.md
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
@@ -31,9 +30,9 @@ mysite/
 
 The site has **Home**, **Projects** (with per-project case studies), **Blog** (with client-side
 search and tag filtering), **Now**, and **About**. Blog posts and projects are both runtime
-content — publishing either never rebuilds or redeploys the app.
+content. Publishing either triggers a static metadata rebuild without bundling the markdown body.
 
-## Publishing a new post (no redeploy)
+## Publishing a new post
 
 1. Add a markdown file under `content/posts/`, e.g.
    `content/posts/2026-08-01-my-post.md` (frontmatter optional — see the sample post).
@@ -51,14 +50,15 @@ content — publishing either never rebuilds or redeploys the app.
    }
    ```
 
-3. Commit and push. The post appears immediately — no app rebuild.
+3. Commit and push. The workflow rebuilds static route metadata; the post body remains
+  runtime-fetched and is not bundled into the app.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
 
-## Publishing a project (no redeploy)
+## Publishing a project
 
 Projects work exactly like posts — a manifest entry plus a markdown case study, both under
-`content/`, fetched at runtime:
+`content/`, fetched at runtime. The manifest also drives crawler-visible metadata:
 
 1. Add a case study under `content/projects/`, e.g. `content/projects/my-tool.md`.
 2. Add an entry to `content/projects.json`:
@@ -163,8 +163,10 @@ pre-commit run --all-files
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds `app/` and publishes `app/dist` to GitHub Pages
-on pushes to `main` that touch `app/**`. One-time setup in the repo:
+`.github/workflows/deploy.yml` builds `app/` and publishes `app/dist` to GitHub Pages on pushes to
+`main` that touch `app/**` or `content/**`. Content-triggered builds regenerate per-post and
+per-project HTML shells for social crawlers; React still fetches markdown at runtime. One-time setup
+in the repo:
 
 1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 2. **Settings → Pages → Custom domain:** enter `www.likhansiddiquee.com` and enable

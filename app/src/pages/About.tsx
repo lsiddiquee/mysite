@@ -1,7 +1,15 @@
+import { Link } from 'react-router-dom'
 import { config } from '../config'
+import Markdown from '../components/Markdown'
 import PageMeta from '../components/PageMeta'
+import { fetchContentPage } from '../content/posts'
+import { useAsync } from '../lib/useAsync'
+
+const loadAbout = () => fetchContentPage('pages/about.md')
 
 export default function About() {
+  const { data: content, error, loading } = useAsync(loadAbout, [])
+
   return (
     <div className="space-y-8">
       <PageMeta title="About" description={`About ${config.siteTitle}.`} />
@@ -9,17 +17,28 @@ export default function About() {
         <p className="eyebrow">About</p>
         <h1 className="page-title">Hi, I&apos;m {config.siteTitle}</h1>
       </header>
-      <div className="prose prose-stone max-w-none dark:prose-invert prose-headings:font-display prose-a:text-indigo-700 dark:prose-a:text-indigo-300">
-        <p>{config.siteIntro}</p>
-        <p>
-          This is my personal corner of the web where I write about the things I build and learn.
-          The site is a small React app; every post is just markdown committed to a repository, so
-          publishing is as simple as pushing a file.
-        </p>
-        <p>
-          You can find my work on <a href={config.githubUrl}>GitHub</a>, or see what I&apos;m
-          focused on right now on the <a href="/now">Now</a> page.
-        </p>
+
+      {loading && <p className="muted">Loading…</p>}
+      {error && <p className="error-text">{error}</p>}
+      {/* The bio body lives in content/pages/about.md so it's editable without a redeploy;
+          strip a leading H1 so it doesn't duplicate the styled page title above. */}
+      {content && <Markdown>{content.replace(/^#\s+.+\n+/, '')}</Markdown>}
+
+      <div className="flex flex-wrap gap-3 border-t border-stone-200 pt-8 dark:border-stone-800">
+        <a className="button-primary" href={config.githubUrl}>
+          GitHub
+        </a>
+        {config.linkedinUrl && (
+          <a className="button-secondary" href={config.linkedinUrl}>
+            LinkedIn
+          </a>
+        )}
+        <Link className="button-secondary" to="/projects">
+          Projects
+        </Link>
+        <Link className="button-secondary" to="/now">
+          Now
+        </Link>
       </div>
     </div>
   )

@@ -18,9 +18,10 @@ in the `content/` folder of this same repository and is fetched at runtime.
 
 That means:
 
-- Publishing a new post is just committing a markdown file and adding one entry to
-  `content/index.json` — **no rebuild, no redeploy**.
-- The app itself only redeploys when I actually change the app code under `app/`.
+- Publishing a new post is still just committing a markdown file and adding one entry to
+  `content/index.json`.
+- Content changes trigger a static Pages rebuild so social crawlers receive route-specific
+  metadata, but post bodies remain runtime-fetched and are not bundled into the React app.
 
 ## Code blocks work too
 

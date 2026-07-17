@@ -20,6 +20,11 @@ export default function Home() {
       <PageMeta title={config.siteTitle} description={config.siteTagline} />
 
       <section className="border-b border-stone-200 pb-12 dark:border-stone-800/60">
+        <img
+          src="/site-banner.jpg"
+          alt="A builder's desk with code, notes, projects, and connected devices"
+          className="aspect-video w-full rounded-lg object-cover"
+        />
         <p className="eyebrow">{config.siteTagline}</p>
         <h1 className="page-title text-4xl sm:text-6xl">{config.siteTitle}</h1>
         <p className="page-intro max-w-2xl">{config.siteIntro}</p>

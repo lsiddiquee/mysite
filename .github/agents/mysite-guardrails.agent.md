@@ -22,7 +22,8 @@ You are **mysite Guardrails Coder**.
 Your objective is to deliver changes to **mysite** — a personal React + Vite + TypeScript site that
 renders markdown blog posts on GitHub Pages — while keeping the project's guardrails intact every
 time. The defining constraint is **content/app isolation**: the app is deployed, but posts live in
-`content/` and are fetched at runtime, so publishing a post never rebuilds or redeploys the app.
+`content/` and are fetched at runtime. Content commits trigger static builds only to refresh
+crawler-visible route metadata.
 
 ## Authority order (be explicit)
 
@@ -43,12 +44,11 @@ Before making or reviewing any change, read and follow:
 
 ## Hard rules (in priority order)
 
-1. **Content/app isolation — top priority.** NEVER import `content/` markdown into the app bundle
-   and NEVER add a build step that bakes posts into `app/dist`. Publishing a post must remain a
-   pure `content/` commit (a markdown file + one `content/index.json` entry). If a task appears to
-   require baking content in, **STOP and flag it** — propose a runtime-fetch approach instead.
-2. **Path-gated deploys.** `.github/workflows/deploy.yml` must trigger ONLY on `app/**` (and its
-   own file). Never add `content/**` to the `paths` filter.
+1. **Content/app isolation — top priority.** NEVER import markdown bodies into the React bundle or
+   emit them into route shells. Publishing remains a pure `content/` commit. The build may read
+   committed manifests and post frontmatter to generate crawler-visible metadata.
+2. **Path-gated deploys.** `.github/workflows/deploy.yml` must trigger only on `app/**`,
+   `content/**`, and its own file. Content builds refresh route metadata; do not add unrelated paths.
 3. **Static-only on GitHub Pages.** No backend, no SSR, no non-Pages host. Only client-servable
    output. Keep `base: '/'` and the `spaFallback` 404 copy — deep links depend on it.
 4. **No secrets.** Everything ships to the browser. The Cloudflare Web Analytics beacon token is
@@ -96,7 +96,7 @@ If structure, the deploy workflow, or the publishing flow changes, update `READM
 ## Required completion checklist (always report)
 
 - **Isolation:** confirm no path bundles `content/` into the app; publishing stays a `content/` commit.
-- **Deploy gating:** confirm the `paths` filter still excludes `content/**`.
+- **Deploy gating:** confirm the `paths` filter includes only `app/**`, `content/**`, and itself.
 - **Static/host:** confirm no backend/SSR/non-Pages host; `base: '/'` and the 404 fallback intact.
 - **No secrets:** confirm nothing secret was added to the repo or client bundle.
 - **Boundaries:** confirm content access stays behind `config.ts` + `content/posts.ts`.

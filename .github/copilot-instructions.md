@@ -12,21 +12,22 @@
 posts written in **markdown**. It is hosted on **GitHub Pages** at
 [likhansiddiquee.com](https://likhansiddiquee.com).
 
-The defining idea is **content/app isolation**: the app is deployed, but **posts are not bundled
-into it**. Markdown lives in `content/` in this same repo and is **fetched at runtime** from
-`raw.githubusercontent.com`, so **publishing a post never rebuilds or redeploys the app**. The app
-only redeploys when code under `app/` changes.
+The defining idea is **content/app isolation**: the app is deployed, but **post bodies are not
+bundled into it**. Markdown lives in `content/` in this same repo and is **fetched at runtime** from
+`raw.githubusercontent.com`. Content changes trigger a static rebuild only so committed manifests
+can generate crawler-visible per-route metadata.
 
 Status: **initial build** — app scaffold, runtime content loader, Pages deploy workflow, and dev
 container are in place.
 
 ## Non-negotiable rules (project-wide)
 
-1. **Content/app isolation.** `app/` is the deployed application; `content/` is data fetched at
-   runtime. NEVER import markdown from `content/` into the app bundle, and NEVER add a build step
-   that bakes posts into `app/dist`. Publishing a post must stay a pure `content/` commit.
-2. **Path-gated deploys.** The deploy workflow triggers ONLY on `app/**` (and its own file).
-   Never widen the `paths` filter to include `content/**` — content changes must not redeploy.
+1. **Content/app isolation.** `app/` is the deployed application; `content/` bodies are fetched at
+  runtime. NEVER import markdown bodies into the React bundle. The build may read committed
+  manifests and post frontmatter only to emit static route metadata. Publishing stays a pure
+  `content/` commit.
+2. **Path-gated deploys.** The deploy workflow triggers on `app/**`, `content/**`, and its own file.
+  Content-triggered builds exist to refresh crawler-visible metadata; do not add unrelated paths.
 3. **GitHub Pages only.** Hosting is GitHub Pages with a custom apex domain. Do not introduce a
    different host, a server/backend, or any runtime that Pages cannot serve (it is static only).
 4. **SPA fallback is required.** Pages has no server rewrites; deep links depend on the
@@ -51,14 +52,14 @@ mysite/
       pages/                # Home, Blog, Post, Projects, Project, Now, About, NotFound (lazy-loaded)
       lib/                  # useAsync, date + post (reading time / headings / related) helpers
     public/CNAME            # custom domain
-    vite.config.ts          # base '/', tailwind, spaFallback (404.html)
+    vite.config.ts          # base '/', tailwind, SPA fallback + route metadata shells
   content/                  # blog + project data — NOT deployed, fetched at runtime
     index.json              # post manifest (blog list source of truth)
     projects.json           # project manifest (projects list source of truth)
     assets/*                # images (hero banners + in-post images), fetched at runtime
     posts/*.md              # post bodies (optional frontmatter)
     projects/*.md           # project case studies
-    pages/*.md              # standalone pages (e.g. Now)
+    pages/*.md              # standalone pages (e.g. Now, About)
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -78,6 +79,11 @@ mysite/
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
   markdown file under `content/projects/`. Standalone pages (e.g. Now) are plain markdown under
   `content/pages/`, loaded via `fetchContentPage`.
+- **Committed manifests own generated metadata.** The Vite build emits
+  `dist/blog/<slug>/index.html` and `dist/projects/<slug>/index.html` from `content/index.json` and
+  `content/projects.json`. Repeated post frontmatter fields must match the manifest or the build
+  fails. Route shells contain metadata plus the normal SPA entry point; markdown bodies remain
+  runtime-fetched.
 - **Pages/components stay presentational.** Data fetching goes through `content/posts.ts` and the
   `useAsync` hook — components don't call `fetch` directly.
 - **Frontmatter parsing is browser-safe.** Use the small `js-yaml`-based parser in `posts.ts`; do
@@ -172,18 +178,14 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
 Adding a post = (1) a markdown file under `content/posts/`, (2) one entry in `content/index.json`.
 Adding a project = (1) a case study under `content/projects/`, (2) one entry in
 `content/projects.json`. Standalone pages are a single markdown file under `content/pages/`.
-No app change, no redeploy. Any feature that would require editing `app/` to publish content is a
-regression against the core design — reconsider it.
+No app code change is needed. A content-only commit triggers a static rebuild for route metadata;
+the markdown body remains runtime-fetched.
 
-### RSS / sitemap (deliberately deferred — isolation tradeoff)
+### RSS / sitemap (deliberately deferred)
 
-A feed or sitemap that lists posts inherently needs post data. Generating it at **app build time**
-would couple `content/` into the app deploy and, worse, leave it **stale** (content commits don't
-redeploy the app), breaking the "post appears immediately" guarantee. A sitemap also must be served
-same-origin to be useful for SEO, which raw-hosted content can't satisfy. So on GitHub Pages this is
-left out on purpose. When it's wanted, do it without breaking isolation — a **content-triggered**
-generator, or (cleanest) revisit it after a move to a host that can render on-domain feeds on
-content change. Do NOT bake content into `app/dist` to add a feed.
+Content-triggered builds now make same-origin RSS and sitemap generation possible without bundling
+markdown bodies into React. They remain deferred for YAGNI; when added, generate them from the same
+committed manifests that own route metadata and keep post bodies runtime-fetched.
 
 ## Engineering discipline (DRY · YAGNI)
 
@@ -239,8 +241,8 @@ Do not leave a durable gotcha only in `/memories/` (ephemeral) — migrate it.
 1. **Green build.** `npm run build` and `npm run lint` in `app/` pass (`tsc` strict + `vite build`
    - ESLint), and `dist/` still contains `404.html` and `CNAME`. Prettier + markdownlint are clean
    (`pre-commit run --all-files`).
-2. **Isolation intact.** No new path bundles `content/` into the app; the deploy `paths` filter
-   still excludes `content/**`.
+2. **Isolation intact.** No path bundles markdown bodies into React; generated route shells contain
+  manifest metadata only. The deploy filter includes only `app/**`, `content/**`, and itself.
 3. **Boundaries respected.** Content access stays behind `content/posts.ts` + `config.ts`; no
    direct `fetch`/hardcoded raw URLs in components.
 4. **No secrets** added to the repo or client bundle.
@@ -273,8 +275,8 @@ pre-commit run --all-files   # Prettier + markdownlint + ESLint + gitleaks + com
 
 ## Things to avoid
 
-- Do **not** bundle `content/` markdown into the app or add a post-baking build step.
-- Do **not** widen the deploy `paths` filter to include `content/**`.
+- Do **not** bundle `content/` markdown bodies into React or emit post bodies into route shells.
+- Do **not** remove `content/**` from deploy paths; content commits must refresh route metadata.
 - Do **not** remove the `spaFallback` 404 copy or change `base` away from `'/'`.
 - Do **not** hardcode `raw.githubusercontent.com` URLs outside `config.ts`.
 - Do **not** call `fetch` directly from components — go through `content/posts.ts`.

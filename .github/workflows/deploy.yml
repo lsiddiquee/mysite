@@ -1,13 +1,13 @@
 name: Deploy site
 
-# Only app code changes trigger a rebuild/redeploy. Editing blog content under
-# content/** intentionally does NOT run this workflow, because posts are fetched
-# at runtime rather than bundled into the app.
+# App and content changes rebuild the static artifact. Post bodies are still
+# fetched at runtime; content-triggered builds refresh per-route social metadata.
 on:
   push:
     branches: [main]
     paths:
       - 'app/**'
+      - 'content/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
