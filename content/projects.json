@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "slug": "cloakcode",
+      "name": "CloakCode",
+      "summary": "Observe and steer a live GitHub Copilot session from your phone without uploading your workspace.",
+      "status": "Active · Open source",
+      "tags": ["VS Code", "GitHub Copilot", "TypeScript"],
+      "url": "https://marketplace.visualstudio.com/items?itemName=rexwel.cloakcode",
+      "repo": "https://github.com/lsiddiquee/CloakCode",
+      "hero": "assets/your-copilot-is-waiting-hero.jpg",
+      "file": "projects/cloakcode.md",
+      "featured": true
+    },
+    {
+      "slug": "bmw-connected-homey",
+      "name": "BMW Connected for Homey",
+      "summary": "A Homey app that monitors BMW and Mini vehicles through the official BMW CarData API, with real-time MQTT streaming.",
+      "status": "Active",
+      "tags": ["Homey", "TypeScript", "BMW CarData", "MQTT"],
+      "repo": "https://github.com/lsiddiquee/com.rexwel.bmwconnected",
+      "file": "projects/bmw-connected-homey.md"
+    },
+    {
+      "slug": "semantic-plugin-forge",
+      "name": "SemanticPluginForge",
+      "summary": "A dynamic metadata provider for Semantic Kernel plugins, allowing plugin descriptions to be updated at runtime.",
+      "status": "Parked",
+      "tags": ["C#", ".NET", "Semantic Kernel"],
+      "repo": "https://github.com/lsiddiquee/SemanticPluginForge",
+      "file": "projects/semantic-plugin-forge.md"
+    },
+    {
+      "slug": "bmw-connected-drive",
+      "name": "bmw-connected-drive",
+      "summary": "An unofficial TypeScript client for the BMW ConnectedDrive services, reverse-engineered from the web app.",
+      "status": "Archived",
+      "tags": ["TypeScript", "npm", "BMW ConnectedDrive"],
+      "repo": "https://github.com/lsiddiquee/bmw-connected-drive",
+      "file": "projects/bmw-connected-drive.md"
+    }
+  ]
+}

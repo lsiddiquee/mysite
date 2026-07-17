@@ -11,7 +11,9 @@
     "format": "cd .. && app/node_modules/.bin/prettier --write ."
   },
   "dependencies": {
+    "@giscus/react": "^3.1.0",
     "js-yaml": "^4.1.0",
+    "lucide-react": "^1.24.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^9.0.1",

@@ -46,16 +46,19 @@ mysite/
   app/                      # React + Vite app — the ONLY thing deployed
     src/
       config.ts             # owner/repo/branch + content base URL (single source of truth)
-      content/posts.ts      # runtime content loader (index.json + markdown fetch)
-      components/            # Layout, Markdown, PostList — presentational
-      pages/                # Home, Blog, Post, About, NotFound
-      lib/                  # useAsync, date helpers
+      content/posts.ts      # runtime content loader (index.json + projects.json + markdown fetch)
+      components/            # Layout, Markdown, PostList, PageMeta, Comments — presentational
+      pages/                # Home, Blog, Post, Projects, Project, Now, About, NotFound (lazy-loaded)
+      lib/                  # useAsync, date + post (reading time / headings / related) helpers
     public/CNAME            # custom domain
     vite.config.ts          # base '/', tailwind, spaFallback (404.html)
-  content/                  # blog data — NOT deployed, fetched at runtime
-    index.json              # post manifest (list source of truth)
+  content/                  # blog + project data — NOT deployed, fetched at runtime
+    index.json              # post manifest (blog list source of truth)
+    projects.json           # project manifest (projects list source of truth)
     assets/*                # images (hero banners + in-post images), fetched at runtime
     posts/*.md              # post bodies (optional frontmatter)
+    projects/*.md           # project case studies
+    pages/*.md              # standalone pages (e.g. Now)
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -72,6 +75,9 @@ mysite/
   404 — always route content URLs through `resolveContentUrl`.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
+  **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
+  markdown file under `content/projects/`. Standalone pages (e.g. Now) are plain markdown under
+  `content/pages/`, loaded via `fetchContentPage`.
 - **Pages/components stay presentational.** Data fetching goes through `content/posts.ts` and the
   `useAsync` hook — components don't call `fetch` directly.
 - **Frontmatter parsing is browser-safe.** Use the small `js-yaml`-based parser in `posts.ts`; do
@@ -84,7 +90,21 @@ mysite/
   `tailwind.config.js`). Markdown renders with the `@tailwindcss/typography` `prose` classes. Do
   not add a second styling system.
 - **Routing: `react-router-dom`** with `BrowserRouter`. New routes go in `app/src/App.tsx` under
-  the shared `Layout`.
+  the shared `Layout`, and are **lazy-loaded** via `React.lazy` + a `Suspense` fallback (keeps the
+  markdown/highlight and Giscus code out of the initial chunk). Add new routes the same way.
+- **Icons: `lucide-react`.** Note this build ships no brand marks (no `Github` icon) — use a
+  generic icon (e.g. `Code2`) for source links.
+- **Comments: `@giscus/react`** (GitHub Discussions, `General` category, mapped by pathname) in the
+  `Comments` component on post pages. The `repoId`/`categoryId` are public identifiers, not secrets.
+  Discussions must stay enabled on the repo for comments to render.
+- **Page metadata: the `PageMeta` component** renders `<title>`/`<meta>` via React 19's document
+  metadata hoisting — this updates the browser tab and JS-rendering crawlers only. Social/link
+  scrapers don't run JS, so they still see the static site-wide tags in `app/index.html`; keep those.
+- **Design system lives in `src/index.css`** (`@layer components`: `.eyebrow`, `.page-title`,
+  `.button-primary`, `.card`, `.tag-chip`, etc.) on a warm **stone** neutral + **indigo** accent
+  palette, with a serif `--font-display` for headings. Reuse these classes instead of re-inlining
+  long utility strings; markdown heading anchors (`h2`/`h3` ids) come from `slugifyHeading` in
+  `lib/post.ts` so the table of contents and headings stay in sync.
 - **Markdown: `react-markdown` + `remark-gfm` + `rehype-highlight`.** Render only through the
   `Markdown` component so plugins/highlighting stay consistent. It also sets `urlTransform` to
   `defaultUrlTransform` (keeps the built-in `javascript:` sanitizer) composed with
@@ -150,8 +170,20 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
 ## Publishing model (do not break)
 
 Adding a post = (1) a markdown file under `content/posts/`, (2) one entry in `content/index.json`.
-No app change, no redeploy. Any feature that would require editing `app/` to publish a post is a
+Adding a project = (1) a case study under `content/projects/`, (2) one entry in
+`content/projects.json`. Standalone pages are a single markdown file under `content/pages/`.
+No app change, no redeploy. Any feature that would require editing `app/` to publish content is a
 regression against the core design — reconsider it.
+
+### RSS / sitemap (deliberately deferred — isolation tradeoff)
+
+A feed or sitemap that lists posts inherently needs post data. Generating it at **app build time**
+would couple `content/` into the app deploy and, worse, leave it **stale** (content commits don't
+redeploy the app), breaking the "post appears immediately" guarantee. A sitemap also must be served
+same-origin to be useful for SEO, which raw-hosted content can't satisfy. So on GitHub Pages this is
+left out on purpose. When it's wanted, do it without breaking isolation — a **content-triggered**
+generator, or (cleanest) revisit it after a move to a host that can render on-domain feeds on
+content change. Do NOT bake content into `app/dist` to add a feed.
 
 ## Engineering discipline (DRY · YAGNI)
 

@@ -13,6 +13,9 @@ export const config = {
   contentPath: 'content',
   siteTitle: 'Likhan Siddiquee',
   siteTagline: 'Writing, notes, and projects.',
+  siteIntro:
+    'I build developer tools and write about the engineering decisions behind them — agents, local-first architecture, and the practical edges of shipping software.',
+  githubUrl: 'https://github.com/lsiddiquee',
 } as const
 
 export const contentBase = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${config.contentPath}`

@@ -24,14 +24,11 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.error) {
       return (
         <div className="space-y-4 py-12 text-center">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+          <h1 className="font-display text-2xl font-bold text-stone-900 dark:text-white">
             Something went wrong
           </h1>
-          <p className="text-slate-600 dark:text-slate-400">{this.state.error.message}</p>
-          <Link
-            to="/"
-            className="inline-block text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
-          >
+          <p className="muted">{this.state.error.message}</p>
+          <Link to="/" className="text-link inline-block text-sm font-medium">
             ← Back home
           </Link>
         </div>

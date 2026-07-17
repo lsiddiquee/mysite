@@ -29,8 +29,30 @@ export interface Post extends PostMeta {
   content: string
 }
 
+export interface PostContext {
+  post: Post
+  posts: PostMeta[]
+}
+
+export interface ProjectMeta {
+  slug: string
+  name: string
+  summary: string
+  status: string
+  tags: string[]
+  url?: string
+  repo?: string
+  hero?: string
+  file: string
+  featured?: boolean
+}
+
 interface ContentIndex {
   posts: PostMeta[]
+}
+
+interface ProjectIndex {
+  projects: ProjectMeta[]
 }
 
 /** Fetch the post manifest that drives the listing pages. */
@@ -43,10 +65,40 @@ export async function fetchIndex(): Promise<PostMeta[]> {
   return [...data.posts].sort((a, b) => b.date.localeCompare(a.date))
 }
 
-/** Fetch a single post's markdown body by slug. */
-export async function fetchPost(slug: string): Promise<Post> {
-  const index = await fetchIndex()
-  const meta = index.find((p) => p.slug === slug)
+/** Fetch the project manifest that drives project listings and case studies. */
+export async function fetchProjects(): Promise<ProjectMeta[]> {
+  const res = await fetch(`${contentBase}/projects.json`, { cache: 'no-cache' })
+  if (!res.ok) {
+    throw new Error(`Could not load projects (HTTP ${res.status}).`)
+  }
+  const data = (await res.json()) as ProjectIndex
+  return data.projects
+}
+
+/** Fetch a standalone markdown page from the runtime content root. */
+export async function fetchContentPage(file: string): Promise<string> {
+  const res = await fetch(`${contentBase}/${file}`, { cache: 'no-cache' })
+  if (!res.ok) {
+    throw new Error(`Could not load page (HTTP ${res.status}).`)
+  }
+  return res.text()
+}
+
+/** Fetch a project case study by slug. */
+export async function fetchProject(slug: string): Promise<ProjectMeta & { content: string }> {
+  const projects = await fetchProjects()
+  const project = projects.find((item) => item.slug === slug)
+  if (!project) {
+    throw new Error('Project not found.')
+  }
+  const content = await fetchContentPage(project.file)
+  return { ...project, content }
+}
+
+/** Fetch a single post's markdown body, plus the manifest used for related and adjacent navigation. */
+export async function fetchPostContext(slug: string): Promise<PostContext> {
+  const posts = await fetchIndex()
+  const meta = posts.find((item) => item.slug === slug)
   if (!meta) {
     throw new Error('Post not found.')
   }
@@ -61,7 +113,7 @@ export async function fetchPost(slug: string): Promise<Post> {
   // unquoted YAML date, which parses to a Date) replace the manifest's
   // canonical YYYY-MM-DD string and break date formatting downstream.
   if (typeof post.date !== 'string') post.date = meta.date
-  return post
+  return { post, posts }
 }
 
 /** Minimal, browser-safe frontmatter parser (no Buffer dependency). */

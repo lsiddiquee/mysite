@@ -1,38 +1,88 @@
+import { useCallback } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { config } from '../config'
-import { fetchIndex } from '../content/posts'
+import { fetchIndex, fetchProjects, resolveContentUrl } from '../content/posts'
 import { useAsync } from '../lib/useAsync'
 import PostList from '../components/PostList'
+import PageMeta from '../components/PageMeta'
+
+const loadHome = () => Promise.all([fetchIndex(), fetchProjects()])
 
 export default function Home() {
-  const { data: posts, error, loading } = useAsync(fetchIndex, [])
+  const loader = useCallback(loadHome, [])
+  const { data, error, loading } = useAsync(loader, [])
+  const posts = data?.[0]
+  const featured = data?.[1].find((project) => project.featured) ?? data?.[1][0]
 
   return (
-    <div className="space-y-12">
-      <section className="border-b border-slate-100 pb-10 dark:border-slate-800/60">
-        <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-          {config.siteTitle}
-        </h1>
-        <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">{config.siteTagline}</p>
-      </section>
+    <div className="space-y-14">
+      <PageMeta title={config.siteTitle} description={config.siteTagline} />
 
-      <section>
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Recent posts</h2>
-          <Link
-            to="/blog"
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
-          >
-            View all →
+      <section className="border-b border-stone-200 pb-12 dark:border-stone-800/60">
+        <p className="eyebrow">{config.siteTagline}</p>
+        <h1 className="page-title text-4xl sm:text-6xl">{config.siteTitle}</h1>
+        <p className="page-intro max-w-2xl">{config.siteIntro}</p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link to="/projects" className="button-primary">
+            View projects <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+          <Link to="/blog" className="button-secondary">
+            Read the blog
           </Link>
         </div>
-
-        <div className="mt-6">
-          {loading && <p className="text-slate-500 dark:text-slate-400">Loading…</p>}
-          {error && <p className="text-red-600 dark:text-red-400">{error}</p>}
-          {posts && <PostList posts={posts.slice(0, 5)} />}
-        </div>
       </section>
+
+      {loading && <p className="page-loading">Loading…</p>}
+      {error && <p className="error-text">{error}</p>}
+
+      {featured && (
+        <section>
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-display text-lg font-semibold text-stone-900 dark:text-white">
+              Featured project
+            </h2>
+            <Link to="/projects" className="text-link text-sm font-medium">
+              All projects →
+            </Link>
+          </div>
+          <Link
+            to={`/projects/${featured.slug}`}
+            className="card mt-6 grid gap-5 p-5 sm:grid-cols-[1fr_1.2fr] sm:items-center"
+          >
+            {featured.hero && (
+              <img
+                src={resolveContentUrl(featured.hero)}
+                alt=""
+                className="aspect-video w-full rounded-lg border border-stone-200 object-cover dark:border-stone-800"
+              />
+            )}
+            <div>
+              <p className="eyebrow">{featured.status}</p>
+              <h3 className="mt-1 font-display text-2xl font-semibold text-stone-900 dark:text-white">
+                {featured.name}
+              </h3>
+              <p className="mt-2 text-stone-600 dark:text-stone-400">{featured.summary}</p>
+            </div>
+          </Link>
+        </section>
+      )}
+
+      {posts && (
+        <section>
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-display text-lg font-semibold text-stone-900 dark:text-white">
+              Recent posts
+            </h2>
+            <Link to="/blog" className="text-link text-sm font-medium">
+              View all →
+            </Link>
+          </div>
+          <div className="mt-6">
+            <PostList posts={posts.slice(0, 4)} />
+          </div>
+        </section>
+      )}
     </div>
   )
 }

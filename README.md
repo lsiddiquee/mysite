@@ -18,13 +18,20 @@ mysite/
 │  ├─ src/
 │  ├─ public/CNAME          # custom domain for GitHub Pages
 │  └─ package.json
-├─ content/                 # blog content (NOT deployed; fetched at runtime)
+├─ content/                 # blog + project content (NOT deployed; fetched at runtime)
 │  ├─ index.json            # post manifest
+│  ├─ projects.json         # project manifest
 │  ├─ assets/*              # images (hero banners, in-post images)
+│  ├─ pages/*.md            # standalone pages (e.g. Now)
+│  ├─ projects/*.md         # project case studies
 │  └─ posts/*.md
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
 └─ .github/workflows/deploy.yml
 ```
+
+The site has **Home**, **Projects** (with per-project case studies), **Blog** (with client-side
+search and tag filtering), **Now**, and **About**. Blog posts and projects are both runtime
+content — publishing either never rebuilds or redeploys the app.
 
 ## Publishing a new post (no redeploy)
 
@@ -47,6 +54,38 @@ mysite/
 3. Commit and push. The post appears immediately — no app rebuild.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
+
+## Publishing a project (no redeploy)
+
+Projects work exactly like posts — a manifest entry plus a markdown case study, both under
+`content/`, fetched at runtime:
+
+1. Add a case study under `content/projects/`, e.g. `content/projects/my-tool.md`.
+2. Add an entry to `content/projects.json`:
+
+   ```json
+   {
+     "slug": "my-tool",
+     "name": "My Tool",
+     "summary": "One-line summary.",
+     "status": "Active",
+     "tags": ["TypeScript"],
+     "url": "https://example.com",
+     "repo": "https://github.com/you/my-tool",
+     "hero": "assets/my-tool-hero.jpg",
+     "file": "projects/my-tool.md",
+     "featured": true
+   }
+   ```
+
+3. Commit and push. `url`, `repo`, `hero`, and `featured` are optional; the newest `featured`
+   project (or the first one) is highlighted on the home page.
+
+## Comments
+
+Blog posts have comments powered by [Giscus](https://giscus.app) (GitHub Discussions). They live in
+this repo's **Discussions → General** category, mapped by page pathname. No backend or secrets —
+Giscus uses the repo's public IDs only.
 
 ### Images & hero banners
 
