@@ -1,0 +1,63 @@
+SURFACE:
+CloakCode Part 2 blog hero and social preview. Visually consistent with the Part 1 hero
+(content/assets/your-copilot-is-waiting-hero.jpg) — same editorial flat-vector style and palette —
+while telling Part 2's own story.
+
+STORY:
+Several VS Code windows spread across two machines each publish their own phone link and QR code,
+turning the phone into a wallet of QR codes. The CloakCode gateway multiplexes all of them into a
+single phone link — and the moment that hub is exposed beyond loopback it locks itself behind a
+6-digit authenticator code.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition.
+
+On the left third, a loose cluster of three or four screens — a mix of laptops and desktop monitors
+representing several VS Code windows spread across two machines. Each screen shows an abstract
+coding-agent interface and emits its own small stylized QR-code glyph: an abstract square-dot
+pattern, clearly a QR-like tile rather than a real scannable code. Several thin, slightly tangled
+connection lines fan out from these screens — the sprawling wallet of QR codes.
+
+Across the center, all of those thin lines converge and collapse into a single central hub: a clean
+rounded-rectangle node that merges many inputs into one, with a small padlock badge on it to show it
+secures itself. Many thin lines flow in from the left; exactly one bold, confident line leaves toward
+the right.
+
+On the right third, one oversized smartphone. Its screen shows a single connection and, front and
+center, a prominent padlock sitting above a row of six small empty rounded squares — an abstract
+passcode field standing in for a 6-digit authenticator code, with no numerals filled in. The phone
+reads as gated: the single link is reachable only past the lock.
+
+The story should be instantly understandable at thumbnail size: many scattered screens and QR codes
+on the left collapse through one hub in the middle into a single, code-locked phone link on the right.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp outlines, screen-print or risograph influence, strong visual hierarchy,
+minimal details, intentional negative space, clean and graphic rather than photorealistic or 3D.
+
+Color palette: warm off-white background, near-black outlines, coral red, mint green, cyan, and a
+small amount of golden yellow. High contrast but not neon. No gradients. Use cyan and mint for the
+converging connection lines and the central hub; reserve the golden yellow and coral for the padlock
+and the six-square passcode field so the security lock is the clear focal accent.
+
+Composition: cluster of small screens with QR glyphs on the left, thin lines converging through the
+central hub, and one oversized code-locked smartphone on the right. Leave generous uncluttered space
+near the upper center for an optional headline.
+
+No words, no readable text, no numerals or legible digits (the six passcode squares stay empty), no
+logos, no GitHub or Copilot branding, no watermark, no real scannable QR codes, no person, no face,
+no hands. Exactly one central hub and exactly one smartphone; the left cluster may contain several
+screens.
+
+NEGATIVE PROMPT:
+photorealistic, 3D render, glossy mockup, cinematic photograph, dark murky lighting, cyberpunk,
+purple gradient, blue monochrome, generic AI robot, humanoid robot, person, face, hands, crowded
+office, floating screens, multiple phones, readable text, readable digits, real numerals, real
+scannable QR code, keychain, physical keys, illegible text, fake lettering, logos, brand marks,
+watermark, excessive detail, stock illustration, soft focus, lens flare, reflections, glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/the-standalone-gateway-hero.jpg

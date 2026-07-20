@@ -149,7 +149,9 @@ Two ways in, same as the embedded story but centralized on the hub:
 
 - **A private Dev Tunnel** — `CLOAKCODE_TUNNEL=devtunnel`. The gateway hosts a **private,
   sign-in-required** tunnel and prints the phone URL; the Docker image even ships the `devtunnel` CLI
-  and signs in via device code. Works from anywhere.
+  and signs in via **device code** — headless, so no `-it`: the code prints to `docker logs` and you
+  finish it in any browser (a GitHub login by default; `CLOAKCODE_TUNNEL_PROVIDER=microsoft` for a
+  Microsoft account). Works from anywhere.
 - **Your LAN** — bind `CLOAKCODE_GATEWAY_HOST=0.0.0.0` and open `http://<host-lan-ip>:3543` on a phone
   on the same Wi-Fi, no tunnel. Operator TOTP still gates the phone, but do this **only on a trusted
   network** — see the caveat next.
@@ -164,25 +166,31 @@ editor↔gateway hop is still plain `ws://`, so on a real network the token and 
 travel in cleartext — a non-issue on **loopback** (nothing hits the wire), fine on a **trusted LAN**,
 and exactly why you keep a wide bind off networks you don't control. The **phone** leg is different: it
 rides your private Dev Tunnel, which is TLS. Adding `wss` to the local hop **without shipping a private
-key** is a genuinely interesting open design — the full discussion is in
-[Part 4](https://www.likhansiddiquee.com/blog/security-by-construction#transport-encryption-an-open-design-suggestions-welcome).
+key** is a genuinely interesting open design — the full discussion is coming in
+**Part 4 — Security by construction**.
 
 ## Keep your state across upgrades (Docker)
 
 A container is ephemeral: recreate it and — without volumes — the **TOTP secret regenerates** (so
-every paired phone must re-enrol), the tunnel sign-in drops, and the action log vanishes. Mount a
-volume for the secret so pairing survives an image bump:
+every paired phone must re-enrol), the tunnel sign-in drops, and the action log vanishes. Mount one
+persistent state volume so all three survive an image bump:
 
 ```bash
-docker run -it -p 3543:3543 \
-  -v cloakcode-mfa:/home/app/.cloakcode \
-  -v cloakcode-devtunnel:/home/app/.local/share/DevTunnels \
+docker run -d --name cloakcode-latest -p 3543:3543 \
+  -e XDG_DATA_HOME=/home/app/.cloakcode/xdg \
+  -e CLOAKCODE_MFA_SECRET_FILE=/home/app/.cloakcode/mfa/secret.json \
+  -e CLOAKCODE_GATEWAY_LOG_FILE=/home/app/.cloakcode/logs/gateway.jsonl \
+  -e CLOAKCODE_TUNNEL=devtunnel \
+  -v cloakcode-persistent-state:/home/app/.cloakcode \
   ghcr.io/lsiddiquee/cloakcode-gateway:latest
 ```
 
-Relocate the secret or the log with `CLOAKCODE_MFA_SECRET_FILE` / `CLOAKCODE_GATEWAY_LOG_FILE` if
-you'd rather point them at one shared volume — the gateway README has the full
-[persistence table](https://www.npmjs.com/package/@cloakcode/gateway).
+That single volume keeps the MFA secret, gateway log, and Dev Tunnel sign-in state together across
+upgrades (`XDG_DATA_HOME` folds the tunnel token into it too). Watch `docker logs cloakcode-latest` for
+the pairing QR and the tunnel's **device-code** prompt — it's headless, so there's no `-it` and no
+browser on the box: you finish the sign-in from your phone or laptop. The tunnel logs in with a
+**GitHub** account by default; add `-e CLOAKCODE_TUNNEL_PROVIDER=microsoft` to use a Microsoft one. The
+gateway README has the full [persistence table](https://www.npmjs.com/package/@cloakcode/gateway).
 
 ## When to bother
 
@@ -190,7 +198,7 @@ you'd rather point them at one shared volume — the gateway README has the full
 - **Several windows / a dev container / two machines?** Run one gateway, point them all in, and open
   one **code-gated** link on your phone. That's the payoff.
 
-Next up, **[Part 3 — Deploying the gateway](https://www.likhansiddiquee.com/blog/secured-deployment):** getting through dev
+Next up, **Part 3 — Deploying the gateway:** getting through dev
 containers, WSL, and your LAN without carelessly binding `0.0.0.0` — the forward-don't-widen models
 and where each fits.
 

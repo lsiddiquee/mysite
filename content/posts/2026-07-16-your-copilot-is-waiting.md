@@ -142,10 +142,11 @@ and which side of it you land on depends on where VS Code is running:
 
   _Same Wi‑Fi and happy to bind your LAN? The standalone gateway can listen on `0.0.0.0`, so a phone
   reaches it at `http://<your-lan-ip>:3543` with no tunnel — on a **trusted** network only (there's
-  no app-layer auth yet). More on that in Part 2._
+  no app-layer auth yet). More on that in [Part 2](https://www.likhansiddiquee.com/blog/the-standalone-gateway)._
 
 Running several VS Code windows or machines and want **one** phone endpoint for all of them?
-Multiplexing multiple CloakCode instances through a standalone gateway is **coming in Part 2**.
+Multiplexing multiple CloakCode instances through a standalone gateway is covered in
+**[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway)**.
 
 **Source:** [github.com/lsiddiquee/CloakCode](https://github.com/lsiddiquee/CloakCode)
 
@@ -154,7 +155,7 @@ Multiplexing multiple CloakCode instances through a standalone gateway is **comi
 This post was the "why" — and the **Try it** section above is your five-minute setup. The next ones
 go deeper:
 
-- **Part 2 — The standalone gateway:** one hub for many windows and machines, via `npx` or Docker —
+- **[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway):** one hub for many windows and machines, via `npx` or Docker —
   when and why you'd run the hub outside the editor, and how the extensions connect in.
 - **Part 3 — Deploying the gateway:** getting through dev containers, WSL, and your LAN without
   carelessly binding `0.0.0.0` — the forward-don't-widen models, and where each fits.

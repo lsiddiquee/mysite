@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "the-standalone-gateway",
+      "title": "One phone link for every window — now behind a code",
+      "date": "2026-07-20",
+      "summary": "Running several Copilot agents across windows and machines turns your phone into a wallet of QR codes. The CloakCode gateway multiplexes every window into one phone link — and the moment it's exposed beyond loopback, operator TOTP locks it down automatically.",
+      "tags": ["cloakcode", "gateway", "security"],
+      "hero": "assets/the-standalone-gateway-hero.jpg",
+      "file": "posts/2026-07-20-the-standalone-gateway.md"
+    },
+    {
       "slug": "your-copilot-is-waiting",
       "title": "Your Copilot agent is waiting for you — and you're not at your desk",
       "date": "2026-07-16",
