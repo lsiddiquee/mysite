@@ -12,8 +12,6 @@ npm-debug.log*
 
 # Editor / OS
 .DS_Store
-.vscode/*
-!.vscode/extensions.json
 .idea/
 
 # Local env / scratch
