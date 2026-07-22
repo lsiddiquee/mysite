@@ -31,6 +31,7 @@ interface RouteMetadata {
   imageAlt: string
   type: 'article' | 'website'
   usesSiteBanner: boolean
+  lastmod?: string
 }
 
 const contentDir = resolve(__dirname, '../content')
@@ -47,6 +48,14 @@ function escapeHtml(value: string): string {
     .replaceAll('"', '&quot;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
+}
+
+// GitHub Pages serves each generated shell as a directory index, so the
+// canonical (200) URL carries a trailing slash; the no-slash form 301-redirects.
+// Keeping canonicals, og:url, and the sitemap on the 200 URL avoids pointing
+// crawlers at a redirect.
+function canonicalUrl(path: string): string {
+  return `${config.siteUrl}${path}${path === '/' ? '' : '/'}`
 }
 
 function socialImage(hero?: string): { image: string; usesSiteBanner: boolean } {
@@ -116,7 +125,7 @@ function replaceRequired(
 
 function renderRouteHtml(shell: string, metadata: RouteMetadata): string {
   const fullTitle = `${metadata.title} · ${config.siteTitle}`
-  const canonical = `${config.siteUrl}${metadata.path}`
+  const canonical = canonicalUrl(metadata.path)
   const values = {
     title: escapeHtml(fullTitle),
     description: escapeHtml(metadata.description),
@@ -238,6 +247,15 @@ function routeMetadata(): RouteMetadata[] {
       type: 'website',
       usesSiteBanner: false,
     },
+    {
+      path: '/now',
+      title: 'Now',
+      description: `What ${config.siteTitle} is focused on right now.`,
+      image: siteBanner,
+      imageAlt: config.siteTitle,
+      type: 'website',
+      usesSiteBanner: true,
+    },
   ]
 
   const postRoutes = posts.map((post) => {
@@ -252,6 +270,7 @@ function routeMetadata(): RouteMetadata[] {
       imageAlt: post.title,
       type: 'article' as const,
       usesSiteBanner,
+      lastmod: post.date,
     }
   })
 
@@ -275,6 +294,20 @@ function routeMetadata(): RouteMetadata[] {
   return [...pageRoutes, ...postRoutes, ...projectRoutes]
 }
 
+function renderSitemap(routes: RouteMetadata[]): string {
+  const entries = [
+    { loc: canonicalUrl('/'), lastmod: undefined as string | undefined },
+    ...routes.map((route) => ({ loc: canonicalUrl(route.path), lastmod: route.lastmod })),
+  ]
+  const urls = entries
+    .map(({ loc, lastmod }) => {
+      const modified = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''
+      return `  <url>\n    <loc>${escapeHtml(loc)}</loc>${modified}\n  </url>`
+    })
+    .join('\n')
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+}
+
 // GitHub Pages has no server-side rewrites, so deep links (e.g. /blog/hello)
 // need 404.html for the SPA. Known content routes also get static HTML shells
 // with manifest-driven metadata for crawlers that do not execute JavaScript.
@@ -285,12 +318,14 @@ function staticRouteShells() {
       const index = resolve(distDir, 'index.html')
       if (existsSync(index)) {
         const shell = readFileSync(index, 'utf8')
-        for (const metadata of routeMetadata()) {
+        const routes = routeMetadata()
+        for (const metadata of routes) {
           const routeDir = resolve(distDir, metadata.path.slice(1))
           mkdirSync(routeDir, { recursive: true })
           writeFileSync(resolve(routeDir, 'index.html'), renderRouteHtml(shell, metadata))
         }
         copyFileSync(index, resolve(distDir, '404.html'))
+        writeFileSync(resolve(distDir, 'sitemap.xml'), renderSitemap(routes))
       }
     },
   }

@@ -186,11 +186,15 @@ Adding a project = (1) a case study under `content/projects/`, (2) one entry in
 No app code change is needed. A content-only commit triggers a static rebuild for route metadata;
 the markdown body remains runtime-fetched.
 
-### RSS / sitemap (deliberately deferred)
+### Sitemap & robots (generated) · RSS (deferred)
 
-Content-triggered builds now make same-origin RSS and sitemap generation possible without bundling
-markdown bodies into React. They remain deferred for YAGNI; when added, generate them from the same
-committed manifests that own route metadata and keep post bodies runtime-fetched.
+The build emits **`dist/sitemap.xml`** from the same committed manifests that own route metadata
+(`staticRouteShells` in `vite.config.ts`) — every route's canonical URL, with `lastmod` for posts.
+**`app/public/robots.txt`** is a static allow-all that points crawlers at the sitemap. Both list the
+**trailing-slash** URLs, because a generated shell is a directory index (`/blog/<slug>/index.html`),
+so `/blog/<slug>/` returns 200 while the no-slash form 301-redirects — canonicals, `og:url`, and the
+sitemap all use the 200 URL. **RSS stays deferred** (YAGNI); when added, generate it the same way
+from the manifests and keep post bodies runtime-fetched.
 
 ## Engineering discipline (DRY · YAGNI)
 
@@ -244,7 +248,7 @@ Do not leave a durable gotcha only in `/memories/` (ephemeral) — migrate it.
 ## Definition of Done (every change)
 
 1. **Green build.** `npm run build` and `npm run lint` in `app/` pass (`tsc` strict + `vite build`
-   - ESLint), and `dist/` still contains `404.html` and `CNAME`. Prettier + markdownlint are clean
+   - ESLint), and `dist/` still contains `404.html`, `CNAME`, `robots.txt`, and `sitemap.xml`. Prettier + markdownlint are clean
    (`pre-commit run --all-files`).
 2. **Isolation intact.** No path bundles markdown bodies into React; generated route shells contain
   manifest metadata only. The deploy filter includes only `app/**`, `content/**`, and itself.
