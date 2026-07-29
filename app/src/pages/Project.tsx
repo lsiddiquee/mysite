@@ -14,7 +14,7 @@ export default function Project() {
   return (
     <div className="space-y-8">
       <Link
-        to="/projects"
+        to="/projects/"
         className="text-link inline-flex items-center gap-1 text-sm font-semibold"
       >
         <ArrowLeft size={15} aria-hidden="true" /> All projects

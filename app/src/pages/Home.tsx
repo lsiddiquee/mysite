@@ -29,10 +29,10 @@ export default function Home() {
         <h1 className="page-title text-4xl sm:text-6xl">{config.siteTitle}</h1>
         <p className="page-intro max-w-2xl">{config.siteIntro}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/projects" className="button-primary">
+          <Link to="/projects/" className="button-primary">
             View projects <ArrowRight size={16} aria-hidden="true" />
           </Link>
-          <Link to="/blog" className="button-secondary">
+          <Link to="/blog/" className="button-secondary">
             Read the blog
           </Link>
         </div>
@@ -47,12 +47,12 @@ export default function Home() {
             <h2 className="font-display text-lg font-semibold text-stone-900 dark:text-white">
               Featured project
             </h2>
-            <Link to="/projects" className="text-link text-sm font-medium">
+            <Link to="/projects/" className="text-link text-sm font-medium">
               All projects →
             </Link>
           </div>
           <Link
-            to={`/projects/${featured.slug}`}
+            to={`/projects/${featured.slug}/`}
             className="card mt-6 grid gap-5 p-5 sm:grid-cols-[1fr_1.2fr] sm:items-center"
           >
             {featured.hero && (
@@ -79,7 +79,7 @@ export default function Home() {
             <h2 className="font-display text-lg font-semibold text-stone-900 dark:text-white">
               Recent posts
             </h2>
-            <Link to="/blog" className="text-link text-sm font-medium">
+            <Link to="/blog/" className="text-link text-sm font-medium">
               View all →
             </Link>
           </div>

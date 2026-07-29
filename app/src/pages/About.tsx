@@ -38,10 +38,10 @@ export default function About() {
             LinkedIn
           </a>
         )}
-        <Link className="button-secondary" to="/projects">
+        <Link className="button-secondary" to="/projects/">
           Projects
         </Link>
-        <Link className="button-secondary" to="/now">
+        <Link className="button-secondary" to="/now/">
           Now
         </Link>
       </div>

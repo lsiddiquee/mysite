@@ -15,7 +15,7 @@ export default function PostList({ posts }: PostListProps) {
     <ul className="space-y-4">
       {posts.map((post) => (
         <li key={post.slug}>
-          <Link to={`/blog/${post.slug}`} className="card group block p-5">
+          <Link to={`/blog/${post.slug}/`} className="card group block p-5">
             {post.hero && (
               <img
                 src={resolveContentUrl(post.hero)}

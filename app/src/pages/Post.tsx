@@ -33,7 +33,7 @@ export default function Post() {
 
   return (
     <div className="space-y-6">
-      <Link to="/blog" className="text-link inline-flex items-center gap-1 text-sm font-semibold">
+      <Link to="/blog/" className="text-link inline-flex items-center gap-1 text-sm font-semibold">
         <ArrowLeft size={15} aria-hidden="true" /> Back to blog
       </Link>
 
@@ -102,7 +102,7 @@ export default function Post() {
               <ul className="mt-4 space-y-2">
                 {derived.related.map((related) => (
                   <li key={related.slug}>
-                    <Link to={`/blog/${related.slug}`} className="text-link font-medium">
+                    <Link to={`/blog/${related.slug}/`} className="text-link font-medium">
                       {related.title}
                     </Link>
                   </li>
@@ -114,7 +114,7 @@ export default function Post() {
           {(derived.newer || derived.older) && (
             <nav className="grid gap-3 border-t border-stone-200 pt-8 dark:border-stone-800 sm:grid-cols-2">
               {derived.older ? (
-                <Link to={`/blog/${derived.older.slug}`} className="card p-4">
+                <Link to={`/blog/${derived.older.slug}/`} className="card p-4">
                   <span className="muted inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide">
                     <ArrowLeft size={13} aria-hidden="true" /> Older
                   </span>
@@ -126,7 +126,7 @@ export default function Post() {
                 <span />
               )}
               {derived.newer && (
-                <Link to={`/blog/${derived.newer.slug}`} className="card p-4 sm:text-right">
+                <Link to={`/blog/${derived.newer.slug}/`} className="card p-4 sm:text-right">
                   <span className="muted inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide sm:flex-row-reverse">
                     <ArrowRight size={13} aria-hidden="true" /> Newer
                   </span>

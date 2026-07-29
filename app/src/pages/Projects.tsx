@@ -34,7 +34,7 @@ export default function Projects() {
           {projects.map((project) => (
             <article key={project.slug} className="grid gap-6 py-8 md:grid-cols-[1.1fr_1fr]">
               {project.hero && (
-                <Link to={`/projects/${project.slug}`} className="overflow-hidden rounded-md">
+                <Link to={`/projects/${project.slug}/`} className="overflow-hidden rounded-md">
                   <img
                     src={resolveContentUrl(project.hero)}
                     alt=""
@@ -51,7 +51,7 @@ export default function Projects() {
                 <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold">
                   <Link
                     className="text-link inline-flex items-center gap-1"
-                    to={`/projects/${project.slug}`}
+                    to={`/projects/${project.slug}/`}
                   >
                     Read case study <ArrowUpRight size={15} aria-hidden="true" />
                   </Link>

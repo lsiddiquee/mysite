@@ -7,12 +7,14 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'text-stone-900 dark:text-white' : 'text-stone-500 dark:text-stone-400'
   }`
 
+// Trailing slashes match the generated route shells, which are directory indexes;
+// the no-slash form 301-redirects and would be crawled as "page with redirect".
 const nav = [
   { to: '/', label: 'Home', end: true },
-  { to: '/projects', label: 'Projects', end: false },
-  { to: '/blog', label: 'Blog', end: false },
-  { to: '/now', label: 'Now', end: false },
-  { to: '/about', label: 'About', end: false },
+  { to: '/projects/', label: 'Projects', end: false },
+  { to: '/blog/', label: 'Blog', end: false },
+  { to: '/now/', label: 'Now', end: false },
+  { to: '/about/', label: 'About', end: false },
 ]
 
 export default function Layout() {

@@ -108,6 +108,10 @@ mysite/
 - **Routing: `react-router-dom`** with `BrowserRouter`. New routes go in `app/src/App.tsx` under
   the shared `Layout`, and are **lazy-loaded** via `React.lazy` + a `Suspense` fallback (keeps the
   markdown/highlight and Giscus code out of the initial chunk). Add new routes the same way.
+  **Every internal `Link`/`NavLink` target must end in a trailing slash** (`/blog/`,
+  `` `/blog/${slug}/` ``) — that is the URL the generated shell serves with a 200, and the
+  no-slash form 301-redirects, which Google reports as *Page with redirect*. Route `path`
+  definitions stay slash-less; React Router normalises trailing slashes when matching.
 - **Icons: `lucide-react`.** Note this build ships no brand marks (no `Github` icon) — use a
   generic icon (e.g. `Code2`) for source links.
 - **Comments: `@giscus/react`** (GitHub Discussions, `General` category, mapped by pathname) in the
