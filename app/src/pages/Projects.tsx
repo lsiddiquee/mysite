@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta'
 import { fetchProjects, resolveContentUrl } from '../content/posts'
 import { useAsync } from '../lib/useAsync'
+import { pageMeta } from '../config'
 
 export default function Projects() {
   const { data: projects, error, loading } = useAsync(fetchProjects, [])
 
   return (
     <div className="space-y-10">
-      <PageMeta
-        title="Projects"
-        description="Products and open-source tools built by Likhan Siddiquee."
-      />
+      <PageMeta {...pageMeta['/projects']} />
       <img
         src="/projects-banner.jpg"
         alt="Connected phone, code, vehicle, and home automation modules on an engineering workbench"

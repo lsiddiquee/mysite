@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import yaml from 'js-yaml'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { config, contentBase } from './src/config'
+import { config, contentBase, pageMeta } from './src/config'
 
 interface PostManifestEntry {
   slug: string
@@ -302,8 +302,7 @@ function routeMetadata(): RouteMetadata[] {
   const pageRoutes: RouteMetadata[] = [
     {
       path: '/',
-      title: config.siteTitle,
-      description: config.siteIntro,
+      ...pageMeta['/'],
       image: siteBanner,
       imageAlt: config.siteTitle,
       type: 'website',
@@ -311,8 +310,7 @@ function routeMetadata(): RouteMetadata[] {
     },
     {
       path: '/about',
-      title: 'About',
-      description: `About ${config.siteTitle}.`,
+      ...pageMeta['/about'],
       image: `${config.siteUrl}/about-banner.jpg`,
       imageAlt: 'Building, travel, photography, and electronics connected by curiosity',
       type: 'website',
@@ -320,8 +318,7 @@ function routeMetadata(): RouteMetadata[] {
     },
     {
       path: '/blog',
-      title: 'Blog',
-      description: 'Writing and notes by Likhan Siddiquee.',
+      ...pageMeta['/blog'],
       image: `${config.siteUrl}/blog-banner.jpg`,
       imageAlt: 'Technical notes and diagrams being edited into a finished article',
       type: 'website',
@@ -329,8 +326,7 @@ function routeMetadata(): RouteMetadata[] {
     },
     {
       path: '/projects',
-      title: 'Projects',
-      description: 'Products and open-source tools built by Likhan Siddiquee.',
+      ...pageMeta['/projects'],
       image: `${config.siteUrl}/projects-banner.jpg`,
       imageAlt: 'Connected modules on an engineering workbench',
       type: 'website',
@@ -338,8 +334,7 @@ function routeMetadata(): RouteMetadata[] {
     },
     {
       path: '/now',
-      title: 'Now',
-      description: `What ${config.siteTitle} is focused on right now.`,
+      ...pageMeta['/now'],
       image: siteBanner,
       imageAlt: config.siteTitle,
       type: 'website',

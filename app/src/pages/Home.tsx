@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { config } from '../config'
+import { config, pageMeta } from '../config'
 import { fetchIndex, fetchProjects, resolveContentUrl } from '../content/posts'
 import { useAsync } from '../lib/useAsync'
 import PostList from '../components/PostList'
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div className="space-y-14">
-      <PageMeta title={config.siteTitle} description={config.siteTagline} />
+      <PageMeta {...pageMeta['/']} />
 
       <section className="border-b border-stone-200 pb-12 dark:border-stone-800/60">
         <img

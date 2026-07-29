@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { config } from '../config'
+import { config, pageMeta } from '../config'
 import Markdown from '../components/Markdown'
 import PageMeta from '../components/PageMeta'
 import { fetchContentPage } from '../content/posts'
@@ -12,7 +12,7 @@ export default function About() {
 
   return (
     <div className="space-y-8">
-      <PageMeta title="About" description={`About ${config.siteTitle}.`} />
+      <PageMeta {...pageMeta['/about']} />
       <img
         src="/about-banner.jpg"
         alt="A tinker's building blocks, notebook, camera, circuit board, puzzle, and travel map connected by one path"

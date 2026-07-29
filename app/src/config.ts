@@ -22,3 +22,16 @@ export const config = {
 } as const
 
 export const contentBase = `https://raw.githubusercontent.com/${config.owner}/${config.repo}/${config.branch}/${config.contentPath}`
+
+// Shared by the app's <PageMeta> and the build's route shells so the rendered tags
+// and the crawler-visible ones cannot drift apart.
+export const pageMeta = {
+  '/': { title: config.siteTitle, description: config.siteIntro },
+  '/about': { title: 'About', description: `About ${config.siteTitle}.` },
+  '/blog': { title: 'Blog', description: `Writing and notes by ${config.siteTitle}.` },
+  '/projects': {
+    title: 'Projects',
+    description: `Products and open-source tools built by ${config.siteTitle}.`,
+  },
+  '/now': { title: 'Now', description: `What ${config.siteTitle} is focused on right now.` },
+} as const

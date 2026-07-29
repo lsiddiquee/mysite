@@ -117,9 +117,13 @@ mysite/
 - **Comments: `@giscus/react`** (GitHub Discussions, `General` category, mapped by pathname) in the
   `Comments` component on post pages. The `repoId`/`categoryId` are public identifiers, not secrets.
   Discussions must stay enabled on the repo for comments to render.
-- **Page metadata: the `PageMeta` component** renders `<title>`/`<meta>` via React 19's document
-  metadata hoisting — this updates the browser tab and JS-rendering crawlers only. Social/link
-  scrapers don't run JS, so they still see the static site-wide tags in `app/index.html`; keep those.
+- **Page metadata: the `PageMeta` component** *updates* the tags the generated shell already
+  contains (`document.title`, `description`, `og:*`, `twitter:*`, `link[rel=canonical]`) from an
+  effect. It must NOT render `<title>`/`<meta>` elements: React 19 hoists them into `<head>`
+  without replacing the shell's, and duplicate tags leave search-engine behaviour undefined.
+  Static page titles/descriptions come from the shared **`pageMeta` map in `config.ts`**, which the
+  build's route shells use too, so the crawler-visible and rendered tags cannot drift. Post and
+  project metadata comes from the manifests instead (`content/index.json` / `projects.json`).
 - **Design system lives in `src/index.css`** (`@layer components`: `.eyebrow`, `.page-title`,
   `.button-primary`, `.card`, `.tag-chip`, etc.) on a warm **stone** neutral + **indigo** accent
   palette, with a serif `--font-display` for headings. Reuse these classes instead of re-inlining

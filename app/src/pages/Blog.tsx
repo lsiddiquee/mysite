@@ -4,6 +4,7 @@ import { fetchIndex } from '../content/posts'
 import { useAsync } from '../lib/useAsync'
 import PostList from '../components/PostList'
 import PageMeta from '../components/PageMeta'
+import { pageMeta } from '../config'
 
 export default function Blog() {
   const { data: posts, error, loading } = useAsync(fetchIndex, [])
@@ -31,7 +32,7 @@ export default function Blog() {
 
   return (
     <div className="space-y-8">
-      <PageMeta title="Blog" description="Writing and notes by Likhan Siddiquee." />
+      <PageMeta {...pageMeta['/blog']} />
       <img
         src="/blog-banner.jpg"
         alt="Technical notes, diagrams, and code fragments being edited into a finished article"
