@@ -84,11 +84,16 @@ mysite/
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
   markdown file under `content/projects/`. Standalone pages (e.g. Now) are plain markdown under
   `content/pages/`, loaded via `fetchContentPage`.
-- **Committed manifests own generated metadata.** The Vite build emits
-  `dist/blog/<slug>/index.html` and `dist/projects/<slug>/index.html` from `content/index.json` and
+- **Committed manifests own generated metadata.** The Vite build emits `dist/index.html` plus
+  `dist/<route>/index.html` for every page, post, and project from `content/index.json` and
   `content/projects.json`. Repeated post frontmatter fields must match the manifest or the build
-  fails. Route shells contain metadata plus the normal SPA entry point; markdown bodies remain
-  runtime-fetched.
+  fails. Each shell carries route metadata, a **JSON-LD block** (`BlogPosting` for posts, `WebSite`
+  - `Person` for home, `WebPage` otherwise), and a **crawlable `#root` fallback** — the route's
+  title, its manifest summary, internal links, and (on `/blog` and `/projects`) the full listing —
+  so a non-JS crawler sees real content and can discover every URL. `createRoot` replaces that
+  fallback when React mounts. It is **manifest metadata only**: markdown bodies stay
+  runtime-fetched and must never be emitted into a shell. `404.html` keeps the generic site-wide
+  shell (no route fallback).
 - **Pages/components stay presentational.** Data fetching goes through `content/posts.ts` and the
   `useAsync` hook — components don't call `fetch` directly.
 - **Frontmatter parsing is browser-safe.** Use the small `js-yaml`-based parser in `posts.ts`; do
@@ -186,14 +191,15 @@ Adding a project = (1) a case study under `content/projects/`, (2) one entry in
 No app code change is needed. A content-only commit triggers a static rebuild for route metadata;
 the markdown body remains runtime-fetched.
 
-### Sitemap & robots (generated) · RSS (deferred)
+### Sitemap & robots (generated) · structured data · RSS (deferred)
 
 The build emits **`dist/sitemap.xml`** from the same committed manifests that own route metadata
 (`staticRouteShells` in `vite.config.ts`) — every route's canonical URL, with `lastmod` for posts.
 **`app/public/robots.txt`** is a static allow-all that points crawlers at the sitemap. Both list the
 **trailing-slash** URLs, because a generated shell is a directory index (`/blog/<slug>/index.html`),
 so `/blog/<slug>/` returns 200 while the no-slash form 301-redirects — canonicals, `og:url`, and the
-sitemap all use the 200 URL. **RSS stays deferred** (YAGNI); when added, generate it the same way
+sitemap all use the 200 URL. Structured data is generated per shell by `renderStructuredData`; keep
+it metadata-derived. **RSS stays deferred** (YAGNI); when added, generate it the same way
 from the manifests and keep post bodies runtime-fetched.
 
 ## Engineering discipline (DRY · YAGNI)

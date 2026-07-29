@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import yaml from 'js-yaml'
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { config, contentBase } from './src/config'
 
@@ -123,8 +123,9 @@ function replaceRequired(
   return html.replace(pattern, replacement)
 }
 
-function renderRouteHtml(shell: string, metadata: RouteMetadata): string {
-  const fullTitle = `${metadata.title} · ${config.siteTitle}`
+function renderRouteHtml(shell: string, metadata: RouteMetadata, routes: RouteMetadata[]): string {
+  const fullTitle =
+    metadata.path === '/' ? config.siteTitle : `${metadata.title} · ${config.siteTitle}`
   const canonical = canonicalUrl(metadata.path)
   const values = {
     title: escapeHtml(fullTitle),
@@ -212,7 +213,86 @@ function renderRouteHtml(shell: string, metadata: RouteMetadata): string {
       '',
     )
   }
+  html = html.replace('</head>', `  ${renderStructuredData(metadata)}\n  </head>`)
+  html = replaceRequired(
+    html,
+    /<div id="root"><\/div>/,
+    renderCrawlableFallback(metadata, routes),
+    'root element',
+  )
   return html
+}
+
+// Crawlers see this until React mounts and replaces #root. Manifest metadata and
+// internal links only — never post bodies, which stay runtime-fetched.
+function renderCrawlableFallback(metadata: RouteMetadata, routes: RouteMetadata[]): string {
+  const heading = metadata.path === '/' ? config.siteTitle : metadata.title
+  const listed = routes.filter((route) =>
+    metadata.path === '/blog'
+      ? route.type === 'article'
+      : metadata.path === '/projects'
+        ? route.path.startsWith('/projects/')
+        : false,
+  )
+  const list = listed.length
+    ? `<ul>${listed
+        .map(
+          (route) =>
+            `<li><a href="${escapeHtml(canonicalUrl(route.path))}">${escapeHtml(route.title)}</a></li>`,
+        )
+        .join('')}</ul>`
+    : ''
+  const nav = ['/', '/blog', '/projects', '/about', '/now']
+    .filter((path) => path !== metadata.path)
+    .map(
+      (path) =>
+        `<a href="${escapeHtml(canonicalUrl(path))}">${escapeHtml(path === '/' ? 'Home' : path.slice(1))}</a>`,
+    )
+    .join(' ')
+  return `<div id="root"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(metadata.description)}</p>${list}<nav>${nav}</nav></div>`
+}
+
+function renderStructuredData(metadata: RouteMetadata): string {
+  const canonical = canonicalUrl(metadata.path)
+  const author = {
+    '@type': 'Person',
+    name: config.siteTitle,
+    url: config.siteUrl,
+    sameAs: [config.githubUrl, config.linkedinUrl].filter(Boolean),
+  }
+  const graph: Record<string, unknown>[] = []
+  if (metadata.type === 'article') {
+    graph.push({
+      '@type': 'BlogPosting',
+      headline: metadata.title,
+      description: metadata.description,
+      image: metadata.image,
+      datePublished: metadata.lastmod,
+      dateModified: metadata.lastmod,
+      author,
+      publisher: author,
+      mainEntityOfPage: canonical,
+      url: canonical,
+    })
+  } else if (metadata.path === '/') {
+    graph.push({
+      '@type': 'WebSite',
+      name: config.siteTitle,
+      url: config.siteUrl,
+      description: metadata.description,
+    })
+    graph.push(author)
+  } else {
+    graph.push({
+      '@type': 'WebPage',
+      name: metadata.title,
+      description: metadata.description,
+      url: canonical,
+      isPartOf: { '@type': 'WebSite', url: config.siteUrl },
+    })
+  }
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })
+  return `<script type="application/ld+json">${json.replaceAll('<', '\\u003c')}</script>`
 }
 
 function routeMetadata(): RouteMetadata[] {
@@ -220,6 +300,15 @@ function routeMetadata(): RouteMetadata[] {
   const { projects } = readJson<{ projects: ProjectManifestEntry[] }>('projects.json')
 
   const pageRoutes: RouteMetadata[] = [
+    {
+      path: '/',
+      title: config.siteTitle,
+      description: config.siteIntro,
+      image: siteBanner,
+      imageAlt: config.siteTitle,
+      type: 'website',
+      usesSiteBanner: true,
+    },
     {
       path: '/about',
       title: 'About',
@@ -295,14 +384,10 @@ function routeMetadata(): RouteMetadata[] {
 }
 
 function renderSitemap(routes: RouteMetadata[]): string {
-  const entries = [
-    { loc: canonicalUrl('/'), lastmod: undefined as string | undefined },
-    ...routes.map((route) => ({ loc: canonicalUrl(route.path), lastmod: route.lastmod })),
-  ]
-  const urls = entries
-    .map(({ loc, lastmod }) => {
-      const modified = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''
-      return `  <url>\n    <loc>${escapeHtml(loc)}</loc>${modified}\n  </url>`
+  const urls = routes
+    .map((route) => {
+      const modified = route.lastmod ? `\n    <lastmod>${route.lastmod}</lastmod>` : ''
+      return `  <url>\n    <loc>${escapeHtml(canonicalUrl(route.path))}</loc>${modified}\n  </url>`
     })
     .join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
@@ -322,9 +407,10 @@ function staticRouteShells() {
         for (const metadata of routes) {
           const routeDir = resolve(distDir, metadata.path.slice(1))
           mkdirSync(routeDir, { recursive: true })
-          writeFileSync(resolve(routeDir, 'index.html'), renderRouteHtml(shell, metadata))
+          writeFileSync(resolve(routeDir, 'index.html'), renderRouteHtml(shell, metadata, routes))
         }
-        copyFileSync(index, resolve(distDir, '404.html'))
+        // 404.html keeps the generic site-wide shell for unknown deep links.
+        writeFileSync(resolve(distDir, '404.html'), shell)
         writeFileSync(resolve(distDir, 'sitemap.xml'), renderSitemap(routes))
       }
     },
