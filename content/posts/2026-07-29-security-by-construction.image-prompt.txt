@@ -1,0 +1,79 @@
+SURFACE:
+CloakCode Part 4 blog hero and social preview. Visually consistent with the Part 1, Part 2 and Part 3
+heroes (content/assets/your-copilot-is-waiting-hero.jpg,
+content/assets/the-standalone-gateway-hero.jpg, content/assets/secured-deployment-hero.jpg) — same
+editorial flat-vector style and palette — while telling Part 4's own story. Deliberately distinct
+from the earlier parts: the dominant subject is a heavy anchored code block, not a workstation, a
+convergence hub, or a network map.
+
+STORY:
+The repository never leaves. A stack of code blocks sits chained and padlocked to the floor inside
+the machine's boundary, visibly immovable, while only one small speech bubble carrying a question and
+an answer crosses a shielded, certificate-pinned channel out to a phone. A second, unauthorised path
+strikes the shield and bounces off — the channel fails closed.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition.
+
+Occupying the left two-thirds, a large bounded machine boundary: a thick rounded-rectangle enclosure
+drawn as a sealed room in flat elevation, with a simple floor line. Inside it sits the dominant
+subject — a heavy stack of three or four chunky code blocks, each block a solid slab marked with a
+few plain horizontal code bars. The stack is unmistakably anchored: a short thick chain runs from the
+stack down to a bolt plate on the floor, and a bold padlock clamps the chain. Small downward weight
+marks or a subtle shadow under the stack reinforce that it is heavy and staying put. Nothing about
+the stack suggests motion — no motion lines, no arrows leaving it, no fragments breaking away.
+
+From the upper part of the boundary, one small rounded speech bubble rises and travels rightward. The
+bubble is light and simple and contains only a question-mark glyph beside a small checkmark glyph —
+the conversation, not the code. It is visibly tiny compared to the anchored stack.
+
+Midway across the frame, the bubble's path passes through a single narrow shielded gate: an upright
+shield plate set in the boundary wall with a small certificate-and-ribbon badge and a pin or tack
+mark on it, indicating a pinned, verified channel. The bubble passes cleanly through one precise
+opening in that shield.
+
+A second line approaches the same shield from below with a mismatched key or wrong-shaped key glyph
+at its tip. It strikes the shield face and deflects sharply away, drawn as a bent, broken-off path
+with a small blocked cross mark at the point of impact — rejected outright, nothing gets through.
+
+On the right edge, one modest smartphone, noticeably smaller than the anchored code stack, receives
+the single bubble on its screen. The phone shows only that same simple question-and-answer bubble —
+no code slabs anywhere on it.
+
+The story should be instantly understandable at thumbnail size: the heavy code stack is chained and
+locked in place inside the machine, only a tiny conversation bubble crosses a shielded pinned gate to
+the phone, and an unauthorised attempt bounces off.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp outlines, screen-print or risograph influence, strong visual hierarchy,
+minimal details, intentional negative space, clean and graphic rather than photorealistic or 3D.
+
+Color palette: warm off-white background, near-black outlines, coral red, mint green, cyan, and a
+small amount of golden yellow. High contrast but not neon. No gradients. Use cyan for the machine
+boundary and the code slabs, mint for the travelling conversation bubble and its path, golden yellow
+for the padlock and chain anchoring the stack, and coral for the shield plate and the rejected,
+deflected intruder path, so the anchored lock and the rebuffed attempt are the two clear accents.
+
+Composition: heavy chained code stack inside the boundary on the left, one small bubble arcing right
+through a shielded pinned gate at center, deflected intruder path glancing off below the shield, and
+one modest smartphone at the right edge. Leave generous uncluttered space near the upper center for
+an optional headline.
+
+No words, no readable text, no numerals or legible digits, no readable code, no filenames, no logos,
+no GitHub or Copilot branding, no watermark, no person, no face, no hands, no cloud or internet cloud
+symbol, no upload or download arrows leaving the code stack. Exactly one code stack, exactly one
+shield gate, exactly one travelling bubble, exactly one rejected path, and exactly one smartphone.
+
+NEGATIVE PROMPT:
+photorealistic, 3D render, glossy mockup, cinematic photograph, dark murky lighting, cyberpunk,
+purple gradient, blue monochrome, generic AI robot, humanoid robot, hacker in hoodie, balaclava,
+person, face, hands, crowded office, server racks, cloud symbol, upload arrow, download arrow, data
+streaming away, floating code fragments, binary rain, matrix code, readable text, readable code,
+readable digits, real numerals, filenames, illegible text, fake lettering, logos, brand marks,
+watermark, excessive detail, stock illustration, soft focus, lens flare, reflections, glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/security-by-construction-hero.jpg

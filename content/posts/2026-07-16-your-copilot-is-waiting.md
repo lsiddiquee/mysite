@@ -10,6 +10,26 @@ tags:
 
 _Part 1 of a series on CloakCode — observing and steering GitHub Copilot from your phone._
 
+## Update — CloakCode 1.0 (2026-07-29)
+
+This post was written against an early build. The pitch below is unchanged, but **1.0 has shipped**
+and one caveat in **Try it** is now out of date.
+
+**The extension↔gateway hop is encrypted by default.** When this post went up, the only leg with real
+TLS was the phone's Dev Tunnel; the link from a VS Code window to a standalone gateway was plain
+`ws://`. That is no longer the whole story. The gateway now binds **two separate listeners**, and the
+one extensions connect to is **`wss://` by default** — a self-signed certificate generated on first
+run and pinned by its SHA-256 fingerprint, handed to you as a single pairing URL. So:
+
+- **Extensions → gateway:** encrypted and pinned, out of the box. Nothing to configure.
+- **Phone → gateway:** unchanged — the operator listener stays on loopback and your private Dev
+  Tunnel supplies the TLS. The "same Wi-Fi, bind your LAN" shortcut in **Try it** still applies only
+  to this leg, and it is still plain HTTP on a trusted network only. Operator TOTP gates _who_ gets
+  in; it doesn't encrypt.
+
+The mechanics — and why "just pin the certificate" has a right and a wrong way to build it — are in
+[Part 4 — Security by construction](https://www.likhansiddiquee.com/blog/security-by-construction/).
+
 ## The 20-minute stall
 
 You know the moment. You give Copilot a real task — "migrate this module to the new API,
@@ -141,12 +161,15 @@ and which side of it you land on depends on where VS Code is running:
   place automatically (it's a visible terminal, nothing hidden).
 
   _Same Wi‑Fi and happy to bind your LAN? The standalone gateway can listen on `0.0.0.0`, so a phone
-  reaches it at `http://<your-lan-ip>:3543` with no tunnel — on a **trusted** network only (there's
-  no app-layer auth yet). More on that in [Part 2](https://www.likhansiddiquee.com/blog/the-standalone-gateway)._
+  reaches it at `http://<your-lan-ip>:3543` with no tunnel — on a **trusted** network only. The phone
+  side is gated by **operator TOTP** when exposed
+  ([Part 4](https://www.likhansiddiquee.com/blog/security-by-construction/)), but that hop is still
+  plain HTTP. More on that in
+  [Part 2](https://www.likhansiddiquee.com/blog/the-standalone-gateway/)._
 
 Running several VS Code windows or machines and want **one** phone endpoint for all of them?
 Multiplexing multiple CloakCode instances through a standalone gateway is covered in
-**[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway)**.
+**[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway/)**.
 
 **Source:** [github.com/lsiddiquee/CloakCode](https://github.com/lsiddiquee/CloakCode)
 
@@ -155,13 +178,15 @@ Multiplexing multiple CloakCode instances through a standalone gateway is covere
 This post was the "why" — and the **Try it** section above is your five-minute setup. The next ones
 go deeper:
 
-- **[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway):** one hub for many windows and machines, via `npx` or Docker —
+- **[Part 2 — The standalone gateway](https://www.likhansiddiquee.com/blog/the-standalone-gateway/):** one hub for many windows and machines, via `npx` or Docker —
   when and why you'd run the hub outside the editor, and how the extensions connect in.
-- **Part 3 — Deploying the gateway:** getting through dev containers, WSL, and your LAN without
-  carelessly binding `0.0.0.0` — the forward-don't-widen models, and where each fits.
-- **Part 4 — Security by construction:** the threat model spelled out — zero code-sync, a
-  loopback-only bridge, a private (sign-in-required) tunnel, message provenance, and never logging
-  secrets or raw code. Why "drive it from your phone" doesn't mean "trust us with your codebase."
+- **[Part 3 — Deploying the gateway](https://www.likhansiddiquee.com/blog/secured-deployment/):** getting through dev containers, WSL, and your LAN —
+  which listener to expose where, and why "forward the port, don't widen the bind" now applies to one
+  of the two and not the other.
+- **[Part 4 — Security by construction](https://www.likhansiddiquee.com/blog/security-by-construction/):** the threat model spelled out — zero code-sync, a
+  loopback-only bridge, a private (sign-in-required) tunnel, certificate-pinned `wss`, message
+  provenance, and never logging secrets or raw code. Why "drive it from your phone" doesn't mean
+  "trust us with your codebase."
 - **Part 5 — Under the hood:** how CloakCode observes a Copilot session with no proposed APIs, and
   how it answers a blocker without ever touching your code.
 

@@ -1,6 +1,24 @@
 {
   "posts": [
     {
+      "slug": "security-by-construction",
+      "title": "Security by construction: your code stays on your machine",
+      "date": "2026-07-29",
+      "summary": "The threat model behind driving Copilot from your phone: zero code-sync, loopback binds, TOTP on every connection, and a pinned wss hop that fails closed.",
+      "tags": ["cloakcode", "security", "gateway", "tls"],
+      "hero": "assets/security-by-construction-hero.jpg",
+      "file": "posts/2026-07-29-security-by-construction.md"
+    },
+    {
+      "slug": "secured-deployment",
+      "title": "Deploying the gateway: containers, WSL, and your LAN",
+      "date": "2026-07-29",
+      "summary": "Where to run the CloakCode gateway when your editors are spread across a host, dev containers, and WSL — and how to reach it without carelessly binding 0.0.0.0.",
+      "tags": ["cloakcode", "gateway", "security", "docker"],
+      "hero": "assets/secured-deployment-hero.jpg",
+      "file": "posts/2026-07-29-secured-deployment.md"
+    },
+    {
       "slug": "the-standalone-gateway",
       "title": "One phone link for every window — now behind a code",
       "date": "2026-07-20",

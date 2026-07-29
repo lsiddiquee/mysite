@@ -1,0 +1,77 @@
+SURFACE:
+CloakCode Part 3 blog hero and social preview. Visually consistent with the Part 1 and Part 2 heroes
+(content/assets/your-copilot-is-waiting-hero.jpg, content/assets/the-standalone-gateway-hero.jpg) —
+same editorial flat-vector style and palette — while telling Part 3's own story. Deliberately
+distinct from Parts 1 and 2: this one is a topology/map composition rather than a
+workstation-to-phone scene, and it has no dominant oversized smartphone.
+
+STORY:
+A host, a dev container, and a WSL distro are three separate islands, each sealed inside its own
+boundary with its own private loopback loop that cannot see the others. In the middle stands the
+gateway as a single small building with two clearly different doors: a narrow operator door kept on
+loopback and reached only through a shielded private tunnel, and a wider provider door that is
+encrypted and certificate-pinned for the editors. Every crossing between islands is one deliberate,
+narrow forwarded line — never a wide-open wall.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition, drawn
+as a clean schematic network map seen straight on.
+
+Three distinct bounded environment boxes sit around the frame — one upper left, one lower left, one
+lower right — each a rounded rectangle with a thick, closed, clearly sealed outline, representing a
+host machine, a dev container, and a WSL distro. Each box holds one simple abstract editor screen
+with a few plain code bars, and each box has its own small circular loop arrow curled tightly inside
+its own border: a private loopback that never leaves its box. The three boxes visibly do not touch or
+overlap, and there is clear empty space between them so it reads that they cannot see each other.
+
+In the center stands one small, solid gateway building: a simple flat-front structure with a plain
+roof and two obviously different doors on its face. The left door is narrow and tall, set back behind
+a short shielded passage — a thick tube or covered corridor drawn like a protective sleeve with a
+small shield plate over its mouth — and only one single thin line enters through it. The right door
+is wider, drawn with a bold outline, and carries a small badge with a shield-and-ribbon certificate
+mark plus a tiny padlock, marking it as the encrypted, pinned door.
+
+From each of the three environment boxes, exactly one thin line leaves through a small notch or gate
+in its border — a deliberate narrow crossing, not a gap in a wall — and travels to the gateway. The
+two editor boxes' lines terminate at the wide certificate-badged right door. The third line arrives
+at the shielded left door through the covered passage. Every line is thin, straight, and orthogonal
+with clean right-angle bends, like a routing diagram. Small solid dots mark each crossing point so
+the forwarded hops are countable.
+
+The story should be instantly understandable at thumbnail size: three sealed islands, each with its
+own private loop, all reaching one central gateway through single narrow guarded crossings, and that
+gateway has two visibly different doors.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp outlines, screen-print or risograph influence, strong visual hierarchy,
+minimal details, intentional negative space, clean and graphic rather than photorealistic or 3D.
+
+Color palette: warm off-white background, near-black outlines, coral red, mint green, cyan, and a
+small amount of golden yellow. High contrast but not neon. No gradients. Use cyan for the sealed
+environment box borders and mint for the small internal loopback loops; draw the connection lines in
+near-black with mint accents; reserve coral for the shielded tunnel passage over the narrow operator
+door and golden yellow for the certificate-and-padlock badge on the wide provider door, so the two
+doors read as the clear focal contrast.
+
+Composition: three bounded environment boxes arranged around the outer thirds, one central gateway
+building slightly below center, thin orthogonal lines converging inward. Leave generous uncluttered
+space near the upper center for an optional headline.
+
+No words, no readable text, no numerals or legible digits, no port numbers, no IP addresses, no
+labels on the boxes or doors, no logos, no GitHub or Copilot branding, no watermark, no person, no
+face, no hands, no smartphone, no clouds or internet cloud symbols. Exactly three environment boxes
+and exactly one central gateway building with exactly two doors.
+
+NEGATIVE PROMPT:
+photorealistic, 3D render, isometric 3D, glossy mockup, cinematic photograph, dark murky lighting,
+cyberpunk, purple gradient, blue monochrome, generic AI robot, humanoid robot, person, face, hands,
+smartphone, phone, crowded office, server racks, data center photo, cloud symbol, world map, globe,
+tangled spaghetti wiring, readable text, readable digits, real numerals, port numbers, IP addresses,
+diagram labels, illegible text, fake lettering, logos, brand marks, watermark, excessive detail,
+stock illustration, soft focus, lens flare, reflections, glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/secured-deployment-hero.jpg
