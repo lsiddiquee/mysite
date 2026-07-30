@@ -52,9 +52,16 @@ export default function Layout() {
           <span>
             © {new Date().getFullYear()} {config.siteTitle}
           </span>
-          <a className="text-link font-medium" href="https://github.com/lsiddiquee">
-            GitHub
-          </a>
+          <div className="flex flex-wrap items-center gap-4">
+            <a className="text-link font-medium" href={config.githubUrl} rel="me">
+              GitHub
+            </a>
+            {config.linkedinUrl && (
+              <a className="text-link font-medium" href={config.linkedinUrl} rel="me">
+                LinkedIn
+              </a>
+            )}
+          </div>
         </div>
       </footer>
     </div>
