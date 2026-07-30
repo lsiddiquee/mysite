@@ -7,9 +7,10 @@ posts written in markdown. Hosted on **GitHub Pages** at
 ## Why it's structured this way
 
 - **`app/`** — the website and generated route shells. This is the *only* folder that gets deployed.
-- **`content/`** — blog posts (markdown) + the `index.json` manifest. Content is
-  **fetched at runtime** from this repo via `raw.githubusercontent.com`. Content commits trigger a
-  static rebuild only to refresh crawler-visible route metadata.
+- **`content/`** — blog posts (markdown) + the `index.json` manifest. Markdown is never bundled
+  into the app: the build **prerenders** each route's markdown into that route's static HTML, and
+  anything not prerendered into the entry page is **fetched at runtime** from
+  `raw.githubusercontent.com`. Content commits trigger a rebuild that regenerates those shells.
 
 ```text
 mysite/
@@ -17,7 +18,7 @@ mysite/
 │  ├─ src/
 │  ├─ public/CNAME          # custom domain for GitHub Pages
 │  └─ package.json
-├─ content/                 # blog + project content (NOT deployed; fetched at runtime)
+├─ content/                 # blog + project content (NOT deployed; prerendered + fetched at runtime)
 │  ├─ index.json            # post manifest
 │  ├─ projects.json         # project manifest
 │  ├─ assets/*              # images (hero banners, in-post images)
@@ -29,8 +30,9 @@ mysite/
 ```
 
 The site has **Home**, **Projects** (with per-project case studies), **Blog** (with client-side
-search and tag filtering), **Now**, and **About**. Blog posts and projects are both runtime
-content. Publishing either triggers a static metadata rebuild without bundling the markdown body.
+search and tag filtering), **Now**, and **About**. Blog posts and projects are both `content/`
+files. Publishing either triggers a static rebuild of the route shells, without bundling the
+markdown into the app's JavaScript.
 
 ## Publishing a new post
 
@@ -50,15 +52,15 @@ content. Publishing either triggers a static metadata rebuild without bundling t
    }
    ```
 
-3. Commit and push. The workflow rebuilds static route metadata; the post body remains
-  runtime-fetched and is not bundled into the app.
+3. Commit and push. The workflow regenerates the route shells — metadata, the prerendered post
+  body, and the inlined source — without bundling the markdown into the app's JavaScript.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
 
 ## Publishing a project
 
 Projects work exactly like posts — a manifest entry plus a markdown case study, both under
-`content/`, fetched at runtime. The manifest also drives crawler-visible metadata:
+`content/`. The manifest also drives crawler-visible metadata:
 
 1. Add a case study under `content/projects/`, e.g. `content/projects/my-tool.md`.
 2. Add an entry to `content/projects.json`:
@@ -167,9 +169,9 @@ pre-commit run --all-files
 ## Deployment
 
 `.github/workflows/deploy.yml` builds `app/` and publishes `app/dist` to GitHub Pages on pushes to
-`main` that touch `app/**` or `content/**`. Content-triggered builds regenerate per-post and
-per-project HTML shells for social crawlers; React still fetches markdown at runtime. One-time setup
-in the repo:
+`main` that touch `app/**` or `content/**`. Content-triggered builds regenerate the per-route HTML
+shells: metadata for social crawlers, the prerendered body, and the inlined raw source the app
+reads instead of refetching. One-time setup in the repo:
 
 1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
 2. **Settings → Pages → Custom domain:** enter `www.likhansiddiquee.com` and enable

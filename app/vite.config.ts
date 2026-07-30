@@ -2,9 +2,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import yaml from 'js-yaml'
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkGfm from 'remark-gfm'
+import remarkRehype from 'remark-rehype'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeStringify from 'rehype-stringify'
+import type { Nodes, Root } from 'hast'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { config, contentBase, pageMeta } from './src/config'
+import { resolveContentUrl } from './src/content/posts'
 
 interface PostManifestEntry {
   slug: string
@@ -32,6 +40,7 @@ interface RouteMetadata {
   type: 'article' | 'website'
   usesSiteBanner: boolean
   lastmod?: string
+  contentFile?: string
 }
 
 const contentDir = resolve(__dirname, '../content')
@@ -40,6 +49,38 @@ const siteBanner = `${config.siteUrl}/site-banner.jpg`
 
 function readJson<T>(file: string): T {
   return JSON.parse(readFileSync(resolve(contentDir, file), 'utf8')) as T
+}
+
+// Mirrors the app's runtime urlTransform so prerendered markdown resolves
+// content-relative URLs exactly like the client-rendered version.
+function rehypeContentUrls() {
+  return (tree: Root) => {
+    const visit = (node: Nodes) => {
+      if (node.type === 'element') {
+        const { src, href } = node.properties
+        if (typeof src === 'string') node.properties.src = resolveContentUrl(src)
+        if (typeof href === 'string') node.properties.href = resolveContentUrl(href)
+      }
+      if ('children' in node) node.children.forEach(visit)
+    }
+    visit(tree)
+  }
+}
+
+const markdown = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeHighlight)
+  .use(rehypeContentUrls)
+  .use(rehypeStringify)
+
+const FRONTMATTER = /^---\r?\n[\s\S]*?\r?\n---\r?\n?/
+
+// Serialised into a <script type="application/json"> tag, so `<` must not be
+// able to close it early.
+function inlineJson(value: unknown): string {
+  return JSON.stringify(value).replaceAll('<', '\\u003c')
 }
 
 function escapeHtml(value: string): string {
@@ -223,8 +264,9 @@ function renderRouteHtml(shell: string, metadata: RouteMetadata, routes: RouteMe
   return html
 }
 
-// Crawlers see this until React mounts and replaces #root. Manifest metadata and
-// internal links only — never post bodies, which stay runtime-fetched.
+// Prerendered route content. Crawlers get the full article without running JS;
+// React replaces #root on mount and reads the inlined sources instead of
+// refetching, so the page never flashes from content back to a loading state.
 function renderCrawlableFallback(metadata: RouteMetadata, routes: RouteMetadata[]): string {
   const heading = metadata.path === '/' ? config.siteTitle : metadata.title
   const listed = routes.filter((route) =>
@@ -249,7 +291,23 @@ function renderCrawlableFallback(metadata: RouteMetadata, routes: RouteMetadata[
         `<a href="${escapeHtml(canonicalUrl(path))}">${escapeHtml(path === '/' ? 'Home' : path.slice(1))}</a>`,
     )
     .join(' ')
-  return `<div id="root"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(metadata.description)}</p>${list}<nav>${nav}</nav></div>`
+
+  const sources: Record<string, string> = {
+    'index.json': readFileSync(resolve(contentDir, 'index.json'), 'utf8'),
+    'projects.json': readFileSync(resolve(contentDir, 'projects.json'), 'utf8'),
+  }
+  let body = ''
+  if (metadata.contentFile) {
+    const raw = readFileSync(resolve(contentDir, metadata.contentFile), 'utf8')
+    sources[metadata.contentFile] = raw
+    body = String(markdown.processSync(raw.replace(FRONTMATTER, '')))
+  }
+
+  return (
+    `<div id="root"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(metadata.description)}</p>` +
+    `${body}${list}<nav>${nav}</nav></div>` +
+    `<script type="application/json" id="content-source">${inlineJson(sources)}</script>`
+  )
 }
 
 function renderStructuredData(metadata: RouteMetadata): string {
@@ -316,6 +374,7 @@ function routeMetadata(): RouteMetadata[] {
       imageAlt: 'Building, travel, photography, and electronics connected by curiosity',
       type: 'website',
       usesSiteBanner: false,
+      contentFile: 'pages/about.md',
     },
     {
       path: '/blog',
@@ -340,6 +399,7 @@ function routeMetadata(): RouteMetadata[] {
       imageAlt: config.siteTitle,
       type: 'website',
       usesSiteBanner: true,
+      contentFile: 'pages/now.md',
     },
   ]
 
@@ -356,6 +416,7 @@ function routeMetadata(): RouteMetadata[] {
       type: 'article' as const,
       usesSiteBanner,
       lastmod: post.date,
+      contentFile: post.file,
     }
   })
 
@@ -373,6 +434,7 @@ function routeMetadata(): RouteMetadata[] {
       imageAlt: project.name,
       type: 'website' as const,
       usesSiteBanner,
+      contentFile: project.file,
     }
   })
 

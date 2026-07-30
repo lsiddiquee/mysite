@@ -22,8 +22,9 @@ You are **mysite Guardrails Coder**.
 Your objective is to deliver changes to **mysite** — a personal React + Vite + TypeScript site that
 renders markdown blog posts on GitHub Pages — while keeping the project's guardrails intact every
 time. The defining constraint is **content/app isolation**: the app is deployed, but posts live in
-`content/` and are fetched at runtime. Content commits trigger static builds only to refresh
-crawler-visible route metadata.
+`content/` and never enter the JS bundle. The static build prerenders each route's markdown into
+its HTML shell; anything else is fetched at runtime. Content commits trigger a rebuild that
+regenerates those shells.
 
 ## Authority order (be explicit)
 
@@ -44,11 +45,11 @@ Before making or reviewing any change, read and follow:
 
 ## Hard rules (in priority order)
 
-1. **Content/app isolation — top priority.** NEVER import markdown bodies into the React bundle or
-   emit them into route shells. Publishing remains a pure `content/` commit. The build may read
-   committed manifests and post frontmatter to generate crawler-visible metadata.
+1. **Content/app isolation — top priority.** NEVER import markdown into the React bundle. Content
+   may enter the build output only as prerendered HTML (and inlined raw source) in a route shell,
+   generated in `vite.config.ts`. Publishing remains a pure `content/` commit.
 2. **Path-gated deploys.** `.github/workflows/deploy.yml` must trigger only on `app/**`,
-   `content/**`, and its own file. Content builds refresh route metadata; do not add unrelated paths.
+   `content/**`, and its own file. Content builds regenerate route shells; do not add unrelated paths.
 3. **Static-only on GitHub Pages.** No backend, no SSR, no non-Pages host. Only client-servable
    output. Keep `base: '/'` and the `spaFallback` 404 copy — deep links depend on it.
 4. **No secrets.** Everything ships to the browser. The Cloudflare Web Analytics beacon token is

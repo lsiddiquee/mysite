@@ -55,33 +55,48 @@ interface ProjectIndex {
   projects: ProjectMeta[]
 }
 
+let inlinedSources: Record<string, string> | null | undefined
+
+/**
+ * The build prerenders each route and inlines the manifests plus that route's
+ * markdown, so the first render needs no network round trip. Only the entry
+ * route is inlined; navigating client-side falls back to fetching.
+ */
+function inlinedSource(file: string): string | null {
+  if (inlinedSources === undefined) {
+    const element = document.getElementById('content-source')
+    inlinedSources = element?.textContent
+      ? (JSON.parse(element.textContent) as Record<string, string>)
+      : null
+  }
+  return inlinedSources?.[file] ?? null
+}
+
+async function fetchContentFile(file: string, label: string): Promise<string> {
+  const inlined = inlinedSource(file)
+  if (inlined !== null) return inlined
+  const res = await fetch(`${contentBase}/${file}`, { cache: 'no-cache' })
+  if (!res.ok) {
+    throw new Error(`Could not load ${label} (HTTP ${res.status}).`)
+  }
+  return res.text()
+}
+
 /** Fetch the post manifest that drives the listing pages. */
 export async function fetchIndex(): Promise<PostMeta[]> {
-  const res = await fetch(`${contentBase}/index.json`, { cache: 'no-cache' })
-  if (!res.ok) {
-    throw new Error(`Could not load content index (HTTP ${res.status}).`)
-  }
-  const data = (await res.json()) as ContentIndex
+  const data = JSON.parse(await fetchContentFile('index.json', 'content index')) as ContentIndex
   return [...data.posts].sort((a, b) => b.date.localeCompare(a.date))
 }
 
 /** Fetch the project manifest that drives project listings and case studies. */
 export async function fetchProjects(): Promise<ProjectMeta[]> {
-  const res = await fetch(`${contentBase}/projects.json`, { cache: 'no-cache' })
-  if (!res.ok) {
-    throw new Error(`Could not load projects (HTTP ${res.status}).`)
-  }
-  const data = (await res.json()) as ProjectIndex
+  const data = JSON.parse(await fetchContentFile('projects.json', 'projects')) as ProjectIndex
   return data.projects
 }
 
 /** Fetch a standalone markdown page from the runtime content root. */
 export async function fetchContentPage(file: string): Promise<string> {
-  const res = await fetch(`${contentBase}/${file}`, { cache: 'no-cache' })
-  if (!res.ok) {
-    throw new Error(`Could not load page (HTTP ${res.status}).`)
-  }
-  return res.text()
+  return fetchContentFile(file, 'page')
 }
 
 /** Fetch a project case study by slug. */
@@ -102,11 +117,7 @@ export async function fetchPostContext(slug: string): Promise<PostContext> {
   if (!meta) {
     throw new Error('Post not found.')
   }
-  const res = await fetch(`${contentBase}/${meta.file}`, { cache: 'no-cache' })
-  if (!res.ok) {
-    throw new Error(`Could not load post (HTTP ${res.status}).`)
-  }
-  const raw = await res.text()
+  const raw = await fetchContentFile(meta.file, 'post')
   const { data, content } = parseFrontmatter(raw)
   const post = { ...meta, ...data, content }
   // Frontmatter is authored by hand; never let a mistyped scalar (e.g. an
