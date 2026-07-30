@@ -160,8 +160,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 
 1. **Classify** the input (post / project / page), derive slug + date, restate scope in one line
    (files + isolation + docs touched). Keep a short `todo` list for multi-step work.
-2. **Place & normalize** the file per the rules above (frontmatter, H1, links). Preserve the
-   author's prose; only make mechanical publishing fixes.
+2. **Place & normalize** the file per the rules above (frontmatter, H1, links), then apply
+   `.github/copilot-instructions.md` → **Writing voice** to the body *and* to `title`/`summary`.
+   That section is the single source of truth for what to cut and what to keep; do not restate it
+   here. Beyond it, preserve the author's prose and only make mechanical publishing fixes.
 3. **Artwork:** invoke **site-image-art-director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
 4. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the

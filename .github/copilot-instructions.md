@@ -210,6 +210,51 @@ sitemap all use the 200 URL. Structured data is generated per shell by `renderSt
 it metadata-derived. **RSS stays deferred** (YAGNI); when added, generate it the same way
 from the manifests and keep post bodies runtime-fetched.
 
+### Agents (`.github/agents/`)
+
+**mysite Content Publisher** is the front door for anything under `content/`; **mysite Guardrails
+Coder** for anything under `app/`; **Site Image Art Director** for every image prompt and asset.
+
+Agents own the **workflow** (steps, gates, validation). This file owns the **rules** (guardrails,
+conventions, and the writing voice below), because it loads on every turn while an agent loads only
+when invoked. Agents link here instead of restating, so each rule is edited in exactly one place.
+
+## Writing voice (`content/`)
+
+The target is **dramatized but direct** — narrative tension and concrete, specific examples, with
+the padding cut. Do not flatten posts into neutral technical reference prose.
+
+**Keep (deliberate, not fluff):**
+
+- First-person voice and the occasional emoji or `!`. These are the register of a personal blog
+  and were chosen.
+- Headings that carry tension or a claim (`## The moment it earns your trust: it asks for a code`,
+  `## Then TLS fights you twice`). A heading is allowed to be interesting, not just accurate.
+- Named, concrete scenarios and walked-through examples. Length spent on a real example is not
+  padding.
+- Antithesis (`X, not Y`) and short fragments **when they carry a checkable distinction**.
+
+**Cut (genuine fluff):**
+
+- **Em dashes.** Use a colon, a semicolon, or two sentences instead. The drama should come from
+  what the sentence says, not from the punctuation staging it.
+- Sign-off and filler sections (`## What's next`, "Thanks for reading!"), content-free greetings.
+- Minimisers and intensifiers that change no claim: `just`, `simply`, `actually`, `really`,
+  `genuinely`, `powerful`.
+- Telling the reader what to think (`The interesting part is…`, `What's important here…`).
+- Placeholder headings (`## Code blocks work too`) and restated points — say it once.
+
+**Never rewrite headings without an anchor audit.** Heading ids come from `slugifyHeading` in
+`app/src/lib/post.ts` and back both the in-page TOC and cross-post deep links
+(`](#…)`, `/blog/<slug>/#…`). Renaming a heading silently breaks every existing link to it.
+
+**On the `remove-fluff` skill** (personal scope, `~/.copilot/skills/`, not installed in this repo):
+its deterministic scorer is a useful advisory lint, but run it **body-only** — it scores YAML
+frontmatter, and `title`/`summary` are locked to `content/index.json`, so whole-file SVI 0 is
+unreachable here. Never run its rewrite loop to convergence on this blog: it does not terminate
+(each critic pass flags the previous pass's own output), and at target 0 it strips exactly the
+drama and voice this section says to keep.
+
 ## Engineering discipline (DRY · YAGNI)
 
 - This is a small personal site — **prefer the smallest thing that ships.** Don't add state
