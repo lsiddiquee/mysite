@@ -1,5 +1,3 @@
-# CloakCode
-
 CloakCode is a VS Code extension that mirrors an existing GitHub Copilot chat to a phone-first web
 app. It lets you see when an agent is blocked, answer its question, approve or deny a tool call,
 and steer the session without returning to your desk.

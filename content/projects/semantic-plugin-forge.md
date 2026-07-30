@@ -1,5 +1,3 @@
-# SemanticPluginForge
-
 A .NET library that acts as a **dynamic metadata provider** for
 [Semantic Kernel](https://github.com/microsoft/semantic-kernel) plugins, so a plugin's descriptions
 and parameters can be adjusted at runtime rather than baked in at compile time.
@@ -17,6 +15,11 @@ experimentation.
 - Runtime metadata overrides for Semantic Kernel functions and parameters.
 - Extensible provider architecture for supplying descriptions from any source.
 - Written in C#, released under the MIT license.
+
+## On the Microsoft DevBlogs
+
+I wrote the library up for Microsoft's Agent Framework blog:
+[Enhancing Plugin Metadata Management with SemanticPluginForge](https://devblogs.microsoft.com/agent-framework/enhancing-plugin-metadata-management-with-semanticpluginforge/).
 
 ## Status
 

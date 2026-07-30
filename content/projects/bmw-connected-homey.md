@@ -1,5 +1,3 @@
-# BMW Connected for Homey
-
 A [Homey](https://homey.app) app that brings BMW and Mini vehicle data into your smart home using
 the **official BMW CarData API**.
 

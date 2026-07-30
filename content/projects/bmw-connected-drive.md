@@ -1,5 +1,3 @@
-# bmw-connected-drive
-
 An unofficial **TypeScript client** for BMW ConnectedDrive services, published to npm. It was
 reverse-engineered from the REST calls used by the BMW ConnectedDrive web app, and could both read
 vehicle data and trigger remote services such as climate control.
