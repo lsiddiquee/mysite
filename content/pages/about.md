@@ -43,3 +43,8 @@ hours of YouTube — people building things and picking up skills that I fully i
 plus the lighter stuff that helps me switch off. Call it research; it's usually just fun.
 
 Curious about something I didn't mention? Just ask.
+
+## How this site gets written
+
+Written by me, with AI assistance for drafting and editing. The ideas, the arguments, and any
+mistakes in them are mine. Header images are AI-generated.
