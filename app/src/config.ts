@@ -15,7 +15,9 @@ export const config = {
   siteTitle: 'Likhan Siddiquee',
   siteTagline: 'Writing, notes, and projects.',
   siteIntro:
-    'I build developer tools and write about the engineering decisions behind them — agents, local-first architecture, and the practical edges of shipping software.',
+    'I build developer tools and write about engineering — agents, local-first architecture, and the practical edges of shipping software.',
+  authorBio:
+    'Software engineer at Microsoft building developer tools and writing about agents, local-first architecture, and the practical edges of shipping software.',
   githubUrl: 'https://github.com/lsiddiquee',
   // Set to your LinkedIn profile URL to show the LinkedIn link (About page).
   linkedinUrl: 'https://www.linkedin.com/in/likhan' as string,
@@ -27,7 +29,11 @@ export const contentBase = `https://raw.githubusercontent.com/${config.owner}/${
 // and the crawler-visible ones cannot drift apart.
 export const pageMeta = {
   '/': { title: config.siteTitle, description: config.siteIntro },
-  '/about': { title: 'About', description: `About ${config.siteTitle}.` },
+  '/about': {
+    title: 'About',
+    description:
+      'Tech lead turned hands-on engineer at Microsoft. Twenty years of shipping software, the side projects it produced, and the writing in between.',
+  },
   '/blog': { title: 'Blog', description: `Writing and notes by ${config.siteTitle}.` },
   '/projects': {
     title: 'Projects',

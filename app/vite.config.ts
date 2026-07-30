@@ -258,6 +258,7 @@ function renderStructuredData(metadata: RouteMetadata): string {
     '@type': 'Person',
     name: config.siteTitle,
     url: config.siteUrl,
+    description: config.authorBio,
     sameAs: [config.githubUrl, config.linkedinUrl].filter(Boolean),
   }
   const graph: Record<string, unknown>[] = []
