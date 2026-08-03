@@ -46,25 +46,27 @@ matches what you meant, and the chase feels like progress because something new 
 Then you notice you do not have to wait at all. A design agent in one window, a refactor in another,
 test generation in a third. I built [a whole gateway around running several agent sessions at
 once](https://www.likhansiddiquee.com/blog/the-standalone-gateway/), so I get to enjoy this failure
-mode personally.
+mode personally. Every switch between them carries a context switch: a different goal, a different
+set of assumptions, a different half-finished mental model to reload.
 
-On paper that is orchestration. In practice it is context whiplash. Each workflow holds a different
-half-finished mental model, and you are the only place the three of them meet. You stop being the
-person making the thing and become a router with an architectural opinion, trying to keep one intent
-coherent across three transcripts that are all moving while you are not looking.
+On paper that is orchestration. In practice it is context whiplash. You are the only place the three
+workflows meet, so every context switch asks you to reconstruct what the others were doing. You stop
+being the person making the thing and become a router with an architectural opinion, trying to keep
+one intent coherent across three transcripts that are all moving while you are not looking.
 
-## Put the speed bumps back on purpose
+## Design intentional slowness
 
-Being a 10x engineer means making 10x the design decisions per hour. The tiredness at the end of
-that day is not from the lifting; the lifting is what got automated. It is from judgment, delivered
-at a rate nothing about us was built for.
+Being a 10x engineer or designer means making 10x the design decisions per hour. That is a massive
+mental load. We are not tired from doing the heavy lifting anymore; we are exhausted from the
+relentless pace of judgment.
 
-So I put the friction back by hand:
+To survive and thrive in the agentic era, we have to reintroduce the friction that technology took
+away. We need to design our own speed bumps:
 
-- A hard limit of three prompts on one thread before I stand up.
-- One major agentic workflow at a time, never three.
-- Five minutes of human compile time after a large generation, before I read a line of what came
-  back.
+- Implement a hard three-prompt limit before stepping away from the screen.
+- Refuse to run more than one major agentic workflow at a time.
+- Force a five-minute human compile-time break between major generations, to let the brain catch up
+  to the code.
 
-Output scales to whatever the tooling allows. Judgment does not, and judgment is the part that
-decides whether any of that output was worth generating.
+AI can scale our output to whatever the tooling allows. True productivity requires protecting the
+one thing that cannot be automated: our capacity to think.
