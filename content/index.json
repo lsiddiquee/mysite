@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "agentic-ai-cognitive-tax",
+      "title": "The 10x paradox: agentic AI's hidden cognitive tax",
+      "date": "2026-07-30",
+      "summary": "Agentic AI made me ten times more productive and deleted the pauses that used to catch my mistakes. Why the friction was a feature, and how to put it back.",
+      "tags": ["copilot", "agents", "productivity"],
+      "hero": "assets/agentic-ai-cognitive-tax-hero.jpg",
+      "file": "posts/2026-07-30-agentic-ai-cognitive-tax.md"
+    },
+    {
       "slug": "security-by-construction",
       "title": "Security by construction: your code stays on your machine",
       "date": "2026-07-29",

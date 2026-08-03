@@ -1,0 +1,66 @@
+SURFACE:
+Condensed variant of the full sidecar, under 4000 characters.
+
+STORY:
+One thin fixed surface, already torn, with the person it belongs to braced under it. No remedy is in
+frame.
+
+IMAGE PROMPT:
+A bold flat-vector editorial illustration for a technology blog banner, 16:9 landscape, screen-print
+and risograph feel with subtle paper grain, pale newsprint off-white background.
+
+Down the centre runs one taut sheet: a flat deep cobalt blue shape with a crisp black outline,
+plain and unperforated, no mesh, holes or mechanism. It is pinned at top to a heavy black beam
+cropped by the frame edge and at bottom to a heavy black block on a ground line, so both ends stay
+narrow.
+
+A dense mass of identical amber ochre code slabs presses on the sheet's right face: chunky
+rectangles, each marked with two or three horizontal bars for lines of code, packed at varied
+angles, heaviest at mid-height. It fills the right third, cropped by the right edge, unbounded and
+still arriving.
+
+The sheet is stretched drum-tight and bulges outward to the LEFT, away from that mass. It is a
+membrane under full tension, never cloth: no folds, drapes, wrinkles, sag, ripples or rolled edges
+anywhere. Its left edge is one single shallow continuous convex arc from top anchor to bottom
+anchor, a clean taut geometric curve like a sail under full wind or a drumhead pushed from behind,
+widest at mid-height level with the tear. One arc only: no S-curve, no reversal, no lobe, blob or
+balloon. Between the anchors the edge never turns back inward: not pinched, not waisted, never
+concave. Near each anchor the material pulls into near-straight taut lines. The loaded right face is
+pressed flat and dented inward, and fine black strain lines radiate from the anchors and the tear
+across the stretched surface.
+
+The sheet is split open at that apex. One violent jagged vertical tear gapes widest at the crown of
+the bulge and tapers to sharp points, its edges peeled back to the left and frayed into sharp
+tongues, its open interior flat vermilion red. This tear is the loudest element and the widest area
+of open shape in the picture.
+
+Five or six of the same amber slabs burst out through the tear and tumble into the open lower left
+at broken angles with short motion marks, cropped by the frame edge, landing nowhere.
+
+One small slate-grey silhouette stands on the ground line below the bulge, a third the sheet's
+height: flat, featureless, no face or hands. Its back and shoulder press into the underside of the
+bulge, heels dug in, body angled backwards, shoved leftward. The surface is theirs and it is losing.
+Nothing in frame is repairing anything.
+
+Palette: pale off-white, ink black outlines and anchors, deep cobalt sheet, amber ochre slabs, flat
+vermilion only inside the tear, slate grey figure. High contrast, no gradients. Keep the upper left
+open for a headline. No words, text, numerals, code or logos. Exactly one sheet, one tear, one amber
+mass, one figure.
+
+NEGATIVE PROMPT:
+concave left edge, pinched waist, waisted, hourglass, sucked inward, slack sheet, floppy fabric,
+drapery, curtain, cloth folds, wrinkles, creases, sagging, blob, balloon, lobe, mushroom shape,
+S-curve, double curve, wavy edge, rolled edge, flat sheet, bulging to the right, torn human body,
+split figure, human as the surface, photorealistic, 3D render, cyberpunk, purple gradient, coral and
+mint palette, humanoid robot, face, eyes, realistic human, anatomy, blood, gore, hands, fingers,
+crowd, second figure, slumped posture, kneeling, head in hands, crying, sweat, coffee cup, brain
+illustration, lightbulb, mesh, perforations, holes, hinges, rollers, chute, ramp, conveyor
+belt, funnel, filter mesh, safety net, speed bumps, clamp, valve, gate, barrier arm, patch,
+stitching, checkmark, before and after panel, calm resolved scene, readable text,
+readable digits, logos, watermark, soft focus, glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/agentic-ai-cognitive-tax-hero.jpg

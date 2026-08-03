@@ -1,0 +1,194 @@
+SURFACE:
+Blog hero and social preview for the standalone reflective essay "The 10x paradox: agentic AI's
+hidden cognitive tax". This concept restores the rupturing-membrane variant and drops the
+figure-as-surface variant, which was rejected in render for splitting the human body itself open.
+The thing that tears is the sheet, not the person. Two failures of the earlier membrane render are
+corrected here: its bowed surface came back waisted and pinched inward instead of swelling outward,
+and the human stood off to one side watching an anonymous industrial object fail, which said "a
+barrier broke" rather than "my capacity is tearing". Here the sheet bulges convex into the empty
+left half of the frame, and the person is pressed into the underside of that bulge, so the surface
+reads as theirs. NOT part of the CloakCode product series: it shares the site's flat editorial
+vector grammar but must not reuse the CloakCode heroes' warm off-white / coral / mint / cyan palette
+or their workstation, network-map, gateway, shield, and lock motifs. The dominant subject is one
+human-scale reviewing surface rupturing under a volume of arriving output it cannot clear. It is not
+a pipeline, not a chute, not a filter, and not a throughput diagram.
+
+STORY:
+Judgment is one thin fixed surface, and every unit of output has to be decided on it. There is one
+taut cobalt sheet, human-scale, pinned at the top to a heavy black beam and at the bottom to a heavy
+black block, so its span never grows. Against its right face an unbounded mass of identical amber
+code slabs presses in, densest at mid-height and cropped by the right edge so it is clearly still
+arriving. The sheet has already lost: it is swollen far out to the left and split open through its
+middle by one violent jagged vertical tear, its torn edges curled back and frayed, the raw interior
+of the split burning vermilion. Unreviewed slabs burst through the rupture and tumble out into the
+lower-left, unexamined, cropped by the frame edge on that side too. Nothing in the picture is
+holding.
+
+The bulge direction is stated so a diffusion model cannot invert it, because the earlier render
+inverted it into an hourglass. Four redundant cues all point the same way. First, the left edge is
+described directly: one single smooth continuous convex curve from the top anchor to the bottom
+anchor, never returning inward between them. Second, the widest, furthest-left point of the sheet is
+placed exactly at the tear, so the apex of the bulge and the point of failure are the same point.
+Third, the loaded right face is described as pressed flat and dented inward, an asymmetry that only
+makes sense if the mass is pushing the sheet away rather than pulling it in. Fourth, two similes fix
+the physics: the belly of a sail filled with wind, and a dam wall bowing outward in the second
+before it bursts. The forbidden reading is then named outright in the prompt and repeated in the
+negative prompt: not pinched, not waisted, not hourglass, not corseted, never concave.
+
+Tension is specified as hard as direction, because the corrected render came back bulging but limp:
+a deep floppy lobe of fabric with a rolled S-curved edge, which reads as a hanging curtain rather
+than a surface at its limit. The material is therefore called drum-tight and under full tension
+everywhere, and cloth behaviour is banned outright: no folds, drapes, wrinkles, creases, sag,
+ripples, or rolled or wavy edges. The bulge is one shallow clean geometric arc, not a deep lobe,
+blob, balloon, teardrop, or mushroom, and it reverses nowhere along its length: one arc, no S-curve
+and no double curve. Near each anchor the material pulls into near-straight taut lines, which is
+what a stretched membrane does and what a hanging one does not. Fine black strain lines radiate from
+the anchors and from the tear across the surface so the sheet reads as over-extended rather than
+slack.
+
+The human is coupled to the failure instead of watching it. One small slate-grey silhouette stands
+on the ground line directly beneath the bulge, its back and shoulder pressed into the underside of
+the swollen sheet, heels dug in and body angled backwards, shoved leftward by a surface that is
+already open above it. It is not a bystander and it is not a repair: it is losing ground under its
+own capacity. It carries none of the emotion in its pose, because the emotion is in the sheet: it is
+not slumped, seated, kneeling, holding its head, sweating, or fleeing, and it holds no props. It
+also fixes the scale, so the sheet reads as one person's fixed capacity rather than as
+industrial-scale structure.
+
+Every trace of remedy was deliberately kept out of the frame. There is no barrier arm, gate, valve,
+clamp, brake, speed bump, funnel, filter mesh, net, patch, stitch, splint, repair, or second
+reinforcing sheet anywhere in the image; the sheet is a plain unperforated surface, not a screening
+device, so it cannot read as a control that is doing its job. Neither side of the tear is resolved:
+the arriving mass is cropped unbounded on the right, and what escapes is not sorted, spaced,
+stacked, or travelling anywhere useful, it is tumbling at broken angles and leaving the picture.
+There is no checkmark, no calm after-state, no restored order, and no second panel. The overwhelm is
+encoded as countable units rather than mood: every slab is an identical discrete piece of output,
+each one a decision that arrived, and the mass is dozens of them against one surface.
+
+At thumbnail size the frame carries three tonal roles: a wall of amber on the right, a cobalt sheet
+swelling away from it into the empty left half, and a single vermilion wound splitting that swell.
+The tear is the only saturated red in the picture, it sits at the furthest-left point of the bulge,
+and it is the widest gap of open shape in the composition, so it is the first thing the eye lands on
+before any slab or anchor resolves.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition.
+
+Running vertically down the centre of the frame is a single taut sheet drawn as one flat deep cobalt
+blue shape with a crisp black outline: a plain, solid, unperforated membrane with no mesh, no holes,
+no grid, no perforations, no hinges, no rollers, and no mechanism of any kind. It is pinned at the
+top to a heavy black beam cropped by the top edge of the frame, and at the bottom to a heavy black
+block sitting on a single heavy horizontal ground line, so both of its ends stay narrow and fixed
+while its middle is free to move.
+
+The sheet is stretched drum-tight and bulges outward to the LEFT, away from a mass pressing on its
+right face, and this taut bulge is the point of the picture. It is a membrane under full tension
+across its whole area, not hanging fabric: there are no folds, no drapes, no wrinkles, no creases,
+no sag, no ripples, and no rolled or wavy edges anywhere on it. Its left edge is one single shallow
+continuous convex arc running from the top anchor all the way down to the bottom anchor, a clean
+tight geometric curve like a sail under full wind or a drumhead pushed hard from behind, swelling
+into the empty left half of the frame. The widest, furthest-left point of the sheet sits at
+mid-height, level with the tear. It is one arc and only one arc: it does not reverse, wave, or roll
+back anywhere along its length, and it is not a deep lobe, blob, balloon, teardrop, or mushroom
+shape. Between its two anchors the left edge never curves back inward: it is not pinched, not
+waisted, not hourglass-shaped, not corseted, and never concave. Near the top beam and near the
+bottom block the material pulls into near-straight taut lines under tension. The right face, the
+loaded side, is by contrast pressed flat and slightly dented inward by the mass, so the whole
+silhouette reads as pushed away from the load rather than sucked toward it. Fine black strain lines
+radiate from the anchors and from the tear across the stretched material, showing it pulled thin and
+over-extended. These are plain thin straight or gently curved lines, not stitches, not sutures, and
+not seams.
+
+The sheet is split open at that apex. One single violent jagged vertical tear runs through its
+middle third, gaping widest exactly at the crown of the leftward bulge and tapering to sharp points
+at each end, with the torn edges peeled and curled back toward the left and frayed into a few sharp
+irregular tongues of material. The open interior of the split is filled with flat vermilion red, so
+the rupture reads as a raw wound in the surface. This tear is the single loudest element in the
+entire picture and must be the widest area of open shape in the composition.
+
+Pressing against the right face of the sheet is a dense mass of identical amber code slabs: chunky
+solid rectangles, each marked with two or three plain horizontal bars standing in for lines of code,
+packed tightly at varied angles, thickest at mid-height and piling upward and outward. The mass is
+cropped by the right edge of the frame so it clearly continues beyond the picture: unbounded and
+still arriving. It floats freely with no belt, no rollers, no track, no rails, no tube, no chute, no
+ramp, and no dashed path beneath it, and it is many times the visual mass of the sheet.
+
+Bursting out through the gaping tear are five or six of the same amber slabs, tumbling free into the
+open lower-left of the frame at broken chaotic angles, each with two or three short straight motion
+marks behind it, scattering downward and cropped by the lower-left edge of the frame. They are not
+stacked, sorted, spaced, aligned, or landing anywhere: they are simply getting past, unexamined.
+
+Where the top of the sheet meets the black beam, a second much smaller rip has started: the sheet's
+upper edge is pulling away from two of its black anchor points, which are lifting out of the
+material with short jagged splits running down from them. Nothing is holding this together and
+nothing in the frame is repairing it.
+
+Standing on the ground line directly beneath the bulge is one small human silhouette: a simple flat
+featureless shape in slate grey, no face, no facial features, no fingers, no clothing detail, no
+props, drawn only as a solid silhouette with its arms merged into its body. It is roughly a third
+the height of the sheet. Its back and shoulder are pressed hard into the underside of the swollen
+sheet, its heels are dug into the ground line and its body is angled backwards, so it reads as being
+shoved leftward by the surface above it. It is bracing, not repairing and not watching: it is not
+slumped, not seated, not kneeling, not holding its head, and not running, and it holds no tool,
+prop, or panel of any kind.
+
+The story should be instantly understandable at thumbnail size: an enormous amber mass pressing in
+from the right, one blue surface swelling out to the left and split wide open by a red tear at the
+crown of that swell, pieces pouring out through the split, and one small grey figure braced under it.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp confident outlines, screen-print or risograph influence with subtle paper
+grain, strong visual hierarchy, minimal detail, intentional negative space, clean and graphic rather
+than photorealistic or 3D.
+
+Color palette: pale newsprint off-white background, ink-black outlines, deep cobalt blue, warm amber
+ochre, and vermilion red, with a small amount of cool slate grey for shadow. High contrast, no
+gradients, no neon. Use warm amber ochre for every code slab, deep cobalt blue for the sheet, flat
+vermilion red only for the open interior of the tear so the rupture is the single sharpest accent,
+ink black for the anchors, the beam, the ground line, and all outlines, and slate grey for the human
+silhouette and the cast shadows. Deliberately avoid coral, mint green, cyan, and warm stone.
+
+Composition: the black beam cropped across the top, the cobalt sheet running down the centre and
+swelling left into the open left half with the vermilion tear at the crown of that swell, the amber
+mass filling the right third and cropped by the right edge, the escaped slabs tumbling through the
+lower-left, and the small grey silhouette braced on the ground line under the bulge. Keep the
+upper-left quadrant open and uncluttered for an optional headline.
+
+No words, no readable text, no numerals or legible digits, no readable code, no filenames, no logos,
+no GitHub or Copilot branding, no watermark, no faces, no facial features, no hands, no clock, no
+hourglass, no stopwatch, no brain diagram, no lightbulb, no chute, no ramp, no conveyor belt, no
+belt, no rollers, no rails, no funnel, no speed bumps, no clamp, no valve, no brake, no gate, no
+barrier arm, no filter mesh, no net, no patch, no stitching, no repair, no checkmark. Exactly one
+sheet, exactly one main tear, exactly one amber mass, and exactly one human silhouette.
+
+NEGATIVE PROMPT:
+concave left edge, pinched waist, waisted silhouette, hourglass figure, hourglass shape, corseted,
+cinched waist, narrowing at mid-height, sucked inward, collapsing inward, dented on the outer edge,
+curving toward the load, flat sheet, straight sheet, slack surface, limp fabric, floppy fabric,
+hanging cloth, drapery, curtain, curtain folds, cloth folds, wrinkles, creases, pleats, sagging,
+billowing cloth, flapping, ripples, rolled edge, curled hem, wavy edge, scalloped edge, deep lobe,
+blob, balloon, bubble, teardrop shape, mushroom shape, S-curve, double curve, reversing curve,
+bulging to the right, torn human body, split figure, human as the surface, photorealistic, 3D render,
+glossy mockup, cinematic photograph, dark murky lighting, cyberpunk, purple gradient, blue
+monochrome, coral and mint palette, warm stone palette, generic AI robot, humanoid robot, android,
+face, facial features, eyes, portrait, realistic human, detailed figure, muscles, anatomy, blood,
+gore, wound realism, injury, human hands, fingers, crowd, group of people, second figure, slumped
+posture, hunched shoulders, kneeling, seated figure, head in hands, crying, tears on a face, sweat
+drops, coffee cup, mug, desk lamp, sleeping, resting, exhausted figure, burnout imagery, brain
+illustration, neural network diagram, lightbulb, clock, hourglass prop, stopwatch, speedometer,
+treadmill, hamster wheel, slot machine, casino imagery, mesh, perforations, holes, grid screen,
+hinges, chute, ramp, conveyor belt, conveyor rollers, belt, rails, track, funnel, hopper, sieve,
+filter mesh, strainer, safety net, speed bumps, road markings, clamp, vise, valve, tap, faucet,
+brake, lever, gate, barrier arm, turnstile, dam structure, floodgate, sluice, patch, bandage, tape,
+stitching, sutures, welded seam, checkmark, tick, green light, before and after split panel, orderly
+aligned stack, calm resolved scene, arrows everywhere, pipeline diagram, flowchart, crowded office,
+laptop, monitor, desk, server racks, cloud symbol, binary rain, matrix code, readable text, readable
+code, readable digits, real numerals, gauge labels, filenames, illegible text, fake lettering, logos,
+brand marks, watermark, excessive detail, cluttered composition, stock illustration, soft focus, lens
+flare, reflections, glassmorphism
+
+RECOMMENDED SIZE:
+1600x900, 16:9.
+
+ASSET TARGET:
+content/assets/agentic-ai-cognitive-tax-hero.jpg
