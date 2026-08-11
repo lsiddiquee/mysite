@@ -1,0 +1,266 @@
+SURFACE:
+Blog hero and social preview for "Your sprint plans a bottleneck that left" (slug
+sprint-planning-after-ai, dated 2026-08-10, tags agents / productivity / engineering-management /
+agile / api-contracts), at content/posts/2026-08-10-sprint-planning-after-ai.md. The rendered artwork
+is referenced from that post's entry in content/index.json via the hero field. This sidecar is inert
+authoring material only: never add it to a manifest, never fetch it from the app, never render it as
+Markdown.
+
+SURFACE and STORY are notes for whoever picks this file up. Only IMAGE PROMPT is meant to be pasted
+into a generator, and NEGATIVE PROMPT only if the generator supports one.
+
+This image stands on its own. It is not part of the CloakCode product series and shares none of its
+motifs: no workstation, laptop, monitor, phone, QR glyph, network map, house, gateway, shield,
+certificate badge, padlock, or rounded-rectangle machine boundary. It must also read as a different
+picture from the cognitive-tax hero, which owns overload.
+
+This post is not about being overwhelmed. The failure it depicts is MISDIRECTED ATTENTION: a
+measuring apparatus still aimed, bolted, and clamped at a position the constraint vacated, while the
+constraint sits elsewhere in the same frame with nothing pointing at it. Nothing tears, nothing
+bursts, nothing is crushed, and no person appears at all.
+
+The dominant subject is one heavy bolted measuring rig aimed at an empty spot on a single line. The
+secondary subject is the real constriction further along that same line, unattended.
+
+STORY:
+Engineering planning still schedules around a constraint that has moved. Story points priced an
+effort spread that collapsed to zero. Dependency ordering was insurance against rework that got
+cheap. The frozen API contract was a scheduling instrument, not a correctness one. And the argument
+does not rest on "AI made typing fast": it rests on three different rates on one path, where
+generation went up by orders of magnitude, review went up and then hit a ceiling, and organizational
+sign-off did not move at all. The slowest of the three now governs arrival, and the whole measuring
+apparatus is still pointed at the fastest.
+
+One single heavy rail runs the full width of the frame, so there is exactly one path and no
+branching diagram. The same piece of hardware appears twice on that rail, in opposite states, and
+that repetition carries the entire thesis in one glance: a pair of blocks facing each other across
+the rail, thrown fully wide apart at the old station on the left-centre, and an identical pair
+squeezed almost shut at the new station on the right. The bottleneck did not disappear. It relocated
+downstream, and the instrument did not follow.
+
+The apparatus is described as physically incapable of having turned, because that is the claim. It
+is bolted to a base plate, braced by diagonal struts, and its caliper jaws are closed tip to tip
+around the empty rail at the old station, clamped on nothing. Jaws shut to zero width is the
+story-point beat stated as geometry: the spread it was built to measure went to zero and it is still
+measuring. A flat hard-edged wedge of attention drops from its head onto that same empty gap, and it
+is drawn deliberately oversized. At card size that wedge is the element carrying "attention aimed at
+nothing", and the first render made it small enough to vanish, which left the picture with no visible
+claim at all. Its size is therefore specified three independent ways: as a fraction of the frame,
+about one fifth of the width at its base; as a multiple of a work unit, roughly five squares wide;
+and as a rank, the largest and palest single area of flat colour in the picture. The negative prompt
+rejects the thin-beam reading.
+
+The misdirection is stated redundantly so a diffusion model cannot quietly correct it into a
+sensible picture of an instrument inspecting a jam. Five cues all point the same way. First, the
+jaws physically enclose bare rail with no work unit between them. Second, the wedge of attention
+lands entirely on bare rail and touches no unit anywhere. Third, an obvious horizontal band of empty
+background separates the right edge of the wedge from the first stalled unit, so the two never
+overlap. Fourth, the rig is bolted and braced, with its head turned away from the right side of the
+frame. Fifth, the prompt says outright that nothing in the picture points at, reaches toward,
+inspects, illuminates, or is connected to the pinch, and the negative prompt repeats it. The
+apparatus must never be shown aimed right, rotating, tilting toward the jam, or linked to it by any
+line, beam, arm, cable, or dashed path.
+
+Which side of the pinch the queue stands on is the second thing a model will quietly correct, and the
+first render corrected it: the stopped units came back to the RIGHT of the black blocks, which reads
+as work that got through and then parked, the opposite of a bottleneck. Flow runs left to right, so a
+blockage backs up on its LEFT. That claim gets the same four-way treatment. Geometry: the queue
+occupies the stretch of rail between the centre of the frame and the pinch, never past it. Adjacency:
+the leading square's right edge touches the left face of the black blocks, and the other three back up
+behind it toward the left. Explicit negative: the rail from the pinch to the right edge of the frame
+is bare, with no square, fragment, or streak on it, because nothing has got through. Physical simile:
+traffic stopped behind a closed barrier, where the line builds on the approach side and the road
+beyond stays empty. The negative prompt repeats it.
+
+The three rates are encoded as three readable properties of the same object along one line, so the
+lane idea survives without a second competing subject or a chart. Spacing goes wide, then medium,
+then touching. Motion streaks go long, then short, then none. Angle goes tilted, then slightly
+tilted, then dead square. The units themselves never change colour or shape, so a viewer reads a
+change in rate rather than a change in kind.
+
+Stalled must not curdle into overloaded, so the queue is deliberately small and tidy. It is exactly
+four or five units in a single file, square-on, evenly aligned, touching, sitting flat on the rail,
+not cropped by the frame edge, with nothing stacked above them and nothing scattered around them.
+There is no heap, no mass, no tumbling, no cropped-unbounded backlog, and no pressure or strain
+marks. The units are simply wider than the slit and they have stopped. Calm and finite is the point:
+this is a stall, not a flood.
+
+Every trace of remedy stays out of the frame. Nothing widens the pinch, no second instrument arrives,
+no arrow reroutes the flow, there is no checkmark, no after-state, and no second panel. The picture
+is one uncorrected mistake held still.
+
+At thumbnail size the frame carries three tonal roles. A heavy deep-plum apparatus anchored in the
+left-centre, unmistakably aimed. A large blank bone-white wedge of attention landing on bare grey
+rail with nothing inside it. And an acid-chartreuse flow running left to right that thins, slows, and
+backs up against the left face of the densest black mass in the picture, over on the right, leaving
+the rail past it empty, with nothing pointing at any of it. Bright light on emptiness, and the jam
+sitting in plain sight outside it.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition.
+
+One single heavy horizontal rail runs the full width of the frame at about one third up from the
+bottom: a thick straight ink-black line with a slim flat steel-grey bed beneath it. It is one
+continuous path from edge to edge, with no branches, no forks, no junctions, no second track, and no
+dashed route anywhere.
+
+Riding on that rail are identical work units: plain solid chartreuse yellow-green squares with
+crisp black outlines, rounded slightly at the corners, completely blank with no markings, no bars,
+no icons, and no interior detail of any kind. Every unit in the picture is the same colour and the
+same size.
+
+Along the LEFT third the units are moving fast: three widely separated squares, each tilted at a
+lively angle, each trailing three long straight bone-white motion streaks behind it, with the
+leftmost square cropped by the left edge of the frame. They are sparse and airborne over the rail,
+not piled and not touching.
+
+At about a third of the way across sits the OLD station, and it is empty. A pair of blunt steel-grey
+blocks face each other across the rail, one above and one below, retracted fully apart so the gap
+between them is enormous, several times the width of a unit. The bare rail runs straight through
+that gap, clearly visible and completely unoccupied: no square sits in the gap, no square sits
+between the blocks, and nothing is being held, gripped, or measured there.
+
+Standing over that empty station is the dominant subject: a heavy measuring rig drawn as flat solid
+deep plum aubergine shapes with crisp black outlines. A thick vertical mast rises from a wide black
+base plate bolted to the ground with four visible bolt heads, braced on both sides by two solid
+diagonal struts, so the whole structure is obviously fixed and immovable and cannot swivel. The mast
+rises to about two thirds of the frame height, then a rigid horizontal arm reaches to the right and
+angles down into a chunky rectangular head. The head is a plain solid block: it is NOT a round dial,
+NOT a gauge face, NOT a clock, NOT a speedometer, and it carries no needle, no pointer, no numerals,
+no tick marks, no scale, and no lettering.
+
+From the bottom of that head extend two straight caliper jaws, plum with black outlines, closed
+tight so their pointed tips touch each other exactly on the bare rail in the middle of the empty gap.
+The jaws are shut to zero width and clamped on nothing: there is no square, no object, and no
+material between them, only bare rail.
+
+Dropping from the same head onto that same empty spot is one flat bone-white wedge of attention, and
+it is BIG: a crisp hard-edged triangle, narrow where it leaves the head and widening steeply
+downward, so that where it reaches the rail its base spans about one fifth of the entire frame width,
+wider than the retracted grey blocks stand apart and about five times the width of a single square.
+It is the largest pale area and the brightest shape in the picture, second in size only to the rig
+itself, and it fills most of the space between the head and the rail. It is solid pale bone, clearly
+and obviously lighter than the cool sage-grey background behind it, bounded by a bold black outline
+as heavy as the rail's, with no glow, no gradient, no rays, no sparkle, and no soft light. It is a
+broad blunt slab of a triangle, never a thin sliver, never a narrow pencil beam, never faint or
+semi-transparent, and it stays unmissable at thumbnail size.
+
+The wedge lands squarely on the bare rail inside the empty gap and it contains nothing at all: no
+square, no object, no unit. Nothing lit, nothing to measure. No square anywhere in the picture falls
+inside the wedge or crosses its edges. The rig's head is angled slightly LEFT, away from the right
+side of the frame.
+
+Continuing across the CENTRE, in the open stretch between the wedge and the back of the queue, the
+same chartreuse squares travel on but visibly slower: four squares now closer together, only slightly
+tilted, each trailing just one short bone-white motion streak instead of three.
+
+At about four fifths of the way across sits the NEW station, and it is the real constriction: an
+identical pair of facing blocks, this time solid ink black, heavy and squat, squeezed almost
+together over the rail so only a narrow slit remains, plainly much narrower than one square. This
+pair is the densest, blackest, heaviest mass in the entire picture.
+
+Backed up on the LEFT-HAND, UPSTREAM side of that slit is a short tidy queue of exactly four
+chartreuse squares. They sit entirely to the LEFT of the black blocks, occupying the stretch of rail
+from about three fifths to about four fifths of the way across: single file along the rail, perfectly
+square-on with no tilt, evenly aligned and touching each other edge to edge, sitting flat on the rail
+with no motion streaks on any of them and no motion marks anywhere near them. The leading square is
+pressed flat against the LEFT face of the black blocks with its right edge in contact with them, and
+the other three back up behind it toward the centre of the frame. This is traffic stopped behind a
+closed barrier: the line builds on the approach side, and the road beyond stays empty.
+
+Nothing has got through. The stretch of rail to the RIGHT of the black blocks, from the pinch all the
+way to the right edge of the frame, is completely bare: no square, no part of a square, no fragment,
+no streak, and no second queue on that side. There is nothing at all past the pinch.
+
+The queue is small, orderly and finite: exactly four squares, ending cleanly, not cropped by any
+frame edge, with nothing heaped, stacked, scattered, tumbling, bursting, or piled above the rail
+line.
+
+Nothing in the picture points at that black pinch. The measuring rig stands far to its left, aimed
+down at the empty station, and no arm, beam, wedge, line, cable, arrow, or dashed path reaches from
+the rig or from anywhere else toward the pinch or toward the stopped squares. There is a clear band
+of empty background and bare rail, at least three squares wide, between the right edge of the big
+bone-white wedge and the nearest stopped square, so the wedge and the queue never touch or overlap,
+and no square falls inside the wedge. There is exactly one measuring rig, exactly one
+bone-white wedge, exactly one rail, one pair of retracted grey blocks, and one pair of squeezed
+black blocks.
+
+The story should be instantly understandable at thumbnail size: a big plum instrument bolted in
+place, its jaws clamped shut on an empty stretch of rail with a large blank white wedge of attention
+landing on nothing, while the green flow slows across the frame and piles up against the near side of
+a black pinch on the right that nothing is watching, with bare empty rail beyond that pinch.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp confident outlines, screen-print or risograph influence with subtle paper
+grain, strong visual hierarchy, minimal detail, intentional negative space, clean and graphic rather
+than photorealistic or 3D.
+
+Color palette: cool pale sage-grey drafting paper background, deliberately cool and slightly green
+rather than warm cream or newsprint; ink-black outlines; deep plum aubergine; acid chartreuse
+yellow-green; bone white; and a small amount of cool steel grey. High contrast, no gradients, no
+neon, no glow. Use deep plum for the entire measuring rig, acid chartreuse for every work unit, bone
+white for the wedge of attention and for the motion streaks, ink black for the rail, the squeezed
+pinch blocks, the base plate, the bolts and all outlines, and cool steel grey for the retracted
+blocks at the empty station and the rail bed. Every colour in the picture comes from that list and
+nothing else.
+
+Composition: one rail crossing the full width at the lower third; fast tilted squares with long
+streaks in the left third; the empty station with its widely retracted grey blocks at one third
+across; the plum rig bolted just left of it, mast rising to two thirds height, jaws shut on the bare
+rail and a large bone-white wedge, about a fifth of the frame wide at its base, landing on the empty
+gap; slower squares with short streaks across the centre; the four stopped squares backed up from
+about three fifths to about four fifths across; the squat black pinch at four fifths; and bare empty
+rail from the pinch to the right edge. Keep the whole upper band open, especially the upper-right
+quadrant above the pinch, uncluttered for an optional headline.
+
+No words, no readable text, no letterforms, no numerals or legible digits, no scale markings, no
+tick marks, no gauge labels, no logos, no brand marks, no watermark, no UI chrome, no screens, no
+people, no faces, no hands, no clock, no clock face, no dial, no stopwatch, no speedometer, no
+hourglass, no calendar, no calendar grid, no date squares, no chart, no graph, no bar chart, no
+flowchart, and no arrows.
+
+NEGATIVE PROMPT:
+squares to the right of the pinch, queue downstream of the pinch, stopped squares past the black
+blocks, backlog on the far side of the pinch, units between the pinch and the right frame edge, work
+piled beyond the blockage, flow resuming after the pinch, squares that got through, queue on the
+wrong side of the blockage, empty rail on the approach side, gap between the leading square and the
+black blocks, squares split either side of the pinch, small wedge, narrow wedge, thin sliver, thin
+beam, pencil beam, faint wedge, semi-transparent wedge, low-contrast wedge, wedge narrower than the
+empty gap, wedge lost at thumbnail size, square inside the wedge, wedge touching the queue, wedge
+overlapping the queue, instrument aimed at the jam, rig pointing right, apparatus rotated toward the
+blockage, gauge inspecting the queue, jaws gripping a square, jaws clamped on an object, object
+between the caliper jaws, spotlight on the bottleneck, beam reaching the pinch, line connecting the
+rig to the pinch, cable to the pinch, arrow to the pinch, second instrument at the pinch, anything
+watching the pinch, swivelling rig, rig on wheels, rig on a tripod, camera, telescope, floodlight
+rig, occupied old station, square at the empty station, blocks open at the right, blocks closed at
+the left, both stations identical, two rails, branching track, fork, junction, points, siding,
+parallel lanes, race lanes, running track, road markings, motorway, conveyor belt, conveyor rollers,
+chute, ramp, funnel, hopper, pipeline diagram, plumbing, valves, overload, flood, deluge, avalanche,
+tidal wave, unbounded mass, cropped endless backlog, mountain of work, heap, pile, mound, scattered
+debris, tumbling pieces, bursting, exploding, shattering, tearing, rupture, split membrane, taut
+sheet, bulging surface, straining material, cracks, strain lines, pressure marks, sparks, smoke,
+fire, crushed object, distressed figure, human silhouette, braced person, person, face, facial
+features, hands, fingers, crowd, generic AI robot, humanoid robot, android, laptop, monitor, desktop
+screen, smartphone, QR code, keyboard, desk, office, server racks, cloud symbol, network map, node
+graph, house, building, gateway, gate arm, turnstile, shield, padlock, lock, key, certificate badge,
+ribbon seal, rounded-rectangle enclosure, security imagery, sticky notes, kanban board, swimlanes,
+burndown chart, sprint board, checkmark, tick, green light, before and after split panel, calm
+resolved scene, repaired state, second panel, coral and mint palette, warm stone palette, cobalt and
+amber palette, vermilion accent, cyan accent, golden yellow accent, purple gradient, violet neon,
+cyberpunk, blue monochrome, dark murky lighting, readable text, readable code, readable digits, real
+numerals, fake lettering, illegible text, filenames, captions, burned-in caption, paragraph of text,
+logos, watermark, glow, bloom, light rays, sparkle, lens flare, reflections, glassmorphism,
+gradients, photorealistic, 3D render, glossy mockup, cinematic photograph, isometric 3D, drop shadows
+everywhere, excessive detail, cluttered composition, busy background, decorative confetti shapes,
+stock illustration, soft focus
+
+RECOMMENDED SIZE:
+1600x900, 16:9. Export as JPEG in sRGB with metadata stripped, targeting roughly 250 KB to match the
+existing heroes in content/assets/.
+
+ASSET TARGET:
+content/assets/sprint-planning-after-ai-hero.jpg
+
+Referenced from the post's entry in content/index.json as "hero": "assets/sprint-planning-after-ai-hero.jpg"
+(content-root-relative, resolved at runtime by resolveContentUrl). Do not add the image or this
+sidecar to the app bundle, and do not place either under app/public/.

@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "sprint-planning-after-ai",
+      "title": "Your sprint plans a bottleneck that left",
+      "date": "2026-08-10",
+      "summary": "Story points, dependency arrows, and frozen API contracts were built around slow typing. AI moved that bottleneck, and the plan still points at where it was.",
+      "tags": ["agents", "productivity", "engineering-management", "agile", "api-contracts"],
+      "hero": "assets/sprint-planning-after-ai-hero.jpg",
+      "file": "posts/2026-08-10-sprint-planning-after-ai.md"
+    },
+    {
       "slug": "agentic-ai-cognitive-tax",
       "title": "The 10x paradox: agentic AI's hidden cognitive tax",
       "date": "2026-07-30",

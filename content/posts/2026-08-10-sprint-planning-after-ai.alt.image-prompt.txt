@@ -1,0 +1,216 @@
+SURFACE:
+Alternative hero concept for "Your sprint plans a bottleneck that left" (slug
+sprint-planning-after-ai, dated 2026-08-10, tags agents / productivity / engineering-management /
+agile / api-contracts), at content/posts/2026-08-10-sprint-planning-after-ai.md. This is a competing
+concept for the same hero, not a second image. The sibling sidecar
+content/posts/2026-08-10-sprint-planning-after-ai.image-prompt.txt holds the caliper-and-rail
+concept, and only ONE of the two will ever be rendered to the hero asset. This sidecar is inert
+authoring material only: never add it to a manifest, never fetch it from the app, never render it as
+Markdown.
+
+SURFACE and STORY are notes for whoever picks this file up. Only IMAGE PROMPT is meant to be pasted
+into a generator, and NEGATIVE PROMPT only if the generator supports one. Pasting the notes is what
+burned STORY prose into the first render of the sibling concept as caption text.
+
+Why this concept exists. The caliper concept renders correctly and still fails, because it has to be
+explained. A caliper is an obscure instrument, and "jaws closed to zero width means the effort spread
+it measured collapsed" only unlocks after reading the story-points section of the post. A hero has
+about one second, at card size, on somebody who has not read a word. So this concept keeps the
+argument and throws away every object that needs decoding.
+
+The legibility test, applied. Describe the finished picture to somebody with no context: "a big
+floodlight is shining on an empty patch of ground, and the actual pile-up is sitting right next to it
+in the dark, with nothing pointed at it." Ask what it means. The available answers are "they are
+watching the wrong spot", "the light is aimed at nothing", and "nobody is looking at the real
+problem". All three are the post's thesis, and none of them require the article. Every object in the
+frame passes the same test on its own: a floodlight's purpose is obvious on sight, a bright empty
+circle is obvious, and a mass of identical blocks crammed against a gap too narrow to pass is obvious
+as a jam. Nothing here is an instrument you have to recognise.
+
+Distinct from its neighbours. It shares no motif with the CloakCode product series: no workstation,
+laptop, monitor, phone, QR glyph, network map, house, gateway, door, shield, certificate badge,
+padlock, or rounded-rectangle machine boundary. The two neck walls are plain walls with a gap, never
+a gate, barrier arm, or turnstile. It must also read as a different picture from the cognitive-tax
+hero, which owns overload: nothing here tears, bursts, strains, or arrives unbounded, and no person
+appears. Palette-wise it is the only dark-field image on the blog; the caliper sibling is plum,
+chartreuse, and sage on pale grey, the CloakCode series is coral, mint, and cyan on warm off-white,
+and the cognitive-tax hero is cobalt, amber, and vermilion on newsprint. Keep those out of the
+positive prompt and let the closed palette below enforce the difference.
+
+The dominant subject is one bolted floodlight blazing a wide flat pool of light onto empty ground.
+The secondary subject is the jam sitting beside it, in the dark, with nothing aimed at it.
+
+STORY:
+Engineering planning still schedules around a constraint that has moved. Story points priced an
+effort spread that collapsed. Dependency ordering was insurance against rework that got cheap. The
+frozen API contract was a scheduling instrument, not a correctness one. Underneath all three is one
+sentence: the thing being watched is not the thing that is stuck.
+
+That sentence is the whole picture, stated with objects a five-year-old could name. A lamp is
+pointing at bare ground. The pile-up is next to it. Nothing is pointing at the pile-up.
+
+The second idea from the post, that the slowest stage governs arrival however fast the first one
+runs, comes free from the geometry rather than from a second subject: there is exactly one narrow
+point in the frame, everything is stopped at it, and the ground past it is empty. No lanes, no
+chart, no third element.
+
+The load-bearing relationship is that the light contains nothing and touches nothing. A model will
+quietly correct that into a sensible picture of a floodlight illuminating the problem, which is the
+same failure the sibling concept had to be defended against, so it is stated five independent ways.
+First, the lit pool is described as containing nothing at all. Second, no block touches or crosses
+the pool's edge, and a clear stretch of unlit ground separates the two. Third, the prompt says
+outright that no light of any kind falls on the jam: no second pool, no spill, no rim light, no
+glint. Fourth, the lamp is bolted and braced so it cannot swivel, with its head tipped away from the
+jam. Fifth, the negative prompt repeats all of it. The lamp must never be shown aimed right, turning,
+tilting toward the jam, or connected to it by a beam, line, cable, arm, or dashed path.
+
+The queue's side is stated the same way the sibling's is, because the first render of that concept
+put the stopped units past the blockage, which reads as work that got through and then parked. Flow
+runs left to right, so the jam packs against the LEFT face of the neck, and the ground from the neck
+to the right edge of the frame is bare.
+
+The jam has to read as a jam without becoming the overload picture. It is dense and crowded, because
+that is what makes it legible at thumbnail size, but it is bounded: it ends well inside the frame, it
+is not cropped by any edge, nothing tears or bursts, nothing sprays, and nothing is still arriving.
+Crowded and stopped, not flooding.
+
+Every trace of remedy stays out of frame. Nothing widens the neck, no second lamp arrives, no arrow
+reroutes anything, there is no checkmark, no after-state, and no second panel. The picture is one
+uncorrected mistake held still.
+
+At thumbnail size the frame carries three roles. A dark field. One blazing butter-yellow pool on the
+left with absolutely nothing in it. And a dense persimmon mass on the right, jammed at a narrow gap,
+lit by nothing.
+
+IMAGE PROMPT:
+A bold editorial vector illustration for a technology blog banner, 16:9 landscape composition, set on
+a flat solid deep midnight navy field that fills the entire frame evenly: one uniform dark colour,
+completely flat, with no shading, no vignette, no haze, no atmosphere, and no texture beyond a fine
+even paper grain.
+
+One single ink-black ground line runs the full width of the frame at about one third up from the
+bottom, and everything in the picture stands on that one line. There is one ground only: no second
+line, no lanes, no branches, no forks, no track, no kerbs, and no road markings.
+
+LEFT of centre stands the dominant object: a tall floodlight on a mast, unmistakably a work lamp. A
+slim cool concrete grey mast with crisp black outlines rises from a wide flat black foot that is
+bolted to the ground line with four visible bolt heads and braced on both sides by two solid diagonal
+struts, so the whole structure is obviously fixed and immovable and cannot swivel. It rises to about
+two thirds of the frame height and carries one plain boxy lamp head: a simple wide rectangle tipped
+downward and angled slightly LEFT, cool concrete grey with a bold black outline and a flat butter
+yellow face. The head is a plain box. It is NOT a round dial, NOT a gauge face, NOT a clock, NOT a
+camera, and it carries no lens rings, no needle, no numerals, no tick marks, and no lettering.
+
+From that yellow face falls one enormous flat cone of light: a hard-edged butter yellow trapezoid,
+narrow where it leaves the lamp and widening steeply downward, landing on the ground line as a broad
+butter yellow pool that spans about a quarter of the entire frame width. It is the brightest and
+largest single area of flat colour in the picture. It is drawn as one solid shape with a crisp black
+outline and a hard straight edge all the way round: it is not a glow, not a gradient, not a haze, not
+volumetric light, not rays, and it has no soft or faded edge anywhere.
+
+That lit pool is completely empty. Nothing stands in it, nothing lies in it, and nothing crosses it:
+no block, no part of a block, no fragment, no object of any kind. It is a bright clean patch of bare
+ground with nothing in it to look at.
+
+RIGHT of the light, out on the plain dark navy ground, sits the actual jam, and it is unmistakable.
+The work units are identical persimmon orange-red blocks: plain solid rectangles with crisp black
+outlines, slightly rounded at the corners, completely blank with no markings, no bars, no icons, and
+no interior detail of any kind. Every block in the picture is the same colour and the same size.
+
+They are crammed hard against a narrow neck: two heavy cool concrete grey walls with bold black
+outlines stand facing each other on the ground line, rising to about half the frame height, squeezed
+together until the vertical gap between them is plainly narrower than one block. About twenty blocks
+pack up behind that neck, three or four deep, tight and touching each other, the front ones shoved
+square against the walls and the ones behind riding up at broken angles where they have jammed into
+one another. The mass is dense, crowded and obviously stuck, and it is the loudest shape on the right
+half of the frame.
+
+The jam sits entirely on the LEFT, approach side of the neck, occupying the ground from about three
+fifths to about four fifths of the way across. Nothing has got through: the ground from the neck to
+the right edge of the frame is completely bare dark navy, with no block, no part of a block, and no
+fragment anywhere on it. Like traffic stopped at a closed lane, the line builds on the near side and
+the road beyond stays empty.
+
+Nothing lights the jam and nothing points at it. The lamp stands well to its left with its head
+tipped away, and no beam, cone, ray, line, cable, arm, arrow, or dashed path reaches from the lamp or
+from anywhere else toward the jam or toward the neck. No butter yellow touches any block: every block
+sits on plain dark navy ground, outside the pool, with no rim light, no second pool, no spill, no
+halo, and no glint on it. There is a clear stretch of unlit bare ground, at least two blocks wide,
+between the right edge of the butter yellow pool and the nearest block, so the light and the jam
+never touch or overlap.
+
+The jam is bounded and finite. It ends cleanly well inside the frame, it is not cropped by any edge,
+and nothing is spraying, bursting, tearing, tumbling out, or still arriving from off-frame. There is
+exactly one lamp, exactly one cone of light, exactly one pool, exactly one neck, and exactly one jam.
+
+The story should be instantly understandable at thumbnail size: a big floodlight blazing on an empty
+patch of ground, and the pile-up sitting right beside it in the dark with nothing aimed at it.
+
+Style: sophisticated flat vector editorial illustration, modern technology magazine artwork, bold
+geometric shapes, crisp confident outlines, screen-print or risograph influence with subtle paper
+grain, strong visual hierarchy, minimal detail, intentional negative space, clean and graphic rather
+than photorealistic or 3D.
+
+Color palette: deep midnight navy field; ink black for the ground line, the lamp foot, the bolts, the
+struts and every outline; cool concrete grey for the lamp mast, the lamp head and the two neck walls;
+butter yellow for the lamp face, the cone and the pool it casts, used nowhere else; persimmon
+orange-red for every block, used nowhere else. High contrast, flat solid colour, no gradients, no
+neon, no glow. Every colour in the picture comes from that list and nothing else.
+
+Composition: the ground line crossing the full width at the lower third; the bolted lamp left of
+centre with its mast rising to two thirds height; the wide butter yellow cone and its empty pool
+filling the lower left and lower centre; a clear stretch of unlit bare ground; the dense persimmon
+jam packed against the concrete neck between about three fifths and four fifths across; and bare
+empty ground from the neck to the right edge. Keep the whole upper band open, especially the upper
+right above the jam, uncluttered for an optional headline.
+
+No words, no readable text, no letterforms, no numerals or legible digits, no scale markings, no tick
+marks, no labels, no logos, no brand marks, no watermark, no UI chrome, no screens, no people, no
+faces, no hands, no clock, no clock face, no dial, no stopwatch, no speedometer, no hourglass, no
+calendar, no calendar grid, no chart, no graph, no bar chart, no flowchart, and no arrows.
+
+NEGATIVE PROMPT:
+light falling on the jam, lit blocks, blocks inside the pool, block crossing the edge of the light,
+pool containing objects, spotlight on the blockage, floodlight aimed right, lamp tilted toward the
+jam, lamp turning, lamp on wheels, lamp on a tripod, second lamp, second pool of light, rim light on
+the blocks, glint on the blocks, spill light, beam reaching the jam, line connecting the lamp to the
+jam, cable to the jam, arrow to the jam, anything watching the jam, blocks to the right of the neck,
+jam downstream of the neck, blocks past the walls, work piled beyond the blockage, blocks between the
+neck and the right frame edge, flow resuming after the neck, blocks that got through, empty ground on
+the approach side, gap between the front blocks and the walls, volumetric light, god rays, light
+shafts, light haze, glowing lamp, bloom around the lamp, soft-edged light, faded light, fog, mist,
+searchlight beam in the sky, night sky, stars, moon, streetlight scene, camera, telescope, satellite
+dish, gate, gate arm, door, doorway, turnstile, barrier arm, funnel, hopper, chute, ramp, conveyor
+belt, conveyor rollers, rails, track, lanes, parallel lanes, road markings, pipeline diagram,
+plumbing, valves, overload, flood, deluge, avalanche, tidal wave, unbounded mass, cropped endless
+backlog, mountain of work, blocks cropped by the frame edge, spraying debris, bursting, exploding,
+shattering, tearing, rupture, split membrane, taut sheet, bulging surface, straining material,
+cracks, strain lines, sparks, smoke, fire, crushed object, distressed figure, human silhouette,
+person, face, facial features, hands, fingers, crowd, generic AI robot, humanoid robot, android,
+laptop, monitor, desktop screen, smartphone, QR code, keyboard, desk, office, server racks, cloud
+symbol, network map, node graph, house, building, gateway, shield, padlock, lock, key, certificate
+badge, ribbon seal, rounded-rectangle enclosure, security imagery, sticky notes, kanban board,
+swimlanes, burndown chart, sprint board, checkmark, tick, green light, before and after split panel,
+calm resolved scene, repaired state, second panel, coral and mint palette, warm stone palette, cobalt
+and amber palette, plum and chartreuse palette, sage green background, vermilion accent, cyan accent,
+purple gradient, violet neon, cyberpunk, teal and orange grade, dark murky lighting, readable text,
+readable code, readable digits, real numerals, fake lettering, illegible text, filenames, captions,
+burned-in caption, paragraph of text, logos, watermark, glow, bloom, lens flare, sparkle,
+reflections, glassmorphism, gradients, photorealistic, 3D render, glossy mockup, cinematic
+photograph, isometric 3D, drop shadows everywhere, excessive detail, cluttered composition, busy
+background, decorative confetti shapes, stock illustration, soft focus
+
+RECOMMENDED SIZE:
+1600x900, 16:9. Export as JPEG in sRGB with metadata stripped, targeting roughly 250 KB to match the
+existing heroes in content/assets/.
+
+ASSET TARGET:
+content/assets/sprint-planning-after-ai-hero.jpg
+
+Only ONE of the two concepts for this post ships to that path: this one, or the caliper-and-rail
+concept in content/posts/2026-08-10-sprint-planning-after-ai.image-prompt.txt. They are alternatives
+for the same hero, so do not render both and do not add a second hero field. Whichever wins is
+referenced from the post's entry in content/index.json as
+"hero": "assets/sprint-planning-after-ai-hero.jpg" (content-root-relative, resolved at runtime by
+resolveContentUrl). Do not add the image or this sidecar to the app bundle, and do not place either
+under app/public/.
