@@ -95,23 +95,26 @@ explicitly and normalize it to the house spec** before you wire the manifest. Ne
 filename.
 
 - **Ideal spec (match the existing heroes):** JPEG, **16:9**, **1600×900** (the sidecar's
-  `RECOMMENDED SIZE`), sRGB, metadata stripped, and a file size **in line with the existing hero**
-  (`content/assets/your-copilot-is-waiting-hero.jpg` ≈ **250 KB**). Treat **> ~400 KB** or a much
-  larger pixel dimension as off-spec worth improving.
+  `RECOMMENDED SIZE`), sRGB, metadata stripped, and a file size **in line with the existing heroes**
+  (roughly **150-260 KB**). Treat **> ~400 KB** or a much larger pixel dimension as off-spec worth
+  improving.
 - **Inspect first** (`file` / `identify`) to read the real format, dimensions, and byte size — the
   extension can lie (e.g. a `.png` the author *called* a hero).
-- **Normalize when off-spec** with the available tool (ImageMagick `convert`/`magick` is present):
+- **Normalize with the canonical recipe**, which lives in one place:
+  **`.github/image-prompt-library.md` → Export Recipe**. Do not re-derive settings per post, and do
+  not copy an existing asset's encoding as precedent (they drifted before the recipe was written).
 
   ```bash
-  # PNG or oversized image → house-spec JPG (16:9, ~1600×900, stripped, ~250 KB)
-  convert content/assets/<slug>-hero.<ext> -resize 1600x900 -quality 85 -strip \
+  convert <source> -resize 1600x900 -colorspace sRGB -sampling-factor 4:4:4 -quality 90 -strip \
     content/assets/<slug>-hero.jpg
-  # then remove the off-spec original if the extension changed
   ```
 
-  Re-`identify` the result to confirm the new dimensions and size, and prefer **`.jpg`** so the path
-  matches the manifest/sidecar convention. If the tool trimmed a pixel (e.g. 1599×900) that's fine —
-  16:9 within rounding is acceptable.
+  `-sampling-factor 4:4:4` is not optional: the default 4:2:0 is tuned for photographs and smears
+  the colour edges in this site's flat vector artwork. Quality 90 is the default; the recipe says
+  when and how to deviate. Re-`identify` the result to confirm dimensions, quality, and size, keep
+  the oversized original in `.local/` rather than `content/assets/`, and prefer **`.jpg`** so the
+  path matches the manifest/sidecar convention. If the tool trimmed a pixel (e.g. 1599×900) that's
+  fine — 16:9 within rounding is acceptable.
 - **Path must match the wiring.** The manifest `hero` and the sidecar `ASSET TARGET` must point at
   the file that actually exists. If you change the extension during normalization, update **both**
   (or, better, normalize *to* the already-wired path).
@@ -169,7 +172,7 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 3. **Artwork:** invoke **site-image-art-director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
 4. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the
-   house spec** (16:9, ~1600×900, JPG, ~250 KB, metadata stripped) per *Hero image assets* above.
+   house spec** (16:9, ~1600×900, JPG, 150-260 KB, metadata stripped) per *Hero image assets* above.
    Report its final format/dimensions/size; flag an off-spec asset you couldn't improve.
 5. **Wire the manifest:** add/patch the entry and set `hero`. Apply the *Metadata quality rules* —
    improve a weak `title`/`summary`/`tags` rather than copying the draft's. Ensure frontmatter ↔

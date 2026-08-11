@@ -45,15 +45,28 @@ can paste into another tool.
 
 ## Prompt Structure
 
-For each image request, produce:
+Follow the sidecar format and its rules in `.github/image-prompt-library.md`. For each image
+request, produce:
 
 1. **Image Prompt**: a complete prompt that includes format, subject, story, style, palette,
    composition, ratio, and constraints.
-2. **Negative Prompt**: failure modes to suppress.
+2. **Negative Prompt**: failure modes to suppress, ordered image-specific first and generic
+   boilerplate last.
 3. **Recommended Size**: choose based on the surface, usually `1600x900` for hero banners,
    `1200x630` for social cards, or `1600x1200` for diagrams.
 4. **Asset Note**: say where the image should live and how to reference it without breaking the
    deploy or content model.
+
+Check every sidecar against these before reporting it done:
+
+- **No forbidden colour or motif is named in the positive prompt.** Distinctness from sibling
+  artwork is enforced by a closed palette ("every colour comes from that list and nothing else"),
+  explained for the human in `SURFACE`, and listed as exclusions only in `NEGATIVE PROMPT`. Naming
+  a colour you do not want makes it more likely, not less.
+- **The paste boundary is stated in the file.** `SURFACE` and `STORY` are notes; only `IMAGE PROMPT`
+  and `NEGATIVE PROMPT` go into a generator.
+- **The load-bearing relationship is stated redundantly**, and only that one.
+- **Paths are current**, not wherever a draft happened to sit when you wrote the prompt.
 
 ## Image Generation
 
