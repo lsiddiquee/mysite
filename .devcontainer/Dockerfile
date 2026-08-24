@@ -13,5 +13,9 @@
 # rebuilds, but this is what makes the FIRST create work.)
 FROM mcr.microsoft.com/devcontainers/typescript-node:24-bookworm
 
-RUN mkdir -p /home/node/.vscode-server \
+# Baseline CLI tools belong in the image; post-create runs later as the remote user.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ripgrep \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /home/node/.vscode-server \
     && chown node:node /home/node/.vscode-server

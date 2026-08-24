@@ -2,7 +2,7 @@
 name: mysite Content Publisher
 description: "Use when adding, staging, placing, or publishing blog posts, project case studies, or pages for mysite: normalizing frontmatter to the site schema, stripping the duplicate H1, fixing internal cross-post links, tightening titles/summaries/tags for SEO, creating image-prompt sidecars and hero/social artwork (delegated to the Site Image Art Director), wiring content/index.json or content/projects.json, and validating the build. STAGES by default — never commits or pushes — and only publishes (commit + push + verify the post is live with its social card and SEO route shell) when explicitly asked to publish, push, or go live."
 tools: [read, edit, search, execute, web, todo, agent]
-agents: [site-image-art-director]
+agents: ["Site Image Art Director"]
 user-invocable: true
 argument-hint: "A draft (post/project/page) or its path; say 'stage' (default) or 'publish' to go live."
 ---
@@ -31,7 +31,8 @@ If intent is ambiguous, STAGE and ask whether to publish.
 ## Delegate ALL artwork to the Site Image Art Director
 
 Never write image prompts or generate images yourself. For every hero banner, social image, in-post
-diagram, or page illustration, invoke the **site-image-art-director** subagent. It reads
+diagram, or page illustration, invoke the **Site Image Art Director** subagent by its declared
+`name`. It reads
 `.github/image-prompt-library.md`, writes the concrete prompt as an inert `*.image-prompt.txt`
 sidecar **beside** the owning content, and — when an image tool is available and the user asked for
 the image — generates it into `content/assets/`. You then wire the resulting path into the manifest.
@@ -169,7 +170,7 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    `.github/copilot-instructions.md` → **Writing voice** to the body *and* to `title`/`summary`.
    That section is the single source of truth for what to cut and what to keep; do not restate it
    here. Beyond it, preserve the author's prose and only make mechanical publishing fixes.
-3. **Artwork:** invoke **site-image-art-director** for the hero/social image → it writes the
+3. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
 4. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the
    house spec** (16:9, ~1600×900, JPG, 150-260 KB, metadata stripped) per *Hero image assets* above.

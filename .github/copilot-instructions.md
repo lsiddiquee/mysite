@@ -200,7 +200,9 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
   there (as `node`) BEFORE `post-create.sh` runs → `Permission denied`. The Dockerfile pre-creates
   that dir `node`-owned so the empty volume inherits `node:node` on first mount (Docker copies the
   image dir's ownership into a fresh volume). If you ever hit this again, the volume was created
-  before the fix — remove it (`docker volume rm mysite-vscode-server`) and rebuild.
+  before the fix — remove it (`docker volume rm mysite-vscode-server`) and rebuild. The same image
+  installs `ripgrep`, the baseline search CLI used by repository agent instructions. System tools
+  belong in the Dockerfile so every rebuild gets them; `post-create.sh` is not their owner.
 
 ## Publishing model (do not break)
 
@@ -225,6 +227,10 @@ from the manifests.
 
 **mysite Content Publisher** is the front door for anything under `content/`; **mysite Guardrails
 Coder** for anything under `app/`; **Site Image Art Director** for every image prompt and asset.
+
+Cross-agent `agents:` allowlists and subagent calls use the exact, case-sensitive frontmatter
+`name` (`Site Image Art Director`), not the filename stem (`site-image-art-director`). The filename
+only locates the customization file.
 
 Agents own the **workflow** (steps, gates, validation). This file owns the **rules** (guardrails,
 conventions, and the writing voice below), because it loads on every turn while an agent loads only
@@ -307,6 +313,12 @@ scratch that vanishes on rebuild.**
   reflexively pipe through `tail`/`head`/`grep`; run them plainly so progress and the full output
   stay visible. Only filter or redirect to a file when the output is genuinely expected to be large
   enough to blow out the context window.
+- **Repair recurring workflow defects at their owner.** When an active task exposes a missing
+  baseline CLI or a broken repository customization and the root cause is deterministic, update the
+  owning Dockerfile or configuration in the same session and validate it. Scope-specific agents may
+  make these maintenance edits during STAGE, but must keep them separate from publishable content
+  and never include them in a pure `content/` publish commit. Defer only when the repair needs a
+  secret, unavailable interactive privilege, or a product decision.
 
 ## Pattern capture
 
