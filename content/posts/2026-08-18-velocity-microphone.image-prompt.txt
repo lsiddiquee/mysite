@@ -1,0 +1,126 @@
+SURFACE:
+Blog hero and social preview for the post at
+content/posts/2026-08-18-velocity-microphone.md (slug velocity-microphone). The accepted visual
+source is local-only at .local/blogs/2026-08-18-velocity-microphone_v2.png. It is a 1672x941 sRGB
+PNG, already effectively 16:9, and is the visual authority for all future edits or regeneration.
+The final published artwork belongs at content/assets/velocity-microphone-hero.jpg and should be
+referenced later through the post's manifest hero field. This sidecar is inert authoring material
+only: never add it to a manifest, never fetch it from the app, and never render it as Markdown.
+
+SURFACE and STORY are notes for whoever picks this file up. Paste only IMAGE PROMPT into an image
+generator, plus NEGATIVE PROMPT when the generator supports one.
+
+This accepted v2 is a deliberate visual homage to the classic software tree-swing comic. Preserve
+its bright, hand-drawn six-panel language rather than redesigning it as a modern editorial-vector
+comic. Its visual identity comes from sky-blue panel fields, white title and caption boxes, green
+trees and grass, warm brown wood and desks, black outlines, a simple white round-headed engineer in
+blue, and a friendly white-and-grey robot with cyan details.
+
+STORY:
+The familiar twenty-minute generation followed by three days of correction is a requirements and
+governance failure compressed by machine speed. The human privately intends a plain tree swing,
+writes a vague prompt, accepts the model's plausible modular motorized interpretation, and
+explicitly approves execution before validating the direction. The first real integration then
+becomes the first real test. The exhausted engineer owns the correction and spends three days
+unwinding assumptions that took seconds to approve.
+
+The load-bearing relationship is human approval before validation. In panel four, the engineer
+gives a thumbs-up beside a laptop displaying a large green check while the oversized mechanism is
+already attached to the tree. The green check is the human's explicit approval cue, not autonomous
+robot authorization. The robot follows the approved interpretation; it does not bypass, trick, or
+overrule the engineer. Keep that approval cue and accountable governance framing unmistakable.
+
+IMAGE PROMPT:
+Use .local/blogs/2026-08-18-velocity-microphone_v2.png as the authoritative source image for an
+image-edit or faithful regeneration. Preserve the accepted composition, drawing language,
+characters, palette, wording, and governance story. Treat source preservation as the entire task.
+Maintain the deliberate visual homage to the classic software tree-swing comic: a strict 2x3 comic
+grid in 16:9 landscape, six equal rectangular panels, thin black panel borders, narrow white
+gutters, white title strips across the top, white caption boxes near the bottom, and a clear
+left-to-right reading order across the top row and then the bottom row.
+
+Preserve the exact established style: cheerful hand-drawn editorial cartoon, bold slightly
+irregular black ink outlines, flat saturated fills, simple rounded characters, restrained shading,
+clean shapes, readable expressions, and enough mechanical detail to make the escalation clear
+without changing the comic's friendly visual tone. Keep the same simple white round-headed engineer
+wearing a bright blue shirt, the same friendly white-and-light-grey robot with a black faceplate and
+cyan display details, the same leafy green tree and grass, and the same warm brown wooden and desk
+surfaces across the sequence. Preserve character proportions and identities from the source.
+
+Use a closed source-matched palette: bright sky blue for panel skies, cyan for robot displays and
+small technology details, paper white for title strips, caption boxes, clouds, character heads, and
+robot shell, leaf green and grass green for vegetation, warm wood brown for trunks, branches,
+planks, and desks, bright engineer blue for clothing, light neutral grey and dark steel grey for
+machinery and mugs, green for the laptop approval check, safety yellow and restrained flame orange
+for energy and impact accents, red only for the panel-six digital clock, and black for outlines,
+lettering, screens, shadows, and structural details. Every colour comes from that list and nothing
+else. Match the source's high contrast and bright daytime clarity.
+
+Panel one must preserve the title "1. THE INTENT (THE HUMAN)". Show the engineer at a brown desk,
+thinking about one plain wooden plank swing hanging from a leafy branch by two ropes inside a white
+thought bubble. Preserve the mug marked "#1 ENGINEER" and the caption "What the engineer actually
+intended to build."
+
+Panel two must preserve the title "2. THE BRIEF AMBIGUITY". Show the engineer typing at the large
+dark monitor. Preserve "New Chat" and the exact prompt: "Give me a dynamic, scalable outdoor
+kinetic relaxation mechanism hanging from a plant limb." Preserve the "CODE FUEL" mug and the
+caption "The prompt they threw together in 30 seconds."
+
+Panel three must preserve the title "3. THE UNCHALLENGED ASSUMPTION". Show the friendly robot
+reasoning from the ambiguous terms with the thought bubbles "Dynamic?", "Scalable?", and "Limb?",
+then the conclusion "Let’s assume a modular, motorized swing system." Preserve the plausible,
+technically earnest robot interpretation and the caption "The model filled the gaps. Nobody stopped
+to check them."
+
+Panel four must preserve the title "4. THE UNCHECKED EXECUTION (20 MINS)". Show the large modular,
+motorized gear-and-chain swing mechanism attached to and surrounding the tree, including its
+prominent turbine. Preserve the engineer seated at the desk, giving a clear thumbs-up beside an open
+laptop with a large green check. This is the load-bearing causal cue: the engineer explicitly
+approves the direction before validating it. The robot executes the human-approved assumption, and
+approval belongs exclusively to the engineer. Keep the green check visibly adjacent to the
+approving engineer like a signed-off review decision. Preserve the caption "What the engineer
+approved before validating the direction."
+
+Panel five must preserve the title "5. THE CRASH (THE DISCOVERY)". Show the first real integration
+tearing apart the tree-mounted mechanism: split trunk, separated turbine, gears, chains, leaves, and
+small impact accents. Preserve the shocked engineer and the concerned but non-villainous robot.
+Preserve the caption "The first real integration became the first real test."
+
+Panel six must preserve the title "6. THE CORRECTION (3 DAYS)". Show the exhausted engineer slumped
+at a warm brown desk before a monitor filled with colored code lines, surrounded by many "CODE FUEL"
+mugs, papers, and a large stack marked "10,000+ LINES OF CODE". Preserve the red "3:00 AM" digital
+clock and the caption "Three days spent unwinding assumptions approved in seconds."
+
+The human approval before validation is the one causal relationship that must survive every edit.
+Panel four must retain the engineer's thumbs-up and the laptop's green check as explicit evidence of
+human sign-off before any real integration test. The check belongs to the engineer's approval
+action and means only that the human signed off on the direction. The crash and three-day correction
+must read as consequences of assumptions the human approved in seconds. Keep the robot friendly and
+technically earnest throughout so the image frames the failure as human-owned requirements and
+governance debt.
+
+Retain all six panel titles, prompts, thought text, object labels, clock text, and captions exactly
+as written and spelled above. Keep lettering large, black, hand-drawn, and legible at social-card
+size. Keep every essential title, caption, face, approval cue, and mechanism safely inside its panel
+with no overlap or cropping. Preserve the accepted source's exact 2x3 hierarchy and visual rhythm.
+
+NEGATIVE PROMPT:
+missing engineer thumbs-up, missing laptop green check, robot giving approval, robot authorizing
+itself, robot bypassing human review, robot tricking the engineer, malicious robot, evil robot,
+villain robot, blame-the-machine framing, validated design before panel five, successful integration,
+approval cue moved away from engineer, approval cue shown as autonomous, orange validation gate,
+repeated gate icon, safety gate motif, altered panel title, altered caption, paraphrased copy,
+misspelled copy, garbled lettering, unreadable text, missing text, extra dialogue, speech balloons,
+panel reordered, irregular grid, missing panel, extra panel, merged panels, unequal panels, cropped
+title strip, cropped caption box, changed character design, realistic human face, humanoid android,
+dark menacing robot, red glowing robot eyes, engineer in orange jacket, minimalist geometric vector
+redesign, glossy machinery, sparse abstract diagram, purple, magenta, coral, beige monochrome, dark
+blue monochrome, gradient, neon glow, photorealistic, glossy 3D render, cinematic photograph, murky
+lighting, cyberpunk, lens flare, glassmorphism, stock illustration, excessive texture, soft focus,
+logo, brand mark, watermark
+
+RECOMMENDED SIZE:
+1600x900
+
+ASSET TARGET:
+content/assets/velocity-microphone-hero.jpg

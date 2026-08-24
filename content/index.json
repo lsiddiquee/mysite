@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "velocity-microphone",
+      "title": "The velocity microphone: AI amplifies unclear intent",
+      "date": "2026-08-18",
+      "summary": "AI compresses tree-swing failures from weeks into minutes. Durable instructions, scoped authority, automated checks, and human release gates contain the risk.",
+      "tags": ["agents", "engineering-management", "productivity"],
+      "hero": "assets/velocity-microphone-hero.jpg",
+      "file": "posts/2026-08-18-velocity-microphone.md"
+    },
+    {
       "slug": "sprint-planning-after-ai",
       "title": "Your sprint plans a bottleneck that left",
       "date": "2026-08-10",
