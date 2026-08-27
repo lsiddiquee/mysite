@@ -294,15 +294,20 @@ location is lost. Choose a storage tier by durability **and** audience:
   Anything useful to future-me or anyone else (structure, deploy/publish flow, conventions, a
   non-obvious gotcha) goes here, in the **same change** that produced it.
 
-- **One task-state file:** for any non-trivial, multi-step task, maintain
-  `.local/scratch/task-state.md` — current focus, a ledger of in-flight items
-  (`pending` / `in-progress` / `blocked` / `done` + next step), open threads, and key findings.
-  Create it before the first edit.
+- **One task-state file:** before the first edit of any non-trivial, multi-step task, ensure
+  `.local/scratch/task-state.md` exists and reconcile it with the current request + worktree. Create
+  it only when absent. If it already exists, read it first; never truncate or replace it merely to
+  start a task, and preserve unfinished state. Its structure may vary with the work, but maintain the
+  current focus, a ledger of in-flight items (`pending` / `in-progress` / `blocked` / `done` + next
+  step), open threads, and key findings.
 - **Keep it lean — roll off DONE work.** When it grows past ~200 lines or several fully-done
   blocks, move completed sections to `.local/scratch/task-state-completed.md` (newest-first
   archive) and migrate any durable finding into the git-tracked docs in the same pass.
 - **Checkpoint as you work** — before switching focus or deep-diving, the moment you spot a new
   sub-issue, and after completing meaningful steps. Re-read and reconcile it when resuming.
+- **Query the ledger, not chat memory.** When the user asks what remains or which items are pending,
+  read + reconcile `task-state.md`, report its unfinished items and relevant blockers, then make the
+  item they select current without discarding the others.
 
 Rule of thumb: **in-progress → `.local/`; useful to everyone → git-tracked docs; `/memories/` is
 scratch that vanishes on rebuild.**
