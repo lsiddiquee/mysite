@@ -13,6 +13,13 @@
 # rebuilds, but this is what makes the FIRST create work.)
 FROM mcr.microsoft.com/devcontainers/typescript-node:24-bookworm
 
+# Optional host package-source overrides supplied by devcontainer.json. Features
+# are installed in a later generated stage and inherit these environment values.
+ARG NPM_CONFIG_REGISTRY
+ARG PIP_INDEX_URL
+ENV NPM_CONFIG_REGISTRY=${NPM_CONFIG_REGISTRY} \
+    PIP_INDEX_URL=${PIP_INDEX_URL}
+
 # Baseline CLI tools belong in the image; post-create runs later as the remote user.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ripgrep \

@@ -5,7 +5,13 @@
   // point is pre-created node-owned (see the Dockerfile comment) — otherwise the
   // named volume mounted there is root-owned and the server install fails.
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    // Forward optional host package-source overrides into the image build. The
+    // Dockerfile exposes them to Features; empty values retain tool defaults.
+    "args": {
+      "NPM_CONFIG_REGISTRY": "${localEnv:NPM_CONFIG_REGISTRY}",
+      "PIP_INDEX_URL": "${localEnv:PIP_INDEX_URL}"
+    }
   },
   // Fixed workspace path regardless of the host folder name, so every absolute
   // path (tasks, scripts, docs) stays stable.
