@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "task-state-call-stack",
+      "title": "Task state is a call stack for agent work",
+      "date": "2026-08-31",
+      "summary": "A shared task-state ledger lets you and an AI agent checkpoint tangents, preserve return addresses, and resume the original work after context shifts.",
+      "tags": ["agents", "copilot", "productivity"],
+      "hero": "assets/task-state-call-stack-hero.jpg",
+      "file": "posts/2026-08-31-task-state-call-stack.md"
+    },
+    {
       "slug": "velocity-microphone",
       "title": "The velocity microphone: AI amplifies unclear intent",
       "date": "2026-08-18",

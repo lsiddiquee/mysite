@@ -1,0 +1,87 @@
+SURFACE:
+Blog hero and social preview for the article at
+content/posts/2026-08-31-task-state-call-stack.md. The final published artwork belongs at
+content/assets/task-state-call-stack-hero.jpg and should later be referenced through the post's
+manifest hero field. This sidecar is inert authoring material only: never add it to a manifest,
+never fetch it from the app, and never render it as Markdown.
+
+SURFACE and STORY are human notes. Paste only IMAGE PROMPT and NEGATIVE PROMPT into an image
+generator.
+
+This direction keeps the liked candidate's warm ivory screen-print grammar: an open notebook, heavy
+near-black ink outlines, royal-blue structure, raspberry stationery accents, sharp-lime cues,
+sparse halftone texture, and generous negative space. The notebook's own hinged page leaves form
+the shared task stack, while a visibly computational agent node handles its top page. The palette
+is closed in IMAGE PROMPT; exclusions appear only in NEGATIVE PROMPT.
+
+STORY:
+One open notebook is the durable shared task-state surface: its page leaves rise from the binding
+into a stepped stack, a thinking human raises a new leaf onto the top from the left, and an abstract
+computational agent lifts the current top leaf from the right while the lower pages stay attached.
+
+IMAGE PROMPT:
+A crisp flat geometric editorial illustration for a technology blog hero, 16:9 landscape. On a warm
+ivory paper field, show one large open notebook in three-quarter view across the lower middle of the
+frame. Its paper-white pages, near-black ring binding, and raspberry bookmark make it a familiar
+durable work surface. Shift its focal point slightly center-left. At the center binding, several
+royal-blue page leaves rise progressively into a compact stepped vertical stack. Every leaf begins
+inside the notebook: each lower edge curves from, overlaps, or hinges visibly into the bound page
+layers, creating one continuous paper construction from open notebook to upright stack. The open
+notebook itself forms the broad base and lowest layers; four offset page edges reveal a top leaf and
+three lower waiting leaves.
+
+On the left, show a simplified thinking human in profile from the upper body: a clear near-black
+silhouette, one articulated hand, and one small sharp-lime geometric thought spark. The hand is
+actively raising a new royal-blue notebook leaf from the left side of the open spread onto the top
+position. Its lower edge remains visibly hinged into the notebook near the binding as it arcs upward
+under the hand, so hand, rising page, bound layers, and stack form one readable continuous action.
+
+On the right, show a compact abstract software-agent terminal/node in royal blue and near-black.
+Give it a dark screen-like face containing only a sparse constellation of connected geometric
+nodes, two side data ports, and two small sharp-lime status lights. An articulated jointed intake
+arm extends from the node and ends in a thin raspberry scanning plane above the stack. The plane
+slides beneath and visibly lifts the current top page by its right edge, leaving air between that
+raised edge and the lower attached leaves. Its joints, scanning plane, network face, ports, and
+status lights make it unmistakably computational and active.
+
+Make the bound page stack the focal hinge between both sides. At the same top position, the human
+raises the arriving leaf from the left while the articulated scanner lifts the departing top leaf
+from the right; these opposite contacts share one compact handoff point. Below them, three stepped
+leaves remain visibly continuous with the center binding and open notebook page layers. Repeat that
+continuity through silhouette and overlap: no gap appears between the stack's lower edges and the
+bound paper beneath, as though the upright stack is the notebook fanning its own pages vertically.
+The human-add, agent-consume, lower-pages-retain relationship must read at thumbnail size.
+
+Use generous empty space around a low, balanced central composition. Render with thick confident
+ink outlines, simplified familiar forms, flat colour blocks, sparse screen-print grain, small
+halftone patches, and slight print-registration imperfection. Use shallow paper overlap to separate
+forms.
+
+Use a closed palette: warm ivory for the background, paper white for notebook pages, near-black ink
+for outlines, binding, human silhouette, and agent face, royal blue for upright page leaves and the
+agent node, raspberry red for the bookmark and scanning plane, and sharp lime for the thought spark
+and status lights. Every colour in the picture comes from that list and nothing else.
+
+NEGATIVE PROMPT:
+freestanding card pile, rack or tray under cards, loose unrelated cards, cards disconnected from
+notebook pages, toaster, printer, domestic appliance, mailbox, card reader, plain box with slot,
+agent without computational cues, agent eating from a static slot instead of articulated scanning
+and lifting, stack floating above the notebook, gap between stack and binding, page leaves with
+detached lower edges, human holding a loose card, human taking the top page instead of adding one,
+agent adding a page instead of taking one, human placing a page under the stack, agent pulling a
+lower page, lower waiting pages disappearing, scattered pages, single page with no retained stack,
+reversed add-and-consume roles, disconnected hand, rigid intake with no joints, scanner missing the
+top page, duplicated notebook, closed notebook, torn or abandoned parent pages, arrows, dashed
+connectors, labels, captions, pseudo-code, code glyphs, UI legends, flowchart, timeline infographic,
+multiple panels, magnifying glass, looping ribbon, readable text, fake lettering, checklist UI,
+generic robot head, humanoid robot, mascot, character face, branded assistant, logo, brand mark,
+laptop, desktop monitor, phone, padlock, shield, QR code, gears, industrial machine, metal workbench,
+teal, coral, mustard, cyan, forest green, metallic silver, purple gradient, photorealistic person,
+photorealistic scene, glossy 3D render, cinematic lighting, neon glow, gradients, reflections,
+watermark, cluttered desk props, excessive detail, murky background, soft focus
+
+RECOMMENDED SIZE:
+1600x900 (16:9)
+
+ASSET TARGET:
+content/assets/task-state-call-stack-hero.jpg

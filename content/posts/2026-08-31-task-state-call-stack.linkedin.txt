@@ -1,0 +1,17 @@
+I was three steps from publishing a blog post: generate the hero, wire the manifest, build the route.
+
+Then I asked why the image prompt named colours it was supposed to avoid. That opened an audit of every image instruction in the repository. The corrected render arrived as a 1.63 MB PNG, so I asked whether that was normal. Now we were comparing JPEG quality, chroma sampling, and edge artifacts.
+
+The agent did not start either tangent. I did.
+
+An agent's internal todo list is useful inside one session, but it is not durable shared memory. It may not survive a new chat or context compaction, and it cannot see a branch that starts in my head.
+
+I keep a gitignored .local/scratch/task-state.md with the repository instead. The repo's Copilot instructions tell each session to reconcile it before editing, checkpoint it before a deep dive, and read it again on resume. Because the file lives in the workspace, it survives a devcontainer rebuild without turning unfinished notes into shared project policy.
+
+I think of that ledger as a call stack. The in-progress item is the top frame. A pending item plus its next step is the return address. Open threads and findings are the state needed to resume. It is a mental model; the schema can vary.
+
+Most of the time I interact with it by asking, "What are my pending items?" The session reconciles the ledger, lists the unfinished work, and continues whichever item I choose.
+
+Before either of us follows a tangent, the ledger records the parent task and its next step.
+
+Full article: https://www.likhansiddiquee.com/blog/task-state-call-stack/
