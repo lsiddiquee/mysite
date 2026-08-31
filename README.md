@@ -25,7 +25,8 @@ mysite/
 │  ├─ pages/*.md            # standalone pages (e.g. Now, About)
 │  ├─ projects/*.md         # project case studies
 │  ├─ posts/*.md            # blog bodies
-│  └─ posts/*.linkedin.txt  # paste-ready LinkedIn companions (not rendered)
+│  ├─ posts/*.linkedin.txt  # paste-ready LinkedIn companions (not rendered)
+│  └─ posts/*.linkedin-carousel.{md,pdf} # editable source + upload-ready document carousel
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
 └─ .github/workflows/deploy.yml
 ```
@@ -41,7 +42,9 @@ markdown into the app's JavaScript.
    `content/posts/2026-08-01-my-post.md` (frontmatter optional — see the sample post).
 2. Add a same-stem LinkedIn companion, e.g.
   `content/posts/2026-08-01-my-post.linkedin.txt`. Write a standalone condensed post rather than a
-  teaser, and end it with `Full article: https://www.likhansiddiquee.com/blog/my-post/`.
+  teaser, and end it with `Full article: https://www.likhansiddiquee.com/blog/my-post/`. Add its
+  `*.linkedin-carousel.md` Marp source and rendered `*.linkedin-carousel.pdf` for native LinkedIn
+  document upload.
 3. Add an entry to `content/index.json`:
 
    ```json
@@ -58,8 +61,8 @@ markdown into the app's JavaScript.
 
 4. Commit and push. The workflow regenerates the route shells — metadata, the prerendered post
   body, and the inlined source — without bundling the markdown into the app's JavaScript. The
-  LinkedIn companion remains inert authoring material; paste it manually only after the canonical
-  article URL is live.
+  LinkedIn text and carousel remain inert authoring material; upload them manually only after the
+  canonical article URL is live.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
 
@@ -126,8 +129,9 @@ npm run format     # Prettier — formats the whole repo (except Markdown)
 npm run preview    # preview the production build
 ```
 
-Or open the folder in the **dev container** (Node 24 with `ripgrep`, plus persistent npm cache and VS
-Code server storage volumes so rebuilds stay fast).
+Or open the folder in the **dev container** (Node 24 with `ripgrep`, Chromium for Marp PDF export,
+and Poppler for PDF validation, plus persistent npm cache and VS Code server storage volumes so
+rebuilds stay fast).
 
 ### Git hooks
 

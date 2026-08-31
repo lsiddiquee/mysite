@@ -66,6 +66,7 @@ mysite/
     pages/*.md              # standalone pages (e.g. Now, About)
     **/*.image-prompt.txt   # inert image-generation sidecars, never fetched/rendered
     posts/*.linkedin.txt    # inert paste-ready LinkedIn companions, never fetched/rendered
+    posts/*.linkedin-carousel.{md,pdf} # inert LinkedIn document-carousel source + output
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -84,9 +85,12 @@ mysite/
   `*.image-prompt.txt` sidecar format beside the owning post/project/page. Shared art direction lives
   in `.github/image-prompt-library.md`. Sidecars are committed authoring material only: never add
   them to manifests, fetch them from the app, or render them as Markdown.
-- **LinkedIn companions live beside blog posts.** Each post has a same-stem `*.linkedin.txt` with a
-  standalone condensed version and exactly one final-line canonical article URL. These are committed
-  authoring sidecars only: never add them to manifests, fetch them from the app, or render them.
+- **LinkedIn packages live beside blog posts.** Each post has a same-stem `*.linkedin.txt` with a
+  standalone condensed version and exactly one final-line canonical article URL, plus an editable
+  `*.linkedin-carousel.md` Marp source and rendered `*.linkedin-carousel.pdf` for native document
+  upload. The shared `.github/linkedin-carousel-portrait.css` theme owns the 4:5 page dimensions.
+  These are committed authoring artifacts only: never add them to manifests, fetch them from the app,
+  or render them.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
@@ -205,17 +209,19 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
   that dir `node`-owned so the empty volume inherits `node:node` on first mount (Docker copies the
   image dir's ownership into a fresh volume). If you ever hit this again, the volume was created
   before the fix — remove it (`docker volume rm mysite-vscode-server`) and rebuild. The same image
-  installs `ripgrep`, the baseline search CLI used by repository agent instructions. System tools
-  belong in the Dockerfile so every rebuild gets them; `post-create.sh` is not their owner.
+  installs `ripgrep`, the baseline search CLI used by repository agent instructions, and Chromium at
+  `/usr/bin/chromium` plus Poppler for pinned Marp PDF export and validation. System tools belong in
+  the Dockerfile so every rebuild gets them; `post-create.sh` is not their owner.
 
 ## Publishing model (do not break)
 
-Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem `*.linkedin.txt`
-companion, (3) one entry in `content/index.json`. Adding a project = (1) a case study under
-`content/projects/`, (2) one entry in `content/projects.json`. Standalone pages are a single markdown
-file under `content/pages/`. No app code change is needed. A content-only commit triggers a static
-rebuild that regenerates the route shells (metadata, prerendered body, inlined sources); LinkedIn
-companions remain inert authoring material.
+Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem LinkedIn text + carousel
+package (`*.linkedin.txt`, `*.linkedin-carousel.md`, `*.linkedin-carousel.pdf`), (3) one entry in
+`content/index.json`. Adding a project = (1) a case study under `content/projects/`, (2) one entry in
+`content/projects.json`. Standalone pages are a single markdown file under `content/pages/`. No app
+code change is needed. A content-only commit triggers a static rebuild that regenerates the route
+shells (metadata, prerendered body, inlined sources); LinkedIn artifacts remain inert authoring
+material.
 
 ### Sitemap & robots (generated) · structured data · RSS (deferred)
 

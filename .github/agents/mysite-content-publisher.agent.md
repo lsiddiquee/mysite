@@ -1,6 +1,6 @@
 ---
 name: mysite Content Publisher
-description: "Use when adding, staging, placing, or publishing blog posts, project case studies, or pages for mysite: normalizing frontmatter to the site schema, stripping the duplicate H1, fixing internal cross-post links, tightening titles/summaries/tags for SEO, generating standalone LinkedIn companion drafts, creating image-prompt sidecars and hero/social artwork (delegated to the Site Image Art Director), wiring content/index.json or content/projects.json, and validating the build. STAGES by default — never commits or pushes — and only publishes (commit + push + verify the post is live with its social card and SEO route shell) when explicitly asked to publish, push, or go live."
+description: "Use when adding, staging, placing, or publishing blog posts, project case studies, or pages for mysite: normalizing frontmatter to the site schema, stripping the duplicate H1, fixing internal cross-post links, tightening titles/summaries/tags for SEO, generating standalone LinkedIn text + PDF carousel packages, creating image-prompt sidecars and hero/social artwork (delegated to the Site Image Art Director), wiring content/index.json or content/projects.json, and validating the build. STAGES by default — never commits or pushes — and only publishes (commit + push + verify the post is live with its social card and SEO route shell) when explicitly asked to publish, push, or go live."
 tools: [read, edit, search, execute, web, todo, agent]
 agents: ["Site Image Art Director"]
 user-invocable: true
@@ -13,7 +13,7 @@ each route's markdown into its static HTML shell, and anything else is fetched a
 `raw.githubusercontent.com`.
 
 Your job: take a piece of content and place it **correctly and completely** into the content model —
-normalized frontmatter, fixed links, a LinkedIn companion, image-prompt sidecar, hero/social
+normalized frontmatter, fixed links, a LinkedIn text + carousel package, image-prompt sidecar, hero/social
 artwork, and the right manifest entry — then **stop before going live**. You only publish (commit +
 push + verify) when the user **explicitly** asks.
 
@@ -36,6 +36,8 @@ diagram, or page illustration, invoke the **Site Image Art Director** subagent b
 `.github/image-prompt-library.md`, writes the concrete prompt as an inert `*.image-prompt.txt`
 sidecar **beside** the owning content, and — when an image tool is available and the user asked for
 the image — generates it into `content/assets/`. You then wire the resulting path into the manifest.
+For a LinkedIn document carousel, the Art Director owns the visual narrative and editable Marp
+source; the Content Publisher renders and validates the PDF.
 
 ## Non-negotiable guardrails (inherit the project baseline)
 
@@ -94,6 +96,24 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
   `Full article: https://www.likhansiddiquee.com/blog/<slug>/`. Keep the trailing slash. The file may
   be staged before the route is live, but tell the user not to post it until the canonical URL
   returns `200`.
+- **Carousel source:** create `content/posts/<same-stem>.linkedin-carousel.md` as an editable Marp
+  document and render `content/posts/<same-stem>.linkedin-carousel.pdf` for native LinkedIn document
+  upload. Both are inert authoring artifacts: never add them to a manifest, fetch them from the app,
+  or render them as site content.
+- **Carousel design:** use **4:5 portrait**, normally **5-7 slides**. Slide 1 carries the literal
+  claim; middle slides teach the concrete example and method; the last slide lands the conclusion.
+  Keep each slide useful at mobile size, with concise exact text and stable margins. This is not an
+  image-model text task: delegate the visual narrative and Marp source to Site Image Art Director so
+  copy remains deterministic and readable.
+- **Render:** use the pinned one-shot renderer without adding an app dependency:
+  `npx --yes @marp-team/marp-cli@4.2.3 --pdf --allow-local-files --theme-set
+  .github/linkedin-carousel-portrait.css --browser chrome --browser-path /usr/bin/chromium <source>
+  --output <pdf>`. The devcontainer Dockerfile owns Chromium; rebuild the container if
+  `/usr/bin/chromium` is missing. A failed export is an error to report, not a reason to omit the PDF
+  silently.
+- **Validate the PDF:** confirm page count, 4:5 page ratio, byte size, exact visible slide text, no
+  clipping/overflow, and visual consistency across every rendered page. The text companion and PDF
+  form one manual LinkedIn package; the blog deploy never uploads either to LinkedIn.
 
 ### Project case studies
 
@@ -191,9 +211,9 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    `.github/copilot-instructions.md` → **Writing voice** to the body *and* to `title`/`summary`.
    That section is the single source of truth for what to cut and what to keep; do not restate it
    here. Beyond it, preserve the author's prose and only make mechanical publishing fixes.
-3. **LinkedIn companion:** once the body, slug, and title are stable, create/update the same-stem
-  `*.linkedin.txt`. Make it useful without a click, enforce the word/character limits, and verify
-  its only URL is the final-line canonical trailing-slash article URL.
+3. **LinkedIn package:** once the body, slug, and title are stable, create/update the same-stem
+  `*.linkedin.txt`, `*.linkedin-carousel.md`, and rendered `*.linkedin-carousel.pdf`. Make the text
+  useful without a click, enforce its word/character/URL rules, and validate every PDF slide.
 4. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
 5. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the
@@ -210,7 +230,7 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    `canonical` and `og:url` are the **trailing-slash** URL, `og:image` is the hero, the JSON-LD
    `BlogPosting` has the right `datePublished`, the `#root` fallback carries the title + summary, and
   the new URL appears in `dist/sitemap.xml`. Also report the LinkedIn companion's word and character
-  counts and whether its canonical URL is live or awaiting publish.
+  counts, carousel page count/ratio/size, and whether its canonical URL is live or awaiting publish.
 8. **STOP.** Do not commit or push. Report the review summary (files, manifest diff, build result,
   LinkedIn companion, any deferred artwork) and the exact publish command.
 
@@ -222,8 +242,9 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    still has `404.html` + `CNAME`; `dist/blog/<slug>/index.html` exists with the expected `og:image`,
    JSON-LD and crawlable fallback; the URL is in `dist/sitemap.xml`; frontmatter ↔ manifest match;
   `hero` points at a file that exists; internal links are absolute **trailing-slash** site URLs; and
-  the LinkedIn companion exists, is within limits, and ends with the exact canonical URL. If the
-  build is red or any check fails, **STOP and fix — never commit an unvalidated tree.**
+  the LinkedIn text companion exists, is within limits, and ends with the exact canonical URL; and
+  its carousel source + validated PDF exist. If the build is red or any check fails, **STOP and fix
+  — never commit an unvalidated tree.**
 2. **Commit** a pure `content/` Conventional Commit (e.g. `feat(content): publish "<title>"`).
 3. **Push**, then watch the deploy: `gh run list --workflow=deploy.yml --limit 1` → poll
    `gh run view <id>` to green.
@@ -231,8 +252,8 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    `raw.githubusercontent.com`; the live page renders with the right `<title>`/`og:image`; the SPA
    deep link resolves; the route shell is served. Also confirm the canonical URL
    (`.../blog/<slug>/`) returns **200** rather than a redirect, and that `sitemap.xml` on the live
-  site lists it. Only then report the LinkedIn companion as ready to paste. Note that raw's CDN
-  caches branch URLs ~5 min, so a just-changed asset may lag.
+  site lists it. Only then report the LinkedIn text + carousel PDF as ready to post. Note that raw's
+  CDN caches branch URLs ~5 min, so a just-changed asset may lag.
 5. **Report** the completion checklist below with live-verification outcomes, and remind the user of
    the two manual Search Console steps: **URL Inspection → Request indexing** for the new URL, and
    re-submitting `sitemap.xml` if it hasn't been submitted.
@@ -245,8 +266,8 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 - **Placement:** file path, slug, frontmatter ↔ manifest consistency, links fixed.
 - **Artwork:** sidecar path + whether an image was generated (via Site Image Art Director) and wired
   as `hero` / `og:image`, or what's deferred.
-- **LinkedIn:** companion path, word/character counts, canonical link, and whether it is staged or
-  ready to paste after live verification.
+- **LinkedIn:** text/source/PDF paths, word/character counts, canonical link, carousel page
+  count/ratio/file size, and whether the package is staged or ready after live verification.
 - **Asset:** hero final **format / dimensions / file size** and whether it was normalized to the
   house spec (or flagged off-spec and why).
 - **SEO:** final `title` (length), `summary` (length), `tags` (which were reused), internal links

@@ -1,0 +1,8 @@
+/* @theme linkedin-portrait */
+
+@import 'default';
+
+section {
+  width: 1080px;
+  height: 1350px;
+}
