@@ -67,6 +67,7 @@ mysite/
     **/*.image-prompt.txt   # inert image-generation sidecars, never fetched/rendered
     posts/*.linkedin.txt    # inert paste-ready LinkedIn companions, never fetched/rendered
     posts/*.linkedin-carousel.{md,pdf} # inert LinkedIn document-carousel source + output
+    posts/*.devto.md        # inert canonical DEV Community cross-post drafts
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -91,6 +92,11 @@ mysite/
   upload. The shared `.github/linkedin-carousel-portrait.css` theme owns the 4:5 page dimensions.
   These are committed authoring artifacts only: never add them to manifests, fetch them from the app,
   or render them.
+- **DEV Community drafts live beside blog posts.** Each post has a same-stem `*.devto.md` containing
+  the full article with DEV frontmatter, `published: false`, an absolute raw hero, and the personal
+  trailing-slash URL as `canonical_url`. These are inert syndication artifacts: never add them to
+  manifests, fetch them from the app, or prerender them. Publish externally only after the personal
+  canonical page and hero return `200`.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
@@ -216,12 +222,12 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
 ## Publishing model (do not break)
 
 Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem LinkedIn text + carousel
-package (`*.linkedin.txt`, `*.linkedin-carousel.md`, `*.linkedin-carousel.pdf`), (3) one entry in
-`content/index.json`. Adding a project = (1) a case study under `content/projects/`, (2) one entry in
-`content/projects.json`. Standalone pages are a single markdown file under `content/pages/`. No app
-code change is needed. A content-only commit triggers a static rebuild that regenerates the route
-shells (metadata, prerendered body, inlined sources); LinkedIn artifacts remain inert authoring
-material.
+package (`*.linkedin.txt`, `*.linkedin-carousel.md`, `*.linkedin-carousel.pdf`), (3) a same-stem
+`*.devto.md` canonical cross-post draft, (4) one entry in `content/index.json`. Adding a project =
+(1) a case study under `content/projects/`, (2) one entry in `content/projects.json`. Standalone pages
+are a single markdown file under `content/pages/`. No app code change is needed. A content-only
+commit triggers a static rebuild that regenerates the route shells (metadata, prerendered body,
+inlined sources); syndication artifacts remain inert authoring material.
 
 ### Sitemap & robots (generated) · structured data · RSS (deferred)
 

@@ -26,7 +26,8 @@ mysite/
 │  ├─ projects/*.md         # project case studies
 │  ├─ posts/*.md            # blog bodies
 │  ├─ posts/*.linkedin.txt  # paste-ready LinkedIn companions (not rendered)
-│  └─ posts/*.linkedin-carousel.{md,pdf} # editable source + upload-ready document carousel
+│  ├─ posts/*.linkedin-carousel.{md,pdf} # editable source + upload-ready document carousel
+│  └─ posts/*.devto.md      # draft DEV cross-posts with the personal URL as canonical
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
 └─ .github/workflows/deploy.yml
 ```
@@ -45,7 +46,10 @@ markdown into the app's JavaScript.
   teaser, and end it with `Full article: https://www.likhansiddiquee.com/blog/my-post/`. Add its
   `*.linkedin-carousel.md` Marp source and rendered `*.linkedin-carousel.pdf` for native LinkedIn
   document upload.
-3. Add an entry to `content/index.json`:
+3. Add `content/posts/2026-08-01-my-post.devto.md` with the complete article, `published: false`, no
+  more than four DEV tags, the absolute raw hero URL, and
+  `canonical_url: https://www.likhansiddiquee.com/blog/my-post/`.
+4. Add an entry to `content/index.json`:
 
    ```json
    {
@@ -59,10 +63,10 @@ markdown into the app's JavaScript.
    }
    ```
 
-4. Commit and push. The workflow regenerates the route shells — metadata, the prerendered post
+5. Commit and push. The workflow regenerates the route shells — metadata, the prerendered post
   body, and the inlined source — without bundling the markdown into the app's JavaScript. The
-  LinkedIn text and carousel remain inert authoring material; upload them manually only after the
-  canonical article URL is live.
+  LinkedIn and DEV artifacts remain inert authoring material; publish them externally only after the
+  canonical article URL and hero are live. The DEV draft must retain the personal URL as canonical.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
 
