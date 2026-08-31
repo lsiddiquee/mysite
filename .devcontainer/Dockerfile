@@ -21,8 +21,12 @@ ENV NPM_CONFIG_REGISTRY=${NPM_CONFIG_REGISTRY} \
     PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Baseline CLI tools belong in the image; post-create runs later as the remote user.
+# Chromium renders LinkedIn carousel PDFs; Poppler verifies their pages, geometry, and text.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ripgrep \
+    && apt-get install -y --no-install-recommends \
+        chromium \
+        poppler-utils \
+        ripgrep \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /home/node/.vscode-server \
     && chown node:node /home/node/.vscode-server
