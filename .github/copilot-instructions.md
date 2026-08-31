@@ -65,6 +65,7 @@ mysite/
     projects/*.md           # project case studies
     pages/*.md              # standalone pages (e.g. Now, About)
     **/*.image-prompt.txt   # inert image-generation sidecars, never fetched/rendered
+    posts/*.linkedin.txt    # inert paste-ready LinkedIn companions, never fetched/rendered
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
 ```
@@ -83,6 +84,9 @@ mysite/
   `*.image-prompt.txt` sidecar format beside the owning post/project/page. Shared art direction lives
   in `.github/image-prompt-library.md`. Sidecars are committed authoring material only: never add
   them to manifests, fetch them from the app, or render them as Markdown.
+- **LinkedIn companions live beside blog posts.** Each post has a same-stem `*.linkedin.txt` with a
+  standalone condensed version and exactly one final-line canonical article URL. These are committed
+  authoring sidecars only: never add them to manifests, fetch them from the app, or render them.
 - **`content/index.json` is the listing source of truth.** Listing pages read the manifest; the
   post page merges manifest metadata with the file's frontmatter. Keep both consistent.
   **`content/projects.json` is the same pattern for projects** — a manifest entry plus a case-study
@@ -206,11 +210,12 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
 
 ## Publishing model (do not break)
 
-Adding a post = (1) a markdown file under `content/posts/`, (2) one entry in `content/index.json`.
-Adding a project = (1) a case study under `content/projects/`, (2) one entry in
-`content/projects.json`. Standalone pages are a single markdown file under `content/pages/`.
-No app code change is needed. A content-only commit triggers a static rebuild that regenerates the
-route shells (metadata, prerendered body, inlined sources).
+Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem `*.linkedin.txt`
+companion, (3) one entry in `content/index.json`. Adding a project = (1) a case study under
+`content/projects/`, (2) one entry in `content/projects.json`. Standalone pages are a single markdown
+file under `content/pages/`. No app code change is needed. A content-only commit triggers a static
+rebuild that regenerates the route shells (metadata, prerendered body, inlined sources); LinkedIn
+companions remain inert authoring material.
 
 ### Sitemap & robots (generated) · structured data · RSS (deferred)
 
