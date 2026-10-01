@@ -1,7 +1,8 @@
 # mysite dev container image.
 #
-# We use a Dockerfile (not a bare `image:`) for ONE reason: the devcontainer
-# mounts a named volume at /home/node/.vscode-server to persist extensions and
+# We use a Dockerfile (not a bare `image:`) to install system tools and seed
+# named-volume ownership. The devcontainer mounts a named volume at
+# /home/node/.vscode-server to persist extensions and
 # per-workspace storage across rebuilds. A fresh named volume is created
 # root-owned, and VS Code installs its server there (as user `node`) BEFORE any
 # lifecycle script runs — so it fails with "Permission denied" unless the mount
@@ -24,9 +25,20 @@ ENV NPM_CONFIG_REGISTRY=${NPM_CONFIG_REGISTRY} \
 # Chromium renders LinkedIn carousel PDFs; Poppler verifies their pages, geometry, and text.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        bat \
         chromium \
+        dnsutils \
+        fd-find \
+        iputils-ping \
+        jq \
+        netcat-openbsd \
         poppler-utils \
         ripgrep \
+        tree \
+        unzip \
+        zip \
     && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /home/node/.vscode-server \
-    && chown node:node /home/node/.vscode-server
+    && ln -sf /usr/bin/fdfind /usr/local/bin/fd \
+    && ln -sf /usr/bin/batcat /usr/local/bin/bat \
+    && mkdir -p /.devcontainercache /home/node/.vscode-server \
+    && chown node:node /.devcontainercache /home/node/.vscode-server

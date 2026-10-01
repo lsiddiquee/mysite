@@ -171,9 +171,9 @@ npm run format     # Prettier — formats the whole repo (except Markdown)
 npm run preview    # preview the production build
 ```
 
-Or open the folder in the **dev container** (Node 24 with `ripgrep`, Chromium for Marp PDF export,
-and Poppler for PDF validation, plus persistent npm cache and VS Code server storage volumes so
-rebuilds stay fast).
+Or open the folder in the **dev container** (Node 24 with `ripgrep`, `jq`, `fd`, `bat`, `tree`,
+network/archive CLIs, Chromium for Marp PDF export, and Poppler for PDF validation). Persistent
+npm, Azure CLI, pre-commit, and VS Code server caches survive rebuilds.
 
 ### Git hooks
 

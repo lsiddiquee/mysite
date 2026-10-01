@@ -234,10 +234,12 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
   there (as `node`) BEFORE `post-create.sh` runs → `Permission denied`. The Dockerfile pre-creates
   that dir `node`-owned so the empty volume inherits `node:node` on first mount (Docker copies the
   image dir's ownership into a fresh volume). If you ever hit this again, the volume was created
-  before the fix — remove it (`docker volume rm mysite-vscode-server`) and rebuild. The same image
-  installs `ripgrep`, the baseline search CLI used by repository agent instructions, and Chromium at
-  `/usr/bin/chromium` plus Poppler for pinned Marp PDF export and validation. System tools belong in
-  the Dockerfile so every rebuild gets them; `post-create.sh` is not their owner.
+  before the fix — remove it (`docker volume rm mysite-vscode-server`) and rebuild. The image also
+  seeds `/.devcontainercache` as node-owned for fresh volumes; `post-create.sh` retains the chown
+  for existing volumes. The Dockerfile installs `ripgrep`, `jq`, `fd`, `bat`, and baseline
+  network/archive CLIs alongside Chromium at `/usr/bin/chromium` and Poppler for Marp PDF export
+  and validation. System tools belong in the Dockerfile so every rebuild gets them; `post-create.sh`
+  is not their owner.
 
 ## Publishing model (do not break)
 
