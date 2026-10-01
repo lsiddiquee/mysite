@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "architectural-debt-ai",
+      "title": "Architectural Debt is the New Technical Debt",
+      "date": "2026-10-01",
+      "summary": "AI can rewrite messy functions in seconds, but quick patches across service boundaries obscure who owns a fact. Guard domain contracts before generating code.",
+      "tags": ["agents", "software-architecture", "engineering-management"],
+      "hero": "assets/architectural-debt-ai-hero.jpg",
+      "file": "posts/2026-10-01-architectural-debt-ai.md"
+    },
+    {
       "slug": "task-state-call-stack",
       "title": "Task state is a call stack for agent work",
       "date": "2026-08-31",

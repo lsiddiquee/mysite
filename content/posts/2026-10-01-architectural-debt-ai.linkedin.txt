@@ -1,0 +1,5 @@
+An agent adds payment status to an order page. The tests pass. Then billing records a refund and the order still says paid. The code was tidy; the system now has two owners for the same fact.
+
+That's the architectural debt I worry about when generating code gets faster. Before the patch, someone has to decide which domain owns the status, how the other domain reads it, and what happens when that exchange fails.
+
+The full argument is in the LinkedIn article attached to this post. Where have you seen a small change quietly create a second source of truth? What boundary would have caught it?

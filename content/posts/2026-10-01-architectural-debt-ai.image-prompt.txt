@@ -1,0 +1,58 @@
+SURFACE:
+Blog hero and social preview for the article at
+content/posts/2026-10-01-architectural-debt-ai.md. The accepted original at
+.local/assets/2026-10-01-architectural-debt-ai.png is 1536x1024; the full
+composition was padded to 16:9 using its edge colours (not white) and normalized as
+content/assets/architectural-debt-ai-hero.jpg. This sidecar is inert authoring
+material, never a manifest entry or app asset.
+
+SURFACE and STORY are human notes. Paste only IMAGE PROMPT and NEGATIVE PROMPT
+into an image generator. The balance scale and closed palette distinguish this
+from the nearby notebook hero's stationery treatment. The small repaired code
+piece stands for cheap local cleanup; the dense cross-domain cluster stands for
+architectural coupling that keeps growing.
+
+STORY:
+AI makes local technical debt cheap to clean, but individually clean code can
+still accumulate tight cross-domain dependencies. The lighter local fix rises
+while the heavier architectural debt pulls its pan down.
+
+IMAGE PROMPT:
+A crisp flat geometric editorial illustration for a technology blog hero on a
+16:9 canvas. One large black balance scale centered on a warm off-white field,
+with its beam slanting down from left to right. The left pan sits visibly higher
+and holds a small, neat code block with one clean fitted puzzle piece. The
+right pan sits visibly lower and carries a larger, heavier cluster of tightly
+interlocked code puzzle pieces from different domains. Each piece is clean on
+its own, but the many connections make the right side heavy. The small local
+repair rises as the dense architectural coupling weighs down the other pan:
+the right pan must be lower than the left, like a scale tipped by an uneven
+load. The left pan does not dip beneath the right.
+
+Set exactly two bold condensed uppercase labels outside the pans, with these
+exact words and spelling: "LOCAL DEBT DOWN" below the left pan, split after
+"LOCAL"; "ARCHITECTURAL DEBT UP" below the right pan, split after
+"ARCHITECTURAL". No other text. Use nearly black for the scale, outlines, and
+the words LOCAL and ARCHITECTURAL; charcoal for code blocks; electric cyan for
+the single fitted repair piece, one piece in the right cluster, and the words
+DEBT DOWN; signal red for the connected right-side pieces and the words DEBT
+UP; cool grey for code marks and pivot; warm off-white for the field. Every
+colour in the picture comes from that list and nothing else. Bold silhouettes,
+generous negative space around the scale, flat screen-print fills, subtle
+grain, legible at thumbnail size.
+
+NEGATIVE PROMPT:
+left pan lower than right pan, right pan raised above left, level beam, left
+load heavier than right, small local repair weighing down the scale, sparse
+right pan, disconnected right-side pieces, broken or dirty code pieces,
+structural beam cutaway, wedge, fracture, extra words, misspelled labels,
+illegible lettering, numbers, arrows, dashboard mockup, royal blue, raspberry,
+sharp lime, logo, brand mark, generic robot, humanoid assistant, photorealism,
+glossy 3D render, cinematic lighting, gradients, lens flare, watermark,
+clutter, soft focus
+
+RECOMMENDED SIZE:
+1600x900 (16:9)
+
+ASSET TARGET:
+content/assets/architectural-debt-ai-hero.jpg
