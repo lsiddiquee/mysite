@@ -87,6 +87,15 @@ mysite/
   `*.image-prompt.txt` sidecar format beside the owning post/project/page. Shared art direction lives
   in `.github/image-prompt-library.md`. Sidecars are committed authoring material only: never add
   them to manifests, fetch them from the app, or render them as Markdown.
+- **Foundry generation is local authoring only.** `scripts/generate-artwork.mjs` reads prompt
+  sidecars and writes candidates under ignored `.local/artwork/`. It gets a Foundry audience token
+  through Azure CLI login and resource endpoint/deployment from ignored `scripts/.env`.
+  Never commit endpoint/location, deployment, or credentials, or send them to the app/build. Only
+  copy approved, normalized images into `content/assets/`. The devcontainer's Azure CLI login is
+  cached at `/.devcontainercache/azure` via `AZURE_CONFIG_DIR` in
+  `.devcontainer/devcontainer.json`. Terminal execution sandboxes may not inherit that
+  `remoteEnv`; if `az` reports no login, retry with `AZURE_CONFIG_DIR=/.devcontainercache/azure`
+  for both the CLI check and generation command before asking for another login. See README.
 - **LinkedIn packages live beside blog posts.** The site post is the sole maintained article body,
   including a discussion question grounded in a real decision or tradeoff, not a reusable
   engagement template. New posts have a same-stem `*.linkedin-article.md` with only title, hero

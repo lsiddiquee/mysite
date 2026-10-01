@@ -128,6 +128,33 @@ the content repo — never bundled into the app.
   `<same-stem>.image-prompt.txt`. These files are committed authoring material and are never fetched
   or rendered by the app. Reusable art direction lives in `.github/image-prompt-library.md`.
 
+For local Foundry artwork, rebuild the dev container to install Azure CLI, run
+`az login --use-device-code`, and select a subscription with inference access to your resource
+(`az account set --subscription <subscription-id>` if needed). Set the resource endpoint and image
+deployment in ignored `scripts/.env`; the Foundry project name is not required for inference.
+The dev container stores Azure CLI's config and login in the existing `/.devcontainercache/azure`
+volume (`AZURE_CONFIG_DIR`), so login survives container rebuilds; the cache directory is private
+to the container user. Log in once on a fresh clone. Some terminal execution sandboxes do not
+inherit the devcontainer's `remoteEnv`; if `az` reports no login, retry the command with
+`AZURE_CONFIG_DIR=/.devcontainercache/azure` before logging in again. A login stored only in the
+default `~/.azure` directory must be migrated or repeated. Rebuild through VS Code when Docker is
+unavailable inside the container.
+The script uses the Azure CLI token for the `https://ai.azure.com/` audience, matching the Foundry
+SDK example. It targets the Azure OpenAI-compatible `/openai/v1/images/generations` API; other
+Foundry image providers may need a different API.
+
+```bash
+node --env-file=scripts/.env scripts/generate-artwork.mjs content/posts/2026-10-01-architectural-debt-ai.image-prompt.txt --dry-run
+node --env-file=scripts/.env scripts/generate-artwork.mjs content/posts/2026-10-01-architectural-debt-ai.image-prompt.txt
+```
+
+The full `IMAGE PROMPT` and as many comma-delimited `NEGATIVE PROMPT` items as fit the default
+2,000-character budget are submitted. The count is printed; change `FOUNDRY_MAX_PROMPT_CHARS` only
+if your deployment accepts more. `FOUNDRY_SIZE` and `FOUNDRY_QUALITY` are optional, since supported
+values depend on the deployment. Review candidates under ignored `.local/artwork/`, normalize an
+approved image to 16:9, and only then copy it to the sidecar's `ASSET TARGET`. Generation never
+overwrites a published hero, runs during build/deploy, or ships credentials to the browser.
+
 > Because pages are served by GitHub Pages but content lives on `raw.githubusercontent.com`, a
 > raw relative `src` would otherwise resolve against the page URL and 404 — the app rewrites
 > relative content URLs for you, so just author paths relative to `content/`.

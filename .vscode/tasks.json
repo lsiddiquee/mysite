@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Artwork: check prompt",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "--env-file=${workspaceFolder}/scripts/.env",
+        "${workspaceFolder}/scripts/generate-artwork.mjs",
+        "${file}",
+        "--dry-run"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Artwork: generate candidate",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "--env-file=${workspaceFolder}/scripts/.env",
+        "${workspaceFolder}/scripts/generate-artwork.mjs",
+        "${file}"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

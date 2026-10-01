@@ -24,8 +24,9 @@ echo "==> mysite post-create: starting (repo root: ${REPO_ROOT})"
 # 1. Persisted cache directory ----------------------------------------------
 # The named volume is created as root; make it writable by the remote user.
 echo "==> cache: ensuring ${CACHE_DIR} is owned by $(whoami)"
-sudo mkdir -p "${CACHE_DIR}/npm-cache" "${CACHE_DIR}/pre-commit"
+sudo mkdir -p "${CACHE_DIR}/npm-cache" "${CACHE_DIR}/pre-commit" "${CACHE_DIR}/azure"
 sudo chown -R "$(whoami)":"$(whoami)" "${CACHE_DIR}"
+chmod 700 "${CACHE_DIR}/azure"
 
 # The vscode-server volume is also root-owned on first create; hand it to the user
 # so extensions and workspace storage can be written.

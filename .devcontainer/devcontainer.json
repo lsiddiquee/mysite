@@ -31,6 +31,9 @@
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
     },
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest"
+    },
     // Python is only needed to run the `pre-commit` git-hook framework.
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.12"
@@ -69,8 +72,9 @@
     "PROMPT_COMMAND": "history -a",
     "HISTFILE": "/.devcontainercache/.bash_history",
     "NPM_CONFIG_CACHE": "/.devcontainercache/npm-cache",
-    // Persist pre-commit's per-hook tool environments across rebuilds.
-    "PRE_COMMIT_HOME": "/.devcontainercache/pre-commit"
+    // Persist pre-commit's per-hook tool environments and Azure CLI login across rebuilds.
+    "PRE_COMMIT_HOME": "/.devcontainercache/pre-commit",
+    "AZURE_CONFIG_DIR": "/.devcontainercache/azure"
   },
   "remoteUser": "node",
   "postCreateCommand": "bash .devcontainer/post-create.sh"
