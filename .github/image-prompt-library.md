@@ -122,6 +122,10 @@ Target: JPEG, 16:9, 1600×900, sRGB, metadata stripped, roughly 150-260 KB. `-re
 aspect, so a 1.777 source lands on 1599×900; that rounding is fine and most existing heroes are
 1599×900.
 
+For an off-aspect source whose full composition must stay visible, pad it to 16:9 with colour
+sampled from its own edges, not a default white canvas. Inspect both joins at full size before
+exporting; a warm paper background against white padding leaves visible side bands.
+
 **Use 4:4:4, not the default.** ImageMagick defaults to 4:2:0 chroma subsampling, which is tuned for
 photographs. Every image on this site is flat vector with hard black outlines and large saturated
 flats, which is the exact case where 4:2:0 smears colour edges. The three oldest heroes shipped

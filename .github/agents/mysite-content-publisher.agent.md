@@ -1,6 +1,6 @@
 ---
 name: mysite Content Publisher
-description: "Stage or publish mysite blog posts, projects, and pages: normalize metadata and links, draft full LinkedIn articles with hero and share captions (optional document carousels), draft canonical DEV cross-posts, delegate artwork, wire manifests, and validate builds. Stages by default; publishes only when explicitly asked."
+description: "Stage or publish mysite blog posts, projects, and pages: normalize metadata and links, prepare LinkedIn and DEV publishing metadata with share captions (optional document carousels), delegate artwork, wire manifests, and validate builds. Stages by default; publishes only when explicitly asked."
 tools: [read, edit, search, execute, web, todo, agent]
 agents: ["Site Image Art Director"]
 user-invocable: true
@@ -13,8 +13,8 @@ each route's markdown into its static HTML shell, and anything else is fetched a
 `raw.githubusercontent.com`.
 
 Your job: take a piece of content and place it **correctly and completely** into the content model —
-  normalized frontmatter, fixed links, a LinkedIn article + caption (and optional carousel), a DEV Community cross-post
-draft, image-prompt sidecar, hero/social artwork, and the right manifest entry — then **stop before
+  normalized frontmatter, fixed links, LinkedIn and DEV publishing metadata + caption (and optional carousel),
+image-prompt sidecar, hero/social artwork, and the right manifest entry — then **stop before
 going live**. You only publish (commit + push + verify) when the user **explicitly** asks.
 
 ## Two modes (default is STAGE)
@@ -65,6 +65,10 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
   (`^[a-z0-9]+(?:-[a-z0-9]+)*$`). Date is date-only `YYYY-MM-DD`.
 - **Frontmatter (site schema):** `title`, `date`, `summary`, `tags` (list). Remove draft-only keys
   (`series`, `part`, `status`, etc.).
+- **Single body:** the site post is the only maintained full article. Close it with a question
+  grounded in a concrete decision or tradeoff with more than one defensible answer; invite readers
+  to name a constraint or failure that changed their choice. The question belongs in the site body
+  so it travels to DEV and LinkedIn too, above each platform's own comments. Avoid generic bait.
 - **Drop the leading `# H1`** — the app renders the title from metadata; a body H1 duplicates it.
 - **Internal links → absolute site URLs with a trailing slash**
   (`https://www.likhansiddiquee.com/blog/<slug>/`). The trailing slash is the URL that returns
@@ -77,19 +81,15 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
   `summary` / `hero` match the frontmatter** — keep them identical or `vite build` fails. `hero` is a
   content-relative path like `assets/<slug>-hero.jpg`.
 
-### LinkedIn companion drafts
+### LinkedIn companion metadata
 
-- **Full article:** for new blog posts, create `content/posts/<same-stem>.linkedin-article.md` with
-  `title`, absolute `hero_image`, and trailing-slash personal `source_url` as authoring metadata.
-  Copy the complete final site body, adapting only platform-specific links or formatting. As editor,
-  write one closing discussion question from the article's concrete example or contested decision:
-  identify a tradeoff with more than one defensible answer, then ask readers what they chose and
-  which constraint or failure changed their choice. Do not recycle a stock question, ask for generic
-  agreement, or assume every reader has encountered the exact scenario. Upload
-  the actual hero as the LinkedIn article cover when publishing; metadata alone cannot upload it.
-  `source_url` identifies the personal original, not a LinkedIn canonical setting. Do not imply the
-  platform supports a canonical tag. Keep the body aligned with the site and DEV drafts apart from
-  the explicit discussion question.
+- **Article metadata:** for new blog posts, create `content/posts/<same-stem>.linkedin-article.md`
+  with only `title`, absolute `hero_image`, and trailing-slash personal `source_url` frontmatter.
+  When publishing, copy the complete final site body into a native LinkedIn article, set the title,
+  upload the actual hero as its cover, and include the personal source link. Adjust formatting for
+  the editor without maintaining a second body in the repository. Metadata alone cannot upload the
+  cover. `source_url` identifies the personal original, not a LinkedIn canonical setting. Older
+  full-body companion drafts remain valid.
 - **Share caption:** create `content/posts/<same-stem>.linkedin.txt` for the feed post sharing the
   native article. Keep it short (aim for 80-160 words, at most 2,500 characters), state the concrete
   problem and distinction, and invite a comment on the same editorial tradeoff without copying the
@@ -124,15 +124,15 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
 - **File:** for every blog post, create `content/posts/<same-stem>.devto.md`. It is committed
   authoring material for syndication to [DEV Community](https://dev.to), not site content: never add
   it to a manifest, fetch it from the app, or prerender it as a site route.
-- **Content:** carry the complete article rather than a teaser. Start from the final site body and
-  adapt only platform-specific syntax or links; do not let the DEV version drift into a second
-  argument. Keep the site title out of the body because DEV renders it from frontmatter.
+- **Content:** keep only frontmatter in this file. When publishing, paste it followed by the
+  complete final site body into DEV as one article, not a teaser. Keep the site title out of the
+  body because DEV renders it from frontmatter. Older full-body drafts remain valid.
 - **DEV frontmatter:** use `title`, `published: false`, `description`, `tags`, `canonical_url`, and
   `cover_image`. DEV accepts at most four comma-separated tags. `canonical_url` must be the
   trailing-slash personal-site article URL. `cover_image` must be the absolute raw-content hero URL.
-- **Links and images:** keep personal-site internal links absolute and trailing-slash. Rewrite any
-  content-relative image URL to an absolute `raw.githubusercontent.com` URL derived from
-  `config.ts`; DEV cannot resolve the site's content-relative paths.
+- **Links and images:** keep personal-site internal links absolute and trailing-slash. When pasting
+  into DEV, rewrite any content-relative image URL to an absolute `raw.githubusercontent.com` URL
+  derived from `config.ts`; DEV cannot resolve the site's content-relative paths.
 - **Canonical-first release:** the personal site is already crawler-visible through prerendered
   route shells and its sitemap. Treat DEV as syndication and discovery, not as the canonical host.
   Never publish the DEV draft until the personal canonical URL and hero both return `200`.
@@ -237,10 +237,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    That section is the single source of truth for what to cut and what to keep; do not restate it
    here. Beyond it, preserve the author's prose and only make mechanical publishing fixes.
 3. **Syndication package:** once the body, slug, and title are stable, create/update the same-stem
-  `*.linkedin-article.md` and `*.linkedin.txt`. Check full body alignment, hero and source URL,
-  specific discussion question, and caption length. If a carousel is requested or already staged,
-  keep `*.linkedin-carousel.md`, render its PDF, and validate every slide. Also create/update
-  `*.devto.md`, validate its DEV frontmatter, and keep its body aligned with the final site article.
+  frontmatter-only `*.linkedin-article.md` and `*.devto.md`, plus `*.linkedin.txt`. Check the site
+  body's specific discussion question, metadata URLs, DEV frontmatter, and caption length; ensure
+  neither metadata file duplicates the body. If a carousel is requested or already staged, keep
+  `*.linkedin-carousel.md`, render its PDF, and validate every slide.
 4. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
 5. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the
@@ -256,9 +256,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    exactly one `<title>`, the description is the `summary` and lands in the 110–160 character band,
    `canonical` and `og:url` are the **trailing-slash** URL, `og:image` is the hero, the JSON-LD
    `BlogPosting` has the right `datePublished`, the `#root` fallback carries the title + summary, and
-  the new URL appears in `dist/sitemap.xml`. Also report LinkedIn article body alignment, hero
-  status, caption word and character counts, optional carousel page count/ratio/size, DEV draft
-  frontmatter/canonical status, and whether the personal URL is live or awaiting publish.
+  the new URL appears in `dist/sitemap.xml`. Also report the canonical body's discussion question,
+  LinkedIn metadata/hero status, caption word and character counts, optional carousel page
+  count/ratio/size, DEV frontmatter/canonical status, and whether the personal URL is live or
+  awaiting publish.
 8. **STOP.** Do not commit or push. Report the review summary (files, manifest diff, build result,
   LinkedIn article/caption, any deferred artwork) and the exact publish command.
 
@@ -270,10 +271,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    still has `404.html` + `CNAME`; `dist/blog/<slug>/index.html` exists with the expected `og:image`,
    JSON-LD and crawlable fallback; the URL is in `dist/sitemap.xml`; frontmatter ↔ manifest match;
   `hero` points at a file that exists; internal links are absolute **trailing-slash** site URLs; and
-  the LinkedIn article draft carries the full body, absolute hero and personal source URL, with a
-  specific comment question; its caption exists and is within limits. If a carousel is staged,
-  validate its source + PDF. The DEV draft must exist with `published: false`, no more than four
-  tags, the exact canonical URL, and absolute hero. If the build is red or any check
+  the canonical body has a specific comment question; LinkedIn metadata contains the absolute hero
+  and personal source URL but no copied body; its caption exists and is within limits. If a carousel is staged,
+  validate its source + PDF. The DEV frontmatter-only file must exist with `published: false`, no
+  more than four tags, the exact canonical URL, and absolute hero. If the build is red or any check
   fails, **STOP and fix — never commit an unvalidated tree.**
 2. **Commit** a pure `content/` Conventional Commit (e.g. `feat(content): publish "<title>"`).
 3. **Push**, then watch the deploy: `gh run list --workflow=deploy.yml --limit 1` → poll
@@ -282,10 +283,11 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    `raw.githubusercontent.com`; the live page renders with the right `<title>`/`og:image`; the SPA
    deep link resolves; the route shell is served. Also confirm the canonical URL
    (`.../blog/<slug>/`) returns **200** rather than a redirect, and that `sitemap.xml` on the live
-  site lists it. Only then report the LinkedIn article/caption, any carousel PDF, and DEV draft as
+  site lists it. Only then report the LinkedIn metadata/caption, any carousel PDF, and DEV metadata as
   ready for their external channels. Do not publish external packages unless explicitly requested.
-  Publish the LinkedIn article with the hero as its cover before sharing it in a feed post; a
-  carousel is a separate optional document post. Note that
+  Copy the canonical body into LinkedIn with the hero as its cover and the personal source link
+  before sharing it in a feed post; paste DEV frontmatter plus that body into DEV when publishing
+  there. A carousel is a separate optional document post. Note that
   raw's CDN caches branch URLs ~5 min, so a just-changed asset may lag.
 5. **Report** the completion checklist below with live-verification outcomes, and remind the user of
    the two manual Search Console steps: **URL Inspection → Request indexing** for the new URL, and
@@ -299,10 +301,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 - **Placement:** file path, slug, frontmatter ↔ manifest consistency, links fixed.
 - **Artwork:** sidecar path + whether an image was generated (via Site Image Art Director) and wired
   as `hero` / `og:image`, or what's deferred.
-- **LinkedIn:** full article and caption paths, body alignment, hero and personal source URL,
-  specific discussion question, caption word/character counts, optional carousel page count/ratio/
+- **LinkedIn:** metadata and caption paths, canonical body question, hero and personal source URL,
+  caption word/character counts, optional carousel page count/ratio/
   file size, and whether the package is staged or ready after live verification.
-- **DEV:** draft path, frontmatter fields, canonical/cover URLs, body alignment, and whether it is
+- **DEV:** metadata path, frontmatter fields, canonical/cover URLs, and whether it is
   staged or externally published after the personal URL was verified.
 - **Asset:** hero final **format / dimensions / file size** and whether it was normalized to the
   house spec (or flagged off-spec and why).

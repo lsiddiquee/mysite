@@ -25,10 +25,10 @@ mysite/
 │  ├─ pages/*.md            # standalone pages (e.g. Now, About)
 │  ├─ projects/*.md         # project case studies
 │  ├─ posts/*.md            # blog bodies
-│  ├─ posts/*.linkedin-article.md # full LinkedIn article draft + hero reference (not rendered)
+│  ├─ posts/*.linkedin-article.md # LinkedIn title, hero, source metadata (not rendered)
 │  ├─ posts/*.linkedin.txt  # caption for sharing the LinkedIn article (not rendered)
 │  ├─ posts/*.linkedin-carousel.{md,pdf} # optional native document carousel
-│  └─ posts/*.devto.md      # draft DEV cross-posts with the personal URL as canonical
+│  └─ posts/*.devto.md      # DEV publishing metadata with personal URL as canonical
 ├─ .devcontainer/           # Node 24 dev container + persistent caches
 └─ .github/workflows/deploy.yml
 ```
@@ -42,16 +42,19 @@ markdown into the app's JavaScript.
 
 1. Add a markdown file under `content/posts/`, e.g.
    `content/posts/2026-08-01-my-post.md` (frontmatter optional — see the sample post).
-2. Add a same-stem `*.linkedin-article.md` with the complete article, the hero image URL, the
-  personal source URL, and an editor-crafted question about a concrete tradeoff in that article.
-  Paste it into a native LinkedIn article, upload the hero as its cover, then share it with a
+2. Include a question about a concrete tradeoff at the end of the site post so readers can
+  discuss it below the blog article and on each syndication platform. Add a same-stem
+  `*.linkedin-article.md` with the title, hero image URL, and personal source URL only. Copy the
+  site post body into a native LinkedIn article, set its title, upload the hero as its cover,
+  include the personal source link, then share it with a
   short same-stem `*.linkedin.txt` caption. Keep the `*.linkedin-carousel.md` Marp source and rendered
   `*.linkedin-carousel.pdf` as optional document-upload assets for a separate post; the carousel
   is not a substitute for the full LinkedIn article. Older posts may have only a condensed
   `*.linkedin.txt` companion.
-3. Add `content/posts/2026-08-01-my-post.devto.md` with the complete article, `published: false`, no
+3. Add `content/posts/2026-08-01-my-post.devto.md` with frontmatter only: `published: false`, no
   more than four DEV tags, the absolute raw hero URL, and
-  `canonical_url: https://www.likhansiddiquee.com/blog/my-post/`.
+  `canonical_url: https://www.likhansiddiquee.com/blog/my-post/`. When publishing to DEV, paste
+  that frontmatter and the complete site post body into the editor as one article.
 4. Add an entry to `content/index.json`:
 
    ```json
@@ -68,9 +71,10 @@ markdown into the app's JavaScript.
 
 5. Commit and push. The workflow regenerates the route shells — metadata, the prerendered post
   body, and the inlined source — without bundling the markdown into the app's JavaScript. The
-  LinkedIn and DEV artifacts remain inert authoring material; publish them externally only after the
-  personal article URL and hero are live. The DEV draft must retain the personal URL as canonical;
-  the LinkedIn draft records it as a source link, not a LinkedIn canonical setting.
+  LinkedIn and DEV metadata files remain inert authoring material; publish the full article
+  externally only after the personal article URL and hero are live. The DEV post must retain the
+  personal URL as canonical; the LinkedIn metadata records it as a source link, not a LinkedIn
+  canonical setting. Neither platform's comments sync with the blog's comments.
 
 > `index.json` is sorted by date in the app, so ordering in the file doesn't matter.
 
