@@ -65,8 +65,9 @@ mysite/
     projects/*.md           # project case studies
     pages/*.md              # standalone pages (e.g. Now, About)
     **/*.image-prompt.txt   # inert image-generation sidecars, never fetched/rendered
-    posts/*.linkedin.txt    # inert paste-ready LinkedIn companions, never fetched/rendered
-    posts/*.linkedin-carousel.{md,pdf} # inert LinkedIn document-carousel source + output
+    posts/*.linkedin-article.md # inert full LinkedIn article drafts with hero reference
+    posts/*.linkedin.txt    # inert LinkedIn share captions, never fetched/rendered
+    posts/*.linkedin-carousel.{md,pdf} # inert optional document-carousel source + output
     posts/*.devto.md        # inert canonical DEV Community cross-post drafts
   .github/workflows/deploy.yml
   .devcontainer/            # Node 24 container + persistent caches
@@ -86,12 +87,15 @@ mysite/
   `*.image-prompt.txt` sidecar format beside the owning post/project/page. Shared art direction lives
   in `.github/image-prompt-library.md`. Sidecars are committed authoring material only: never add
   them to manifests, fetch them from the app, or render them as Markdown.
-- **LinkedIn packages live beside blog posts.** Each post has a same-stem `*.linkedin.txt` with a
-  standalone condensed version and exactly one final-line canonical article URL, plus an editable
-  `*.linkedin-carousel.md` Marp source and rendered `*.linkedin-carousel.pdf` for native document
-  upload. The shared `.github/linkedin-carousel-portrait.css` theme owns the 4:5 page dimensions.
-  These are committed authoring artifacts only: never add them to manifests, fetch them from the app,
-  or render them.
+- **LinkedIn packages live beside blog posts.** New posts have a same-stem `*.linkedin-article.md`
+  with the complete article, hero reference, personal source URL, and an editor-crafted question
+  grounded in a real decision or tradeoff from that post, not a reusable engagement template;
+  `*.linkedin.txt` holds a short caption for sharing the native article. Older condensed companions
+  remain valid. `*.linkedin-carousel.md` and its rendered PDF are optional native document assets,
+  not substitutes for the full article. The shared `.github/linkedin-carousel-portrait.css` theme
+  owns the 4:5 page dimensions. All are inert authoring artifacts: never add them to manifests,
+  fetch them from the app, or render them. A LinkedIn article needs a manual hero upload; the
+  source URL is not a LinkedIn canonical setting.
 - **DEV Community drafts live beside blog posts.** Each post has a same-stem `*.devto.md` containing
   the full article with DEV frontmatter, `published: false`, an absolute raw hero, and the personal
   trailing-slash URL as `canonical_url`. These are inert syndication artifacts: never add them to
@@ -221,9 +225,10 @@ then verify it's on PATH") are branching, not error-hiding, and are fine.
 
 ## Publishing model (do not break)
 
-Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem LinkedIn text + carousel
-package (`*.linkedin.txt`, `*.linkedin-carousel.md`, `*.linkedin-carousel.pdf`), (3) a same-stem
-`*.devto.md` canonical cross-post draft, (4) one entry in `content/index.json`. Adding a project =
+Adding a post = (1) a markdown file under `content/posts/`, (2) a same-stem LinkedIn article +
+caption (`*.linkedin-article.md`, `*.linkedin.txt`) with an optional document carousel
+(`*.linkedin-carousel.md`, `*.linkedin-carousel.pdf`), (3) a same-stem `*.devto.md` canonical
+cross-post draft, (4) one entry in `content/index.json`. Adding a project =
 (1) a case study under `content/projects/`, (2) one entry in `content/projects.json`. Standalone pages
 are a single markdown file under `content/pages/`. No app code change is needed. A content-only
 commit triggers a static rebuild that regenerates the route shells (metadata, prerendered body,
