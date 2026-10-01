@@ -97,6 +97,11 @@ mysite/
   owns the 4:5 page dimensions. All are inert authoring artifacts: never add them to manifests,
   fetch them from the app, or render them. A LinkedIn article needs a manual hero upload; the
   source URL is not a LinkedIn canonical setting.
+- **Write cross-postable prose one paragraph per physical line.** Keep blank lines between
+  paragraphs and preserve Markdown headings, lists, and code fences. The site renderer collapses
+  source-line wraps, but external editors can paste those newlines as visible breaks; don't hard-wrap
+  new post bodies that will be copied to LinkedIn or DEV. Adjust Markdown formatting in LinkedIn's
+  editor rather than maintaining a second article body.
 - **DEV Community metadata lives beside blog posts.** Each new post has a same-stem `*.devto.md`
   containing only DEV frontmatter: `published: false`, an absolute raw hero, and the personal
   trailing-slash URL as `canonical_url`. Paste this frontmatter followed by the complete site post

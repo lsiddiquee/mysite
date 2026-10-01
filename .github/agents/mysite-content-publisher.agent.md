@@ -69,6 +69,9 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
   grounded in a concrete decision or tradeoff with more than one defensible answer; invite readers
   to name a constraint or failure that changed their choice. The question belongs in the site body
   so it travels to DEV and LinkedIn too, above each platform's own comments. Avoid generic bait.
+- **Paste-ready paragraphs:** keep each prose paragraph on one physical line with blank lines
+  between paragraphs. Preserve Markdown headings, lists, and code fences. External editors can
+  turn source-line wraps into visible line breaks even when the site renderer does not.
 - **Drop the leading `# H1`** — the app renders the title from metadata; a body H1 duplicates it.
 - **Internal links → absolute site URLs with a trailing slash**
   (`https://www.likhansiddiquee.com/blog/<slug>/`). The trailing slash is the URL that returns
@@ -239,7 +242,8 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 3. **Syndication package:** once the body, slug, and title are stable, create/update the same-stem
   frontmatter-only `*.linkedin-article.md` and `*.devto.md`, plus `*.linkedin.txt`. Check the site
   body's specific discussion question, metadata URLs, DEV frontmatter, and caption length; ensure
-  neither metadata file duplicates the body. If a carousel is requested or already staged, keep
+  neither metadata file duplicates the body. Check that copied paragraphs have no source-line wraps
+  before pasting them into external editors. If a carousel is requested or already staged, keep
   `*.linkedin-carousel.md`, render its PDF, and validate every slide.
 4. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.

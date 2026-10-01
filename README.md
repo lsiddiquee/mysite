@@ -41,11 +41,14 @@ markdown into the app's JavaScript.
 ## Publishing a new post
 
 1. Add a markdown file under `content/posts/`, e.g.
-   `content/posts/2026-08-01-my-post.md` (frontmatter optional — see the sample post).
+  `content/posts/2026-08-01-my-post.md` (frontmatter optional — see the sample post). Keep each
+  prose paragraph on one physical line, with blank lines between paragraphs, so copying the body
+  into an external editor does not turn source line wraps into visible breaks.
 2. Include a question about a concrete tradeoff at the end of the site post so readers can
   discuss it below the blog article and on each syndication platform. Add a same-stem
   `*.linkedin-article.md` with the title, hero image URL, and personal source URL only. Copy the
-  site post body into a native LinkedIn article, set its title, upload the hero as its cover,
+  site post body into a native LinkedIn article, adjust its formatting in the editor, set its title,
+  upload the hero as its cover,
   include the personal source link, then share it with a
   short same-stem `*.linkedin.txt` caption. Keep the `*.linkedin-carousel.md` Marp source and rendered
   `*.linkedin-carousel.pdf` as optional document-upload assets for a separate post; the carousel
