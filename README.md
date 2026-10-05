@@ -128,6 +128,15 @@ the content repo — never bundled into the app.
   `<same-stem>.image-prompt.txt`. These files are committed authoring material and are never fetched
   or rendered by the app. Reusable art direction lives in `.github/image-prompt-library.md`.
 
+When drafting a new blog article with the Content Publisher, the Site Image Art Director generates
+**three distinct hero variations alongside the draft** by default. This authorizes three paid local
+Foundry candidates without a separate generation request; ask for prompt-only, no generation, or
+reuse-only to opt out. Candidates and variant prompts stay in ignored `.local/artwork/`. Review the
+numbered previews and pick one before it is copied into `content/assets/` and wired into the article,
+manifest, LinkedIn and DEV metadata. Until selection, the draft stays unlisted with hero metadata
+pending. Generation/login failures are reported, not replaced silently with reused art. Editing an
+existing article does not trigger regeneration.
+
 For local Foundry artwork, rebuild the dev container to install Azure CLI, run
 `az login --use-device-code`, and select a subscription with inference access to your resource
 (`az account set --subscription <subscription-id>` if needed). Set the resource endpoint and image

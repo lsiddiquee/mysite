@@ -96,6 +96,17 @@ mysite/
   `.devcontainer/devcontainer.json`. Terminal execution sandboxes may not inherit that
   `remoteEnv`; if `az` reports no login, retry with `AZURE_CONFIG_DIR=/.devcontainercache/azure`
   for both the CLI check and generation command before asking for another login. See README.
+- **New article drafts include three generated hero variations by default (confirmed).**
+  Starting a new blog article authorizes those three paid local Foundry candidates alongside
+  drafting; no separate generation request is needed. A prompt-only, no-generation, or reuse-only
+  request overrides this default. Generate three meaningfully distinct visual concepts, not
+  identical-prompt rerolls. Keep candidates and variant prompts under ignored `.local/artwork/`,
+  inspect actual renders, and present numbered previews for user selection. Only after selection
+  normalize/copy the winner into `content/assets/`, retain its actual prompt in the owning sidecar,
+  and synchronize article, manifest, LinkedIn and DEV hero references. Until approval, leave a new
+  post unlisted and mark hero-dependent metadata pending; do not silently reuse art or pick a winner.
+  Report generation failures and incomplete candidate counts explicitly. Editing an existing post
+  does not authorize regeneration; other artwork still requires a generation request.
 - **LinkedIn packages live beside blog posts.** The site post is the sole maintained article body,
   including a discussion question grounded in a real decision or tradeoff, not a reusable
   engagement template. New posts have a same-stem `*.linkedin-article.md` with only title, hero

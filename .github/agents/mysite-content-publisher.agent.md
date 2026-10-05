@@ -34,8 +34,12 @@ Never write image prompts or generate images yourself. For every hero banner, so
 diagram, or page illustration, invoke the **Site Image Art Director** subagent by its declared
 `name`. It reads
 `.github/image-prompt-library.md`, writes the concrete prompt as an inert `*.image-prompt.txt`
-sidecar **beside** the owning content, and — when an image tool is available and the user asked for
-the image — generates it into `content/assets/`. You then wire the resulting path into the manifest.
+sidecar **beside** the owning content, and generates local candidates under ignored `.local/artwork/`
+when authorized. Follow the baseline's **New article drafts include three generated hero variations**
+rule: new article drafting includes generation, not merely a prompt or reused hero. Delegate the
+candidate batch as part of drafting once the core argument is stable. Present the returned previews
+and request the user's selection before copying or wiring a winner. Honor explicit opt-outs and
+report blocked generation rather than treating prompt-only output as completed artwork.
 For an optional LinkedIn document carousel, the Art Director owns the visual narrative and editable
 Marp source; the Content Publisher renders and validates the PDF.
 
@@ -246,7 +250,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
   before pasting them into external editors. If a carousel is requested or already staged, keep
   `*.linkedin-carousel.md`, render its PDF, and validate every slide.
 4. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
-   `*.image-prompt.txt` sidecar and (if possible/asked) the image into `content/assets/`.
+   `*.image-prompt.txt` sidecar and executes the default candidate batch for a new article.
+   Pass the stable draft/brief, any opt-out and the baseline authorization to the Art Director.
+   Present numbered actual previews for selection; if approval is pending, continue validating the
+   unlisted draft and report that gate, not a completed hero. Resume steps 5-7 after selection.
 5. **Validate the asset:** when a hero image exists, `identify`/`file` it and **normalize it to the
    house spec** (16:9, ~1600×900, JPG, 150-260 KB, metadata stripped) per *Hero image assets* above.
    Report its final format/dimensions/size; flag an off-spec asset you couldn't improve.
@@ -255,6 +262,8 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
    manifest agree, and that `hero` points at the file that actually exists. If artwork is deferred
    (no image yet), you may leave the post **unlisted** (no manifest entry) and flag that the entry +
    hero are the remaining publish gate — say so explicitly.
+   Once approved, synchronize the selected hero in the article, manifest, LinkedIn and DEV
+   metadata; ensure the owning prompt sidecar records the winning concept.
 7. **Validate:** `cd app && npm run build`. Confirm it's green, `dist/` still has `404.html` +
    `CNAME`, and (if listed) `dist/blog/<slug>/index.html` exists. Then check the shell itself:
    exactly one `<title>`, the description is the `summary` and lands in the 110–160 character band,
@@ -303,8 +312,9 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
 - **Isolation:** no `content/` bundled into the app; change is `content/`-only (or app work handed
   off).
 - **Placement:** file path, slug, frontmatter ↔ manifest consistency, links fixed.
-- **Artwork:** sidecar path + whether an image was generated (via Site Image Art Director) and wired
-  as `hero` / `og:image`, or what's deferred.
+- **Artwork:** sidecar path, actual candidate count and numbered preview paths (via Site Image Art
+  Director), selected option/approval status, and whether wired as `hero` / `og:image`; state any
+  opt-out, generation failure, or deferred selection.
 - **LinkedIn:** metadata and caption paths, canonical body question, hero and personal source URL,
   caption word/character counts, optional carousel page count/ratio/
   file size, and whether the package is staged or ready after live verification.
