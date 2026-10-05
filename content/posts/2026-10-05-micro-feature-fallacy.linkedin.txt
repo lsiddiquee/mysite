@@ -1,0 +1,7 @@
+"It's only a checkbox" stops being a useful argument when five checkboxes change what an export means.
+
+AI makes the code draft cheaper. It does not make compatibility, saved preferences, support, or future migrations disappear. Five independent binary settings imply up to 32 configurations, though not necessarily 32 required tests.
+
+The full article walks through an export used by analysts and automated integrations, then offers a short acceptance framework: establish the workflow, compare alternatives, map interactions, assign an owner, and approve the lifetime promise.
+
+Where would you draw the boundary between a flexible export and a stable contract? I'd like to hear about a consumer dependency or user need that made the tidy design the wrong choice.

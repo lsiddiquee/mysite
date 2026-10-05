@@ -1,0 +1,28 @@
+SURFACE:
+Approved hero for "The Micro-Feature Fallacy: How AI Shrinks Scope but Bloats Systems".
+Owning post: content/posts/2026-10-05-micro-feature-fallacy.md.
+User selected candidate 3, the configuration maze, on 2026-10-05.
+This sidecar is inert authoring material; never fetch, render or add it to a manifest.
+SURFACE and STORY are human notes; only IMAGE PROMPT and NEGATIVE PROMPT go into a generator.
+
+STORY:
+Small individually reasonable feature modules accumulate into an increasingly
+difficult system to navigate. Show the cognitive burden as branching paths,
+not a literal test-count diagram or a claim about exact permutations.
+
+IMAGE PROMPT:
+Wide 16:9 text-free technology-blog hero, crisp flat geometric editorial illustration, subtle screen-print texture. An oblique overhead view of a low modular labyrinth dominates the center-right on a clean paper field. The labyrinth is assembled from many small identical square feature tiles, each carrying a tiny unlabelled toggle and a short path segment. Their joined paths form ONE dense branching maze. A hand seats one additional small toggle tile into the outside edge, extending the same labyrinth. Each tile is modest; their accumulated joined paths create the overwhelming whole. The new tiny tile physically connects to the much larger maze. Place a small human navigator at the maze entrance, dwarfed by the many branching choices; a short clear entrance path leads toward the dense interior. Keep human and hand small, the growing maze dominant. Use broad walls and generous channels grouped into readable sections, not microscopic detail. Leave the left quarter mostly open, all main shapes inside safe crop margins. Closed palette: cobalt maze walls, butter yellow tile tops and hand, paper white background and pathways, ink black outlines and navigator. Every colour comes from this list and nothing else. Strong silhouettes, even light, restrained detail, clear thumbnail focal point.
+
+NEGATIVE PROMPT:
+new tile disconnected from maze, separate mazes, giant incoming tile, simple single path, impossible floating walls, exact configuration count, test-count diagram, numbered grid, flowchart labels, brain icon, robots, balance scale, membrane, text, letters, digits, logo, watermark, photorealism, glossy 3D, gradients, cinematic lighting
+
+RECOMMENDED SIZE:
+1600x900 (16:9), sRGB JPEG, metadata stripped, 4:4:4 chroma.
+Quality 85 preserves the inspected texture and outlines. The approximately
+296 KB approved preview exceeds the approximate 260 KB target; this is a
+deliberate texture/fidelity tradeoff after quality 90, 88 and 85 comparisons.
+
+ASSET TARGET:
+content/assets/micro-feature-fallacy-hero.jpg
+Content-relative hero: assets/micro-feature-fallacy-hero.jpg
+Original PNG and other candidates remain under ignored .local/artwork/.

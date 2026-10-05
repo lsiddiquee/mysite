@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "micro-feature-fallacy",
+      "title": "The Micro-Feature Fallacy: How AI Shrinks Scope but Bloats Systems",
+      "date": "2026-10-05",
+      "summary": "Cheap AI code generation makes niche features easy to approve. Evaluate their lifetime configuration, compatibility, and support costs before adding a toggle.",
+      "tags": ["agents", "software-architecture", "engineering-management", "productivity"],
+      "hero": "assets/micro-feature-fallacy-hero.jpg",
+      "file": "posts/2026-10-05-micro-feature-fallacy.md"
+    },
+    {
       "slug": "architectural-debt-ai",
       "title": "Architectural Debt is the New Technical Debt",
       "date": "2026-10-01",
