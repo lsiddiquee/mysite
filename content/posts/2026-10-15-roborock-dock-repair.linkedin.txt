@@ -1,0 +1,11 @@
+A €20 pump got our Roborock dock working again.
+
+It had stopped dispensing water to wash the mops. A replacement dock would have cost around €300 or more.
+
+The casing cost me ten minutes of cautious pulling. Online information didn't show me how it locked, so I opened the bottom panel to see the clips. They needed to be pushed inward to unlock. Once I knew that, the rest was easy.
+
+I've marked the tabs and locks in my photo so the next person can find them without opening the bottom just to discover the mechanism.
+
+The pump moved water when turned by hand, but an upstream power or control fault was still possible. Without a stable 12 V supply to test the motor separately, I tried the inexpensive replacement first.
+
+Would you try a €20 replacement first, or trace the electrical fault before ordering parts?

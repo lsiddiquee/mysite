@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "roborock-dock-repair",
+      "title": "Roborock dock repair: side clips and a €20 pump",
+      "date": "2026-10-15",
+      "summary": "My Roborock dock stopped dispensing water. Releasing the side clips without removing the bottom plate let me reach the pump and make a €20 repair.",
+      "tags": ["diy", "repair", "roborock", "robot-vacuum", "docking-station", "troubleshooting"],
+      "hero": "assets/roborock-dock-repair-hero.jpg",
+      "file": "posts/2026-10-15-roborock-dock-repair.md"
+    },
+    {
       "slug": "micro-feature-fallacy",
       "title": "The Micro-Feature Fallacy: How AI Shrinks Scope but Bloats Systems",
       "date": "2026-10-05",
