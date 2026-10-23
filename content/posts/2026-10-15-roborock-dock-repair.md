@@ -12,11 +12,11 @@ tags:
   - troubleshooting
 ---
 
-Most of my recent posts have been about [software and architectural debt](https://www.likhansiddiquee.com/blog/architectural-debt-ai/). This time, the thing refusing to work was on the floor: our Roborock dock had stopped dispensing water to wash the mops.
+Most of my recent posts have been about [software and architectural debt](https://www.likhansiddiquee.com/blog/architectural-debt-ai/). This time, the thing refusing to work was on the floor: our Roborock dock reported that the mop wash was complete, but the clean-water tank was still full and the dirty-water tank was empty.
 
 I'm a DIY tinkerer. Replacing an entire dock because one part had failed felt wasteful, especially with a replacement costing around €300 or more. I wanted to find out what had stopped working before giving up on it.
 
-The repair ended up needing a pump costing about €20. Getting through the plastic housing was the part worth documenting.
+This time, I brought AI a phone photo instead of code. Once I'd opened the dock, I could trace a water line and see a motor, but I couldn't see how it pumped anything. Sending that photo with my question gave us something concrete to work through. I still had to open the casing, trace hoses and test what moved water. The repair ended up needing a pump costing about €20.
 
 ## The casing made a small repair look like a big one
 
@@ -71,6 +71,12 @@ The pump assembly is near the middle: its motor is inside the black vibration da
 
 *The highlighted pump assembly. The white peristaltic head sits below the motor; its two red hoses carry water in and out.*
 
+I took a phone photo of the exposed dock and sent it to AI with what I could trace: the water line led to what looked like a motor, but where was the pump? It identified the motor and white head as a peristaltic pump and explained that the pumping action happened inside the white housing. That gave me a mechanism to investigate, rather than a mysterious motor to replace.
+
+The conversation helped me separate the fresh-water and dirty-water systems and ask more specific questions. When I asked whether the component beneath the pump was a heater, AI suggested it was a valve. These were explanations and working hypotheses, not a verified schematic for my dock. It also inferred too much from pump noise; I questioned whether I was hearing the dirty-water side instead. Sound alone hadn't established that the fresh-water motor was healthy.
+
+The next useful input was physical feedback. Opening the white head and turning its mechanism by hand moved water. Pushing water down the outlet hose with a syringe reached a wash nozzle, then a second when I blocked the first. Those results gave me something to bring back to the discussion: which parts could move water, and what still wasn't explained by the failed wash cycle.
+
 I ran a wash cycle to observe the fault. An open dock exposes mains-powered parts: do not reach inside during a powered cycle, and disconnect power before touching hoses or opening the pump.
 
 I narrowed it down with two checks:
@@ -86,8 +92,8 @@ Replacing the pump cost about €20. After reconnecting the hoses and wiring and
 
 Against a roughly €300 replacement dock, the €20 part saved about €280 before delivery, tools and my time.
 
-But the part I wanted to leave a record of was the casing. I spent ten minutes pulling against locks I couldn't see, then opened the bottom panel to find out how they worked. Pushing the clips inward unlocked the wraparound cover. The annotated photo is the information I wish I'd had before starting: it lets the next person find the locks without opening the bottom merely to discover them.
+The casing discovery is worth leaving a record of: I found the locks by opening the bottom, and the annotated photo lets the next person find them without repeating that exploration. But the wider lesson for me was how I used AI once I was inside. A phone photo and a question helped explain a mechanism I didn't recognise. Hands-on tests gave us new evidence to discuss, and the remaining uncertainty shaped whether to buy a part or keep diagnosing.
 
-The dock is back washing mops. One replacement pump, and one less reason to throw away the rest of the machine.
+I'd been writing about AI in software; this repair broadened what I reach for it to help with. I didn't need code to give it useful context. I could show what I was looking at, explain what didn't make sense, then check its explanation against what the machine did. It couldn't do the physical work or settle every cause, but it helped me formulate the next question. The dock is back washing mops, with one replacement pump and one less reason to throw away the rest of the machine.
 
-When an appliance fails, where do you draw the line between opening it yourself, paying for diagnosis and replacing it? Has access to parts, safe service information or a previous failed repair changed that decision for you?
+When AI helps you investigate an unfamiliar appliance, what evidence would you want before trying an inexpensive replacement rather than paying for diagnosis? Has access to safe service information, a test result or a previous failed repair changed where you draw that line?

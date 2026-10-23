@@ -1,11 +1,9 @@
-A €20 pump got our Roborock dock working again.
+Disclaimer: a break from software posts. This time, I brought AI a phone photo instead of code.
 
-It had stopped dispensing water to wash the mops. A replacement dock would have cost around €300 or more.
+Our Roborock dock said the mop wash was complete, but the clean tank was full and the dirty tank empty. Once inside, I photographed what I could trace and asked why I could see a motor but no pump.
 
-The casing cost me ten minutes of cautious pulling. I opened the bottom panel to discover the clips needed to be pushed inward to unlock.
+AI explained the peristaltic head. Turning it by hand moved water; a syringe test showed an open downstream path. Those observations gave us better questions, not a certain electrical diagnosis. A €20 replacement restored washing, against roughly €300 for another dock.
 
-I've marked the tabs and locks in my photo so the next person can find them without repeating that exploratory step. Unplug and drain first; check for attached wiring before pulling a released cover away. Avoid exposed circuitry and live testing; if access isn't safe, use a repair service.
+Finding the casing clips was my own exploration. Unplug and drain first; inspect attached wiring, avoid circuitry and live testing, and use a repair service if access isn't safe.
 
-The pump moved water when turned by hand, but an upstream power or control fault was still possible. Without a stable 12 V supply to test the motor separately, I tried the inexpensive replacement first.
-
-Would you try a €20 replacement first, or trace the electrical fault before ordering parts?
+What evidence would make you try the part rather than pay for further diagnosis?
