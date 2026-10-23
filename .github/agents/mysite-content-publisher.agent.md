@@ -103,7 +103,9 @@ Authority order: `.github/copilot-instructions.md` → `README.md` → local fil
   article's question verbatim. Plain text only: no YAML, Markdown, greeting, generic engagement
   bait, or hashtag pile. Put each intended paragraph on one physical
   line; pasted hard wraps become visible. Do not require an outbound blog click to get the full
-  argument: the full article is on LinkedIn. Older posts with condensed `*.linkedin.txt` and a
+  argument: the full article is on LinkedIn. Apply the baseline's **Incident-led Posts And LinkedIn
+  Captions** checks; for standalone feed posts, use a fitting callback instead of forcing a question.
+  Older posts with condensed `*.linkedin.txt` and a
   final-line personal link remain valid; do not retroactively rewrite them.
 - **Optional carousel:** keep `content/posts/<same-stem>.linkedin-carousel.md` as an editable Marp
   document and render `content/posts/<same-stem>.linkedin-carousel.pdf` for a separate native
@@ -247,7 +249,10 @@ draft's through, and keep frontmatter identical to the manifest (the build enfor
   frontmatter-only `*.linkedin-article.md` and `*.devto.md`, plus `*.linkedin.txt`. Check the site
   body's specific discussion question, metadata URLs, DEV frontmatter, and caption length; ensure
   neither metadata file duplicates the body. Check that copied paragraphs have no source-line wraps
-  before pasting them into external editors. If a carousel is requested or already staged, keep
+  before pasting them into external editors. Review the caption against the baseline's incident-led
+  checks: verify its opening against the source, distinguish observation from illustration, and
+  identify the useful decision it gives readers without a click. Repair gaps before reporting ready;
+  report missing evidence rather than fabricating it. If a carousel is requested or already staged, keep
   `*.linkedin-carousel.md`, render its PDF, and validate every slide.
 4. **Artwork:** invoke **Site Image Art Director** for the hero/social image → it writes the
    `*.image-prompt.txt` sidecar and executes the default candidate batch for a new article.

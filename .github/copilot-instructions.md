@@ -294,6 +294,31 @@ when invoked. Agents link here instead of restating, so each rule is edited in e
 The target is **dramatized but direct** — narrative tension and concrete, specific examples, with
 the padding cut. Do not flatten posts into neutral technical reference prose.
 
+### Incident-led Posts And LinkedIn Captions
+
+Apply these checks when drafting or revising posts and captions (confirmed):
+
+- Open with a specific event or clearly labeled example and its unexpected consequence before
+  introducing the framework. Make the first two lines understandable without specialist context.
+- Prefer the author's observed details and available evidence: a real screenshot, diagnostic
+  result, exact exchange, or code behavior. Label hypothetical examples; never invent experience,
+  dialogue, measurements, or evidence to strengthen a hook. One failure is not a product benchmark.
+- Let humor come from the situation or the author's own mistake when it fits. Do not require a
+  joke, manufacture outrage, or turn every technical article into a short anecdote.
+- Give the feed reader a useful check or decision, not only a synopsis or an invitation to click.
+  Earn the broader claim by explaining the concrete failure and why it matters first.
+- End with a specific tradeoff question or a callback that completes the opening. A standalone
+  feed post need not end in a question; article bodies retain their discussion-question requirement.
+  Avoid generic engagement bait and quotable conclusions unsupported by the example.
+- Use short, natural paragraphs without forcing every sentence onto a separate paragraph. Keep
+  technical depth and qualifications where they change the reader's decision.
+- Treat the Google AI Mode/OpenAI export post (7,721 impressions in the supplied screenshot) as
+  an editorial reference, not a proven reach formula. Compare subsequent posts over the same time
+  window using impressions plus available comments, reposts, saves, or clicks; do not infer
+  algorithm preferences, audience growth, or conversion from impressions alone.
+
+### Keep And Cut
+
 **Keep (deliberate, not fluff):**
 
 - First-person voice and the occasional emoji or `!`. These are the register of a personal blog
