@@ -4,14 +4,8 @@ Then I asked why the image prompt named colours it was supposed to avoid. That o
 
 The agent did not start either tangent. I did.
 
-An agent's internal todo list is useful inside one session, but it is not durable shared memory. It may not survive a new chat or context compaction, and it cannot see a branch that starts in my head.
+Before either of us follows a tangent, we record the parent task and its next step in a gitignored .local/scratch/task-state.md. The repo's instructions tell each session to reconcile it on resume; an internal todo list may not survive a new chat or context compaction.
 
-I keep a gitignored .local/scratch/task-state.md with the repository instead. The repo's Copilot instructions tell each session to reconcile it before editing, checkpoint it before a deep dive, and read it again on resume. Because the file lives in the workspace, it survives a devcontainer rebuild without turning unfinished notes into shared project policy.
-
-I think of that ledger as a call stack. The in-progress item is the top frame. A pending item plus its next step is the return address. Open threads and findings are the state needed to resume. It is a mental model; the schema can vary.
-
-Most of the time I interact with it by asking, "What are my pending items?" The session reconciles the ledger, lists the unfinished work, and continues whichever item I choose.
-
-Before either of us follows a tangent, the ledger records the parent task and its next step.
+That recorded next step was our return address. We came back to the manifest, route build, and an unpublished forward link still needing removal.
 
 Full article: https://www.likhansiddiquee.com/blog/task-state-call-stack/
