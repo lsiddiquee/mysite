@@ -1,0 +1,11 @@
+Gitea worked on my Synology NAS. CI couldn't even start checkout.
+
+The runner's Docker-in-Docker daemon failed while mounting OverlayFS for a job container. Adding privileged mode wasn't the answer: it was already enabled.
+
+I replaced the nested daemon with Synology's existing Docker daemon, mounted its socket, and preserved the runner registration directory. Then I had to create the missing runner config and use the actual Compose network name: gitea_gitea, not gitea.
+
+A job container started and CI began progressing. The startup failure was resolved; the rest of the pipeline still needed its own checks.
+
+The cost matters: Docker socket access gives CI extensive control over the NAS. Removing privileged mode doesn't make that safe for untrusted workflows.
+
+The full configuration and troubleshooting sequence are in the article. What would make you move a runner off a shared NAS and into its own VM?

@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "slug": "gitea-actions-synology",
+      "title": "Fixing Gitea Actions on Synology Container Manager",
+      "date": "2026-10-29",
+      "summary": "Fix a Gitea Actions runner failing before checkout on Synology by replacing Docker-in-Docker with the host Docker socket, with the security tradeoff explained.",
+      "tags": ["docker", "troubleshooting", "security", "gitea", "synology"],
+      "hero": "assets/gitea-actions-synology-hero.jpg",
+      "file": "posts/2026-10-29-gitea-actions-synology.md"
+    },
+    {
       "slug": "roborock-dock-repair",
       "title": "Roborock dock repair: side clips and a €20 pump",
       "date": "2026-10-15",
